@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SUPIT - Projektni zadatak</title>
+    <link rel="icon" href="favicon.ico" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -15,69 +16,557 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
     />
-    <link rel="stylesheet" href="/assets/style/main.css" />
+    <link rel="stylesheet" href="css/main.css" />
   </head>
-  <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <img
-            id="navbar-brand-img"
-            src="assets/img/nav-brand.png"
-            alt="navbar-brand"
-          />
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+  <body class="d-flex flex-column min-vh-100">
+    <header class="sticky-top">
+      <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/" router-link>
+            <img
+              class="img-fluid"
+              id="navbar-brand-img"
+              src="img/nav-brand.png"
+              alt="navbar-brand"
+            />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  href="/"
+                  router-link
+                  ><i class="bi bi-house-fill"></i>Početna</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/o-nama" router-link
+                  ><i class="bi bi-chat-right-text-fill"></i>O nama</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/novosti" router-link
+                  ><i class="bi bi-info-circle-fill"></i>Novosti</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/nastavni-plan" router-link
+                  ><i class="bi bi-calendar3-fill"></i>Nastavni plan</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/kontakt" router-link
+                  ><i class="bi bi-envelope-fill"></i>Kontakt</a
+                >
+              </li>
+            </ul>
+          </div>
+          <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#"
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="/o-nama#pocetna"
+                router-link
                 ><i class="bi bi-house-fill"></i>Početna</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"
+              <a class="nav-link" href="/o-nama" router-link
                 ><i class="bi bi-chat-right-text-fill"></i>O nama</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"
+              <a class="nav-link" href="/novosti" router-link
                 ><i class="bi bi-info-circle-fill"></i>Novosti</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"
+              <a class="nav-link" href="/nastavni-plan" router-link
                 ><i class="bi bi-calendar3-fill"></i>Nastavni plan</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"
+              <a class="nav-link" href="/kontakt" router-link
                 ><i class="bi bi-envelope-fill"></i>Kontakt</a
               >
             </li>
           </ul>
         </div>
-      </div>
-    </nav>
-    <div
-      id="typing-video-container"
-      class="section d-flex justify-content-center embed-responsive embed-responsive-16by9"
+      </nav>
+    </header>
+
+    <main
+      id="pocetna"
+      class="container col d-flex justify-content-center align-items-center"
     >
-      <video class="embed-responsive-item" autoplay loop muted>
-        <source src="assets/video/typing.mp4" type="video/mp4" />
-        Vaš preglednik ne podržava video.
+      <video id="typing-video" autoplay loop muted>
+        <source src="video/typing.mp4" type="video/mp4" />
       </video>
-    </div>
+      <div id="typewriter" class="text-white">
+        <div id="tw-line-1" blinking></div>
+        <span id="tw-line-2" class="text-danger"></span
+        ><span id="tw-dot" style="display: none">.</span>
+      </div>
+    </main>
+
+    <main id="o-nama" class="main-active">
+      <div
+        id="campus-img-container"
+        class="d-flex align-items-end overflow-hidden"
+      >
+        <img id="campus-img" class="w-100" src="img/campus.png" alt="campus" />
+      </div>
+      <h1 class="location-title text-center w-50 p-4 mx-auto mb-5">O nama</h1>
+      <section id="nase-vrijednosti">
+        <h2 class="section-title text-center mb-5">
+          <i class="bi bi-lightning-fill"></i>Naše vrijednosti
+        </h2>
+        <div class="cursive py-5 mb-5">
+          <p class="container">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque est
+            laudantium amet et vitae voluptas non quaerat earum, deserunt neque
+            qui quod, nostrum cumque consequatur delectus in? Nemo, aspernatur
+            facilis?
+            <br /><br />Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Perferendis reprehenderit vitae fugit a quia voluptatem mollitia,
+            dolorum omnis? Quod ut enim eligendi animi cumque ab nulla quas
+            minima, rem assumenda!
+          </p>
+        </div>
+        <div class="container mb-5">
+          <div class="row g-2">
+            <div class="col-md-4">
+              <div class="p-3 border border-2 rounded-1 h-100">
+                <h4 class="text-uppercase border-2 border-bottom pb-3 mb-3">
+                  Lorem ipsum, dolor sit, Lorem ipsum, dolor sit
+                </h4>
+                <p>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. A
+                  itaque provident accusamus sint harum sed nesciunt minima
+                  excepturi tempore alias modi culpa dicta quas, esse magnam in,
+                  veritatis odio. Non!
+                </p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="p-3 border border-2 rounded-1 h-100">
+                <h4 class="text-uppercase border-2 border-bottom pb-3 mb-3">
+                  Lorem ipsum, dolor sit
+                </h4>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Dolorum, ipsa exercitationem ipsum laborum rem dolore impedit
+                  magni nisi ab natus sint ex minus sit, ratione eveniet neque
+                  dolorem, cum hic?
+                </p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="p-3 border border-2 rounded-1 h-100">
+                <h4 class="text-uppercase border-2 border-bottom pb-3 mb-3">
+                  Lorem ipsum, dolor sit
+                </h4>
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Ipsum, autem. Enim, fuga magni architecto nostrum deleniti
+                  illo nulla sed iure a aliquam aspernatur. Vel, asperiores
+                  veniam reiciendis quasi perspiciatis perferendis!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="povijest">
+        <h2 class="section-title text-center mb-5">
+          <i class="bi bi-clock-history"></i>&nbsp;Povijest
+        </h2>
+        <div class="cursive py-5 mb-5">
+          <p class="container">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet ab
+            aperiam enim impedit, error labore temporibus vero dicta itaque
+            magnam molestias, nulla cum omnis ex voluptate nostrum animi odit
+            eos!<br /><br />Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Molestiae enim veniam in! Vel repellat labore, iste iure
+            adipisci eum in distinctio nobis, ex amet necessitatibus odit
+            mollitia nulla, quo recusandae.
+          </p>
+        </div>
+        <div class="container mb-5">
+          <div class="row row-cols-xxl-3 row-cols-sm-2 row-cols-1 g-2">
+            <div class="col">
+              <div class="p-3 border border-2 rounded-1 h-100">
+                <h4 class="text-uppercase border-2 border-bottom pb-3 mb-3">
+                  <span class="text-primary">2006.</span>Lorem, ipsum dolor sit,
+                  Lorem ipsum, dolor sit
+                </h4>
+                <p>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. A
+                  itaque provident accusamus sint harum sed nesciunt minima
+                  excepturi tempore alias modi culpa dicta quas, esse magnam in,
+                  veritatis odio. Non!
+                </p>
+              </div>
+            </div>
+            <div class="col">
+              <div class="p-3 border border-2 rounded-1 h-100">
+                <h4 class="text-uppercase border-2 border-bottom pb-3 mb-3">
+                  <span class="text-primary">2006.</span>Lorem, ipsum dolor sit
+                </h4>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Dolorum, ipsa exercitationem ipsum laborum rem dolore impedit
+                  magni nisi ab natus sint ex minus sit, ratione eveniet neque
+                  dolorem, cum hic?
+                </p>
+              </div>
+            </div>
+            <div class="col">
+              <div class="p-3 border border-2 rounded-1 h-100">
+                <h4 class="text-uppercase border-2 border-bottom pb-3 mb-3">
+                  <span class="text-primary">2006.</span>Lorem, ipsum dolor sit
+                </h4>
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Ipsum, autem. Enim, fuga magni architecto nostrum deleniti
+                  illo nulla sed iure a aliquam aspernatur. Vel, asperiores
+                  veniam reiciendis quasi perspiciatis perferendis!
+                </p>
+              </div>
+            </div>
+            <div class="col">
+              <div class="p-3 border border-2 rounded-1 h-100">
+                <h4 class="text-uppercase border-2 border-bottom pb-3 mb-3">
+                  <span class="text-primary">2006.</span>Lorem, ipsum dolor sit
+                </h4>
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Ipsum, autem. Enim, fuga magni architecto nostrum deleniti
+                  illo nulla sed iure a aliquam aspernatur. Vel, asperiores
+                  veniam reiciendis quasi perspiciatis perferendis!
+                </p>
+              </div>
+            </div>
+            <div class="col">
+              <div class="p-3 border border-2 rounded-1 h-100">
+                <h4 class="text-uppercase border-2 border-bottom pb-3 mb-3">
+                  <span class="text-primary">2006.</span>Lorem, ipsum dolor sit
+                </h4>
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Ipsum, autem. Enim, fuga magni architecto nostrum deleniti
+                  illo nulla sed iure a aliquam aspernatur. Vel, asperiores
+                  veniam reiciendis quasi perspiciatis perferendis!
+                </p>
+              </div>
+            </div>
+            <div class="col">
+              <div class="p-3 border border-2 rounded-1 h-100">
+                <h4 class="text-uppercase border-2 border-bottom pb-3 mb-3">
+                  <span class="text-primary">2006.</span>Lorem, ipsum dolor sit
+                </h4>
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Ipsum, autem. Enim, fuga magni architecto nostrum deleniti
+                  illo nulla sed iure a aliquam aspernatur. Vel, asperiores
+                  veniam reiciendis quasi perspiciatis perferendis!
+                </p>
+              </div>
+            </div>
+            <div class="col">
+              <div class="p-3 border border-2 rounded-1 h-100">
+                <h4 class="text-uppercase border-2 border-bottom pb-3 mb-3">
+                  <span class="text-primary">2006.</span>Lorem, ipsum dolor sit
+                </h4>
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Ipsum, autem. Enim, fuga magni architecto nostrum deleniti
+                  illo nulla sed iure a aliquam aspernatur. Vel, asperiores
+                  veniam reiciendis quasi perspiciatis perferendis!
+                </p>
+              </div>
+            </div>
+            <div class="col">
+              <div class="p-3 border border-2 rounded-1 h-100">
+                <h4 class="text-uppercase border-2 border-bottom pb-3 mb-3">
+                  <span class="text-primary">2006.</span>Lorem, ipsum dolor sit
+                </h4>
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Ipsum, autem. Enim, fuga magni architecto nostrum deleniti
+                  illo nulla sed iure a aliquam aspernatur. Vel, asperiores
+                  veniam reiciendis quasi perspiciatis perferendis!
+                </p>
+              </div>
+            </div>
+            <div class="col">
+              <div class="p-3 border border-2 rounded-1 h-100">
+                <h4 class="text-uppercase border-2 border-bottom pb-3 mb-3">
+                  <span class="text-primary">2006.</span>Lorem, ipsum dolor sit
+                </h4>
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Ipsum, autem. Enim, fuga magni architecto nostrum deleniti
+                  illo nulla sed iure a aliquam aspernatur. Vel, asperiores
+                  veniam reiciendis quasi perspiciatis perferendis!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="algebra-grupa">
+        <h2 class="section-title text-center mb-5">
+          <i class="bi bi-people-fill"></i>&nbsp;Algebra grupa
+        </h2>
+        <div class="cursive py-5 mb-5">
+          <p class="container">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus
+            ullam, delectus beatae quis, aut ut accusamus reprehenderit facilis
+            sed magnam architecto! Molestiae facere nihil tempore quam maxime
+            quasi, necessitatibus alias.
+            <br /><br />Lorem ipsum, dolor sit amet consectetur adipisicing
+            elit. Dicta ipsum nobis voluptate asperiores atque sapiente
+            perspiciatis, aperiam magnam recusandae deserunt vel sit laboriosam
+            odio beatae. Dolorum earum id nihil rerum.
+          </p>
+        </div>
+        <div class="container mb-5">
+          <div class="row row-cols-xxl-4 row-cols-sm-2 row-cols-1 g-2">
+            <div class="col">
+              <div class="p-3 h-100">
+                <h5 class="text-uppercase border-2 border-bottom pb-3 mb-3">
+                  Lorem ipsum, dolor sit
+                </h5>
+                <div class="text-center">
+                  <img
+                    class="img-fluid"
+                    src="img/certificate.png"
+                    alt="certifikat ecdl"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="p-3 h-100">
+                <h5 class="text-uppercase border-2 border-bottom pb-3 mb-3">
+                  Lorem ipsum, dolor sit
+                </h5>
+                <div class="text-center">
+                  <img
+                    class="img-fluid"
+                    src="img/certificate.png"
+                    alt="certifikat ecdl"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="p-3 h-100">
+                <h5 class="text-uppercase border-2 border-bottom pb-3 mb-3">
+                  Lorem ipsum, dolor sit
+                </h5>
+                <div class="text-center">
+                  <img
+                    class="img-fluid"
+                    src="img/certificate.png"
+                    alt="certifikat ecdl"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="p-3 h-100">
+                <h5 class="text-uppercase border-2 border-bottom pb-3 mb-3">
+                  Lorem ipsum, dolor sit
+                </h5>
+                <div class="text-center">
+                  <img
+                    class="img-fluid"
+                    src="img/certificate.png"
+                    alt="certifikat ecdl"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="p-3 h-100">
+                <h5 class="text-uppercase border-2 border-bottom pb-3 mb-3">
+                  Lorem ipsum, dolor sit
+                </h5>
+                <div class="text-center">
+                  <img
+                    class="img-fluid"
+                    src="img/certificate.png"
+                    alt="certifikat ecdl"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="p-3 h-100">
+                <h5 class="text-uppercase border-2 border-bottom pb-3 mb-3">
+                  Lorem ipsum, dolor sit
+                </h5>
+                <div class="text-center">
+                  <img
+                    class="img-fluid"
+                    src="img/certificate.png"
+                    alt="certifikat ecdl"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="p-3 h-100">
+                <h5 class="text-uppercase border-2 border-bottom pb-3 mb-3">
+                  Lorem ipsum, dolor sit
+                </h5>
+                <div class="text-center">
+                  <img
+                    class="img-fluid"
+                    src="img/certificate.png"
+                    alt="certifikat ecdl"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="p-3 h-100">
+                <h5 class="text-uppercase border-2 border-bottom pb-3 mb-3">
+                  Lorem ipsum, dolor sit
+                </h5>
+                <div class="text-center">
+                  <img
+                    class="img-fluid"
+                    src="img/certificate.png"
+                    alt="certifikat ecdl"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="kako-do-nas">
+        <h2 class="section-title text-center mb-5">
+          <i class="bi bi-compass"></i>&nbsp;Kako do nas?
+        </h2>
+        <div id="map-bg" class="py-5">
+          <div class="container mb-3">
+            <div class="row row-cols-xl-2 row-cols-1 gx-4 gy-3">
+              <div class="col">
+                <div class="p-3 border border-2 rounded-1 h-100 bg-white">
+                  <section>
+                    <h4 class="pb-2">
+                      <i class="bi bi-arrow-90deg-down text-primary"></i
+                      >&nbsp;Lokacija
+                    </h4>
+                    <p class="px-5 pb-2">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Ullam rerum alias ad unde, omnis, maiores cum explicabo in
+                      sunt doloribus accusamus ipsam cumque nisi quisquam!
+                      Beatae et tempore dolore ipsa! Lorem ipsum dolor sit amet
+                      consectetur adipisicing elit. Animi ea id officiis.
+                      Temporibus asperiores dicta earum atque sunt, omnis
+                      pariatur accusamus minus velit, et alias voluptatibus
+                      blanditiis architecto ea eveniet.
+                    </p>
+                  </section>
+                  <section>
+                    <h4 class="pb-2">
+                      <i class="bi bi-arrow-90deg-right text-primary"></i
+                      >&nbsp;Kako do nas?
+                    </h4>
+                    <p class="px-5 pb-2">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Ullam rerum alias ad unde, omnis, maiores cum explicabo in
+                      sunt doloribus accusamus ipsam cumque nisi quisquam!
+                      Beatae et tempore dolore ipsa!
+                    </p>
+                  </section>
+                </div>
+              </div>
+              <div class="col">
+                <div class="p-3 border border-2 rounded-1 h-100 bg-white">
+                  <section>
+                    <h4 class="pb-2">
+                      <i class="bi bi-arrow-90deg-up text-primary"></i
+                      >&nbsp;Javni prijevoz
+                    </h4>
+                    <p class="px-5 pb-2">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Ullam rerum alias ad unde, omnis, maiores cum explicabo in
+                      sunt doloribus accusamus ipsam cumque nisi quisquam!
+                      Beatae et tempore dolore ipsa!
+                    </p>
+                  </section>
+                  <section>
+                    <h4 class="pb-2">
+                      <i class="bi bi-arrow-90deg-left text-primary"></i
+                      >&nbsp;Osobno vozilo
+                    </h4>
+                    <p class="px-5 pb-2">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Ullam rerum alias ad unde, omnis, maiores cum explicabo in
+                      sunt doloribus accusamus ipsam cumque nisi quisquam!
+                      Beatae et tempore dolore ipsa!
+                    </p>
+                  </section>
+                  <section>
+                    <h4 class="pb-2">
+                      <i class="bi bi-arrow-90deg-down text-primary"></i
+                      >&nbsp;Parking
+                    </h4>
+                    <p class="px-5 pb-2">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Ullam rerum alias ad unde, omnis, maiores cum explicabo in
+                      sunt doloribus accusamus ipsam cumque nisi quisquam!
+                      Beatae et tempore dolore ipsa!
+                    </p>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2781.0500120319143!2d15.93893681556909!3d45.81025677910652!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4765d6d74e265877%3A0x1a4f4eae9fc461c5!2sAlgebra%20University%20College!5e0!3m2!1sen!2shr!4v1665771951174!5m2!1sen!2shr"
+              class="w-100 border border-2 rounded-1"
+              height="450"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <main id="novosti"></main>
+
+    <footer
+      class="mt-auto d-flex justify-content-center align-items-center text-center fs-1 text-white"
+    >
+      <div>
+        BUDI IZVRSTAN U ONOM ŠTO VOLIŠ
+        <div class="text-warning">ZAISKRI</div>
+      </div>
+    </footer>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
@@ -94,5 +583,6 @@
       integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
       crossorigin="anonymous"
     ></script>
+    <script src="js/main.js"></script>
   </body>
 </html>

@@ -1,0 +1,112 @@
+/* GENERAL */
+
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+:root {
+  --purple: #c21b67;
+}
+[router-link] * {
+  pointer-events: none;
+}
+main:not(.main-active) {
+  display: none !important;
+}
+#pocetna.main-active ~ footer {
+  display: none !important;
+}
+.location-title {
+  border-bottom: 0.3rem solid #ffbf00;
+  transform: translateY(50%);
+  animation: transform-none 1s forwards;
+}
+.section-title {
+  color: var(--purple);
+  text-shadow: 1px 1px 0 #000;
+}
+@media (min-width: 576px) {
+  .cursive > p {
+    width: 60% !important;
+  }
+}
+footer {
+  height: 30vh;
+  background: url("../img/footer.png") no-repeat bottom center;
+  background-size: cover;
+  text-shadow: 1px 1px 0 #000;
+}
+@keyframes transform-none {
+  to {
+    transform: none;
+  }
+}
+
+/* NAVBAR */
+
+#navbar-brand-img {
+  width: 200px;
+}
+.navbar {
+  font-size: 1.3rem;
+}
+.navbar-nav > li {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.nav-link > .bi {
+  padding-right: 0.5rem;
+}
+
+/* POCETNA */
+
+#typing-video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  z-index: -1;
+}
+@media (min-aspect-ratio: 16/9) {
+  #typing-video {
+    height: auto;
+    width: 100%;
+  }
+}
+#typewriter {
+  --tw: clamp(0.05rem, 0.25vw, 0.25rem);
+  font-size: clamp(1rem, 5vw, 5rem);
+  text-shadow: var(--tw) var(--tw) 0 #000;
+}
+#typewriter > [blinking] {
+  border-right: clamp(0.2rem, 1vw, 1rem) solid;
+  animation: blinking-caret 750ms step-end infinite;
+}
+@keyframes blinking-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #fff;
+  }
+}
+
+/* O NAMA */
+
+#campus-img-container {
+  max-height: 35vh;
+  animation: transform-none 1s forwards;
+  transform: translateY(-100%);
+}
+.cursive {
+  font: 1.5rem "Dancing Script", cursive;
+  background-color: #e2e2e2;
+}
+#povijest .text-primary::after {
+  color: initial;
+  content: " - ";
+}
+#map-bg {
+  background: url("../img/map-bg-02.png") no-repeat center;
+  background-size: cover;
+  background-attachment: fixed;
+}

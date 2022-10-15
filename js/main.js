@@ -1,17 +1,36 @@
-$(() => {return
+$(() => {
   const router = (e) => {
-    let location = window.location.pathname.slice(1);
+    let path = location.pathname;
+
+    // event
     if (e && e.type == "click") {
-      location = e.target.getAttribute("href").slice(1);
-      history.pushState(null, null, e.target.href);
       e.preventDefault();
+      const href = e.target.getAttribute("href");
+      if (href == path) return;
+      history.pushState(null, null, href);
+      if (href[0] == "#") return;
+      path = href;
     }
-    const $activeMain = $(".main-active");
-    if ($activeMain.length) $activeMain.removeClass("main-active");
-    let $activeMainNew = $("#" + (location || "pocetna"));
-    if (!$activeMainNew.length) $activeMainNew = $("#pocetna");
-    if ($activeMainNew.attr("id") == "pocetna") typewriter.run();
-    $activeMainNew.addClass("main-active");
+
+    // <main>
+    $(".main-active").removeClass("main-active");
+    let $activeMain = $("#" + (path.slice(1) || "pocetna"));
+    if (!$activeMain.length) $activeMain = $("#pocetna");
+    const activeId = $activeMain.addClass("main-active").attr("id");
+
+    // <nav> links
+    $(".nav-link.active").removeClass("active");
+    if (activeId == "pocetna") {
+      $(".nav-link[href='/']").addClass("active");
+      typewriter.run();
+    } else $(`.nav-link[href='/${activeId}']`).addClass("active");
+
+    // <nav> sections
+    if (activeId == "o-nama") {
+      $("#navbar-sections").removeClass("navbar-sections-inactive");
+      const instance = bootstrap.ScrollSpy.getInstance($("#o-nama")[0]);
+      if (instance) instance.refresh();
+    } else $("#navbar-sections").addClass("navbar-sections-inactive");
   };
 
   const typewriter = {
@@ -21,10 +40,9 @@ $(() => {return
     msg: "Budi izvrstan u onom što vidiš!$$$$$$$######voliš!$$$$$$$$$+Z$A$I$S$K$R$I$",
     intervalId: 0,
     reset() {
-      this.$tw1.empty();
-      this.$tw2.empty();
       this.$twDot.css("display", "none");
-      this.swapAttrs(this.$twDot, this.$tw1);
+      this.swapAttrs(this.$twDot, this.$tw1).empty();
+      this.$tw2.removeAttr("blinking").empty();
       clearInterval(this.intervalId);
     },
     swapAttrs($el1, $el2) {

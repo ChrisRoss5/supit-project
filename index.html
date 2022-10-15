@@ -20,7 +20,7 @@
   </head>
 
   <body class="d-flex flex-column min-vh-100">
-    <header class="sticky-top">
+    <header class="sticky-top overflow-hidden">
       <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="/" router-link>
@@ -44,64 +44,56 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-xl-0">
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  href="/"
-                  router-link
-                  ><i class="bi bi-house-fill"></i>Početna</a
+              <li class="nav-item px-xxl-2">
+                <a class="nav-link active" href="/" router-link
+                  ><i class="bi bi-house-fill px-2"></i>Početna</a
                 >
               </li>
-              <li class="nav-item">
+              <li class="nav-item px-xxl-2">
                 <a class="nav-link" href="/o-nama" router-link
-                  ><i class="bi bi-chat-right-text-fill"></i>O nama</a
+                  ><i class="bi bi-chat-right-text-fill px-2"></i>O
+                  nama</a
                 >
               </li>
-              <li class="nav-item">
+              <li class="nav-item px-xxl-2">
                 <a class="nav-link" href="/novosti" router-link
-                  ><i class="bi bi-info-circle-fill"></i>Novosti</a
+                  ><i class="bi bi-info-circle-fill px-2"></i
+                  >Novosti</a
                 >
               </li>
-              <li class="nav-item">
+              <li class="nav-item px-xxl-2">
                 <a class="nav-link" href="/nastavni-plan" router-link
-                  ><i class="bi bi-calendar3-fill"></i>Nastavni plan</a
+                  ><i class="bi bi-calendar3-fill px-2"></i>Nastavni
+                  plan</a
                 >
               </li>
-              <li class="nav-item">
+              <li class="nav-item px-xxl-2">
                 <a class="nav-link" href="/kontakt" router-link
-                  ><i class="bi bi-envelope-fill"></i>Kontakt</a
+                  ><i class="bi bi-envelope-fill px-2"></i>Kontakt</a
                 >
               </li>
             </ul>
           </div>
-          <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-              <a
-                class="nav-link active"
-                aria-current="page"
-                href="/o-nama#pocetna"
-                router-link
-                ><i class="bi bi-house-fill"></i>Početna</a
+          <ul
+            id="navbar-sections"
+            class="d-xl-flex navbar-nav me-auto navbar-sections-inactive"
+          >
+            <li class="nav-item px-0 px-xxl-2">
+              <a class="nav-link" href="#nase-vrijednosti" router-link
+                >Naše vrijednosti</a
               >
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/o-nama" router-link
-                ><i class="bi bi-chat-right-text-fill"></i>O nama</a
+            <li class="nav-item px-0 px-xxl-2">
+              <a class="nav-link" href="#povijest" router-link>Povijest</a>
+            </li>
+            <li class="nav-item px-0 px-xxl-2">
+              <a class="nav-link" href="#algebra-grupa" router-link
+                >Algebra grupa</a
               >
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/novosti" router-link
-                ><i class="bi bi-info-circle-fill"></i>Novosti</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/nastavni-plan" router-link
-                ><i class="bi bi-calendar3-fill"></i>Nastavni plan</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/kontakt" router-link
-                ><i class="bi bi-envelope-fill"></i>Kontakt</a
+            <li class="nav-item px-0 px-xxl-2">
+              <a class="nav-link" href="#kako-do-nas" router-link
+                >Kako do nas</a
               >
             </li>
           </ul>
@@ -119,11 +111,16 @@
       <div id="typewriter" class="text-white">
         <div id="tw-line-1" blinking></div>
         <span id="tw-line-2" class="text-danger"></span
-        ><span id="tw-dot" style="display: none">.</span>
+        ><span id="tw-dot">.</span>
       </div>
     </main>
 
-    <main id="o-nama" class="main-active">
+    <main
+      id="o-nama"
+      data-bs-spy="scroll"
+      data-bs-target="#navbar-sections"
+      data-bs-smooth-scroll="true"
+    >
       <div
         id="campus-img-container"
         class="d-flex align-items-end overflow-hidden"
@@ -135,7 +132,7 @@
         <h2 class="section-title text-center mb-5">
           <i class="bi bi-lightning-fill"></i>Naše vrijednosti
         </h2>
-        <div class="cursive py-5 mb-5">
+        <div class="cursive px-2 py-5 mb-5">
           <p class="container">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque est
             laudantium amet et vitae voluptas non quaerat earum, deserunt neque
@@ -195,7 +192,7 @@
         <h2 class="section-title text-center mb-5">
           <i class="bi bi-clock-history"></i>&nbsp;Povijest
         </h2>
-        <div class="cursive py-5 mb-5">
+        <div class="cursive px-2 py-5 mb-5">
           <p class="container">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet ab
             aperiam enim impedit, error labore temporibus vero dicta itaque
@@ -333,7 +330,7 @@
         <h2 class="section-title text-center mb-5">
           <i class="bi bi-people-fill"></i>&nbsp;Algebra grupa
         </h2>
-        <div class="cursive py-5 mb-5">
+        <div class="cursive px-2 py-5 mb-5">
           <p class="container">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus
             ullam, delectus beatae quis, aut ut accusamus reprehenderit facilis

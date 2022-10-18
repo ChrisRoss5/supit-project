@@ -5,6 +5,8 @@ const bsNavbarCollapse = new bootstrap.Collapse("#navbar-collapse", {
   toggle: false,
 });
 let bsScrollSpyInstance;
+window.onload = () =>
+  (bsScrollSpyInstance = bootstrap.ScrollSpy.getInstance($("#o-nama")[0]));
 
 export const changeRoute = (e) => {
   let path = location.pathname;
@@ -26,7 +28,7 @@ export const changeRoute = (e) => {
   if (!$activeMain.length) $activeMain = $("#pocetna");
   const activeId = $activeMain.addClass("main-active").attr("id");
 
-  // <nav> links & POCETNA
+  // <nav-link>
   bsNavbarCollapse.hide();
   $(".nav-link.active").removeClass("active");
   if (activeId == "pocetna") {
@@ -40,15 +42,9 @@ export const changeRoute = (e) => {
   // O NAMA
   if (activeId == "o-nama") {
     $("#navbar-sections").removeClass("navbar-sections-inactive");
-    if (!bsScrollSpyInstance)
-      bsScrollSpyInstance = bootstrap.ScrollSpy.getInstance($("#o-nama")[0]);
-    bsScrollSpyInstance.refresh();
+    if (bsScrollSpyInstance) bsScrollSpyInstance.refresh();
   } else $("#navbar-sections").addClass("navbar-sections-inactive");
 
   // NASTAVNI PLAN
-  if (activeId == "nastavni-plan") {
-    $("#nastavni-plan input").focus();
-    if (!$("#nastavni-plan input").hasClass("ui-autocomplete-input"))
-      courses.init();
-  }
+  if (activeId == "nastavni-plan") courses.init();
 };

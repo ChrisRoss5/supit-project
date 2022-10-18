@@ -7,9 +7,6 @@
   --light-gray: #faf9fa;
   --black-text-shadow: 1px 1px 0 #000;
 }
-a[router-link] {
-  text-decoration: none;
-}
 a[router-link] * {
   pointer-events: none;
 }
@@ -60,135 +57,12 @@ header #navbar-sections {
   transition: 500ms cubic-bezier(0.7, 1.89, 0.48, 0.6);
 }
 header .navbar-sections-inactive {
-  transform: translateX(100%);
   pointer-events: none;
+  transform: translateX(100%);
   opacity: 0;
 }
 
-/* POCETNA */
-
-#pocetna > video {
-  object-fit: cover;
-  z-index: -1;
-}
-#pocetna #typewriter {
-  --tw: clamp(0.05rem, 0.25vw, 0.25rem);
-  font-size: clamp(1rem, 5vw, 5rem);
-  text-shadow: var(--tw) var(--tw) 0 #000;
-}
-#pocetna #typewriter > [blinking] {
-  border-right: clamp(0.2rem, 1vw, 1rem) solid;
-  animation: blinking-caret 750ms step-end infinite;
-}
-#pocetna #tw-dot {
-  display: none;
-}
-@keyframes blinking-caret {
-  from,
-  to {
-    border-color: transparent;
-  }
-  50% {
-    border-color: #fff;
-  }
-}
-
-/* O NAMA */
-
-#o-nama .cursive {
-  font: 1.5rem "Dancing Script", cursive;
-  background-color: var(--light-gray);
-}
-#o-nama .section-title {
-  color: var(--purple);
-  text-shadow: var(--black-text-shadow);
-}
-#o-nama .section-title:active,
-#o-nama .section-title:not(.collapsed) {
-  background-color: var(--purple-02);
-}
-@media (min-width: 1200px) {
-  #o-nama .section-title {
-    pointer-events: none;
-  }
-}
-#o-nama > section {
-  transition: opacity 1s 250ms;
-}
-#o-nama > section:not(.section-visible) {
-  opacity: 0;
-}
-#o-nama > section:not(#kako-do-nas) .row {
-  text-align: justify;
-}
-#o-nama > section#povijest .text-primary::after {
-  color: initial;
-  content: " - ";
-}
-#o-nama > section#kako-do-nas > .section-content {
-  background: url("../img/map-bg-02.png") center / cover no-repeat fixed;
-}
-
-/* NOVOSTI */
-
-#novosti > section {
-  background-color: var(--light-gray);
-}
-#novosti .container {
-  opacity: 0;
-  transform: scale(0.5);
-  animation: to-defaults 1s forwards;
-}
-@media (max-width: 1199.98px) {
-  #novosti .container {
-    max-width: 300px;
-  }
-}
-#novosti .circle {
-  border: 1rem solid transparent;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  box-shadow: 0 0 6px 3px #ccc;
-}
-#novosti .circle div {
-  text-shadow: var(--black-text-shadow);
-  z-index: 1;
-}
-#novosti .circle img {
-  opacity: 0.75;
-}
-
-/* NOVOST */
-
-[id^="novost-"] [role="button"] {
-  transition: box-shadow 250ms;
-}
-[id^="novost-"] [role="button"] img {
-  object-fit: cover;
-  opacity: 0.75;
-  transition: opacity 250ms, transform 250ms;
-}
-[id^="novost-"] [role="button"]:hover {
-  box-shadow: 0 0 6px 3px #686868;
-}
-[id^="novost-"] [role="button"]:hover img {
-  opacity: 1;
-  transform: scale(1.25);
-}
-[id^="novost-"] #modal-close {
-  transform: scale(2) translate(-50%, 50%);
-}
-[id^="novost-"] #carousel-modal {
-  background: #000000e0;
-}
-[id^="novost-"] .carousel-control-prev,
-[id^="novost-"] .carousel-control-next {
-  background: #000000e0;
-  height: 100px;
-  width: 50px;
-}
-
-/* NASTAVNI PLAN */
+/* JQUERY UI */
 
 .ui-autocomplete {
   max-height: 30vh;
@@ -200,6 +74,6 @@ header .navbar-sections-inactive {
   margin: initial !important;
   color: initial !important;
   font-weight: bold !important;
-  border: #eee !important ;
-  background-color: #eee !important ;
+  border: #eee !important;
+  background-color: #eee !important;
 }

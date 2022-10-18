@@ -19,6 +19,7 @@
       href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
     />
     <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/views.css" />
   </head>
 
   <body class="d-flex flex-column min-vh-100">
@@ -64,7 +65,11 @@
                 >
               </li>
               <li class="nav-item px-xxl-2">
-                <a class="nav-link" href="/kontakt" router-link
+                <a
+                  class="nav-link"
+                  href="javascript:;"
+                  data-bs-toggle="modal"
+                  data-bs-target="#contact-modal"
                   ><i class="bi bi-envelope-fill px-2"></i>Kontakt</a
                 >
               </li>
@@ -589,7 +594,7 @@
         >
           <a
             href="/novost-1"
-            class="circle position-relative d-flex justify-content-center align-items-center text-center overflow-hidden col-12 col-xl-3"
+            class="circle position-relative d-flex justify-content-center align-items-center text-center overflow-hidden col-12 col-xl-3 text-decoration-none"
             router-link
           >
             <div class="text-white">
@@ -604,7 +609,7 @@
           </a>
           <a
             href="/novost-2"
-            class="circle position-relative d-flex justify-content-center align-items-center text-center overflow-hidden col-12 col-xl-3"
+            class="circle position-relative d-flex justify-content-center align-items-center text-center overflow-hidden col-12 col-xl-3 text-decoration-none"
             router-link
           >
             <div class="text-white">
@@ -619,7 +624,7 @@
           </a>
           <a
             href="/novost-3"
-            class="circle position-relative d-flex justify-content-center align-items-center text-center overflow-hidden col-12 col-xl-3"
+            class="circle position-relative d-flex justify-content-center align-items-center text-center overflow-hidden col-12 col-xl-3 text-decoration-none"
             router-link
           >
             <div class="text-white">
@@ -731,6 +736,7 @@
         </div>
       </div>
     </main>
+
     <main id="novost-2">
       <div
         class="main-img d-flex align-items-center justify-content-center overflow-hidden text-white"
@@ -749,6 +755,7 @@
         et facere illum quis quo, mollitia repellendus vel, quas neque!
       </p>
     </main>
+
     <main id="novost-3">
       <div
         class="main-img d-flex align-items-center justify-content-center overflow-hidden text-white"
@@ -770,9 +777,9 @@
 
     <main id="nastavni-plan">
       <h1 class="main-title text-center w-50 p-4 mx-auto">Nastavni plan</h1>
-      <div class="container py-xl-5 py-2 mb-4">
-        <div class="row row-cols-xl-2 row-cols-1 gx-5 gy-3">
-          <div class="col border">
+      <div class="container py-xl-5 py-2">
+        <div class="row row-cols-xl-2 row-cols-1 gx-xl-5 gx-0 gy-3">
+          <div class="col">
             <label class="pb-2 fw-bold">Naziv kolegija:</label>
             <input
               type="text"
@@ -780,8 +787,8 @@
               placeholder="Započni unos naziva kolegija..."
             />
           </div>
-          <div class="col border">
-            <table class="table">
+          <div class="col pb-5">
+            <table class="w-100">
               <thead>
                 <tr>
                   <th>Kolegij</th>
@@ -792,12 +799,99 @@
                   <th colspan="2">Tip</th>
                 </tr>
               </thead>
-              <tbody></tbody>
+              <tbody>
+                <tr id="totals" class="fw-bold">
+                  <td>Ukupno:</td>
+                  <td id="total-ects" class="text-danger"></td>
+                  <td id="total-hours" class="text-danger"></td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
       </div>
     </main>
+
+    <div id="contact-modal" class="modal fade">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content h-50">
+          <div class="modal-header">
+            <h2 class="modal-title">
+              <i class="bi bi-envelope-fill px-2 text-info"></i>Kontaktirajte nas
+            </h2>
+          </div>
+          <form
+            class="modal-body"
+            action="http://www.fulek.com/VUA/SUPIT/ContactUs"
+            method="post"
+            target="_blank"
+            autocomplete
+          >
+            <div class="mb-3">
+              <label for="name" class="form-label">Puno ime:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                title="Ispunite ovo polje!"
+                oninvalid="this.setCustomValidity('Ispunite ovo polje!')"
+                oninput="this.setCustomValidity('')"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">E-mail:</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                title="Ispunite ovo polje!"
+                oninvalid="this.setCustomValidity('Neispravan email!')"
+                oninput="this.setCustomValidity('')"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="importance" class="form-label">Važnost poruke:</label>
+              <select class="form-select" id="importance" name="importance">
+                <option value="1" selected>Visoka</option>
+                <option value="0">Niska</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Vaša poruka:</label>
+              <textarea
+                class="form-control"
+                id="message"
+                name="message"
+                rows="4"
+                title="Ispunite ovo polje!"
+                oninvalid="this.setCustomValidity('Ispunite ovo polje!')"
+                oninput="this.setCustomValidity('')"
+                required
+              ></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-check-label" for="newsletter">
+                Primaj newsletter:
+              </label>
+              <input
+                type="checkbox"
+                class="form-check-input float-none ms-2 align-text-top"
+                id="newsletter"
+                name="newsletter"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary me-2">Pošalji</button>
+            <button class="btn btn-danger" data-bs-dismiss="modal">
+              Odustani
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
 
     <footer
       class="mt-auto d-flex justify-content-center align-items-center text-center fs-1 text-white px-5"

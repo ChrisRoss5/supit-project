@@ -1,5 +1,5 @@
-import typewriter from "./typewriter.js";
 import courses from "./courses.js";
+import typewriter from "./typewriter.js";
 
 const bsNavbarCollapse = new bootstrap.Collapse("#navbar-collapse", {
   toggle: false,

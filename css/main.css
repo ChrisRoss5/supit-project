@@ -4,33 +4,49 @@
 :root {
   --purple: #c21b67;
   --purple-02: #c21b6633;
+  --light-gray: #faf9fa;
   --black-text-shadow: 1px 1px 0 #000;
 }
-[router-link] * {
+a[router-link] {
+  text-decoration: none;
+}
+a[router-link] * {
   pointer-events: none;
 }
 main:not(.main-active),
-#pocetna.main-active ~ footer {
+main#pocetna.main-active ~ footer {
   display: none !important;
+}
+.main-img {
+  max-height: 35vh;
+  transform: translateY(-100%);
+  animation: to-defaults 1s forwards;
+  text-shadow: var(--black-text-shadow);
+}
+.main-title {
+  border-bottom: 0.3rem solid #ffbf00;
+  transform: translateY(50%);
+  animation: to-defaults 1s forwards;
+}
+@media (max-width: 1199.98px) {
+  .main-title {
+    width: 100% !important;
+  }
+}
+@media (min-width: 576px) {
+  .w-sm-60 {
+    width: 60% !important;
+  }
 }
 footer {
   height: 30vh;
-  background: url("../img/footer.png") no-repeat bottom center;
-  background-size: cover;
+  background: url("../img/footer.png") bottom center / cover no-repeat;
   text-shadow: var(--black-text-shadow);
 }
-.location-title {
-  border-bottom: 0.3rem solid #ffbf00;
-  transform: translateY(50%);
-  animation: transform-none 1s forwards;
-}
-.section-title {
-  color: var(--purple);
-  text-shadow: var(--black-text-shadow);
-}
-@keyframes transform-none {
+@keyframes to-defaults {
   to {
     transform: none;
+    opacity: 1;
   }
 }
 
@@ -52,18 +68,8 @@ header .navbar-sections-inactive {
 /* POCETNA */
 
 #pocetna > video {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 100%;
+  object-fit: cover;
   z-index: -1;
-}
-@media (min-aspect-ratio: 16/9) {
-  #pocetna > video {
-    height: auto;
-    width: 100%;
-  }
 }
 #pocetna #typewriter {
   --tw: clamp(0.05rem, 0.25vw, 0.25rem);
@@ -89,19 +95,17 @@ header .navbar-sections-inactive {
 
 /* O NAMA */
 
-#o-nama #campus-img-container {
-  max-height: 35vh;
-  transform: translateY(-100%);
-  animation: transform-none 1s forwards;
-}
 #o-nama .cursive {
   font: 1.5rem "Dancing Script", cursive;
-  background-color: #e2e2e2;
+  background-color: var(--light-gray);
 }
-@media (min-width: 576px) {
-  #o-nama .cursive > p {
-    width: 60% !important;
-  }
+#o-nama .section-title {
+  color: var(--purple);
+  text-shadow: var(--black-text-shadow);
+}
+#o-nama .section-title:active,
+#o-nama .section-title:not(.collapsed) {
+  background-color: var(--purple-02);
 }
 @media (min-width: 1200px) {
   #o-nama .section-title {
@@ -122,11 +126,80 @@ header .navbar-sections-inactive {
   content: " - ";
 }
 #o-nama > section#kako-do-nas > .section-content {
-  background: url("../img/map-bg-02.png") no-repeat center;
-  background-size: cover;
-  background-attachment: fixed;
+  background: url("../img/map-bg-02.png") center / cover no-repeat fixed;
 }
-#o-nama .section-title:active,
-#o-nama .section-title:not(.collapsed) {
-  background-color: var(--purple-02);
+
+/* NOVOSTI */
+
+#novosti > section {
+  background-color: var(--light-gray);
+}
+#novosti .container {
+  opacity: 0;
+  transform: scale(0.5);
+  animation: to-defaults 1s forwards;
+}
+@media (max-width: 1199.98px) {
+  #novosti .container {
+    max-width: 300px;
+  }
+}
+#novosti .circle {
+  border: 1rem solid transparent;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  box-shadow: 0 0 6px 3px #ccc;
+}
+#novosti .circle div {
+  text-shadow: var(--black-text-shadow);
+  z-index: 1;
+}
+#novosti .circle img {
+  opacity: 0.75;
+}
+
+/* NOVOST */
+
+[id^="novost-"] [role="button"] {
+  transition: box-shadow 250ms;
+}
+[id^="novost-"] [role="button"] img {
+  object-fit: cover;
+  opacity: 0.75;
+  transition: opacity 250ms, transform 250ms;
+}
+[id^="novost-"] [role="button"]:hover {
+  box-shadow: 0 0 6px 3px #686868;
+}
+[id^="novost-"] [role="button"]:hover img {
+  opacity: 1;
+  transform: scale(1.25);
+}
+[id^="novost-"] #modal-close {
+  transform: scale(2) translate(-50%, 50%);
+}
+[id^="novost-"] #carousel-modal {
+  background: #000000e0;
+}
+[id^="novost-"] .carousel-control-prev,
+[id^="novost-"] .carousel-control-next {
+  background: #000000e0;
+  height: 100px;
+  width: 50px;
+}
+
+/* NASTAVNI PLAN */
+
+.ui-autocomplete {
+  max-height: 30vh;
+  overflow: hidden auto;
+  font-weight: bold;
+}
+.ui-autocomplete > li:hover,
+.ui-state-active {
+  margin: initial !important;
+  color: initial !important;
+  font-weight: bold !important;
+  border: #eee !important ;
+  background-color: #eee !important ;
 }

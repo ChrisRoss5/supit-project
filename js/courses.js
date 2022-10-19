@@ -1,7 +1,7 @@
 /* https://api.jqueryui.com/autocomplete/ */
 
-const coursesURL = "http://www.fulek.com/VUA/SUPIT/GetNastavniPlan";
-const courseURL = "http://www.fulek.com/VUA/supit/GetKolegij";
+const coursesURL = "https://www.fulek.com/VUA/SUPIT/GetNastavniPlan";
+const courseURL = "https://www.fulek.com/VUA/supit/GetKolegij";
 
 export default {
   $table: $("#nastavni-plan table"),

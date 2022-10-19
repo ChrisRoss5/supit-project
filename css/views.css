@@ -2,12 +2,12 @@
 
 #pocetna > video {
   object-fit: cover;
-  z-index: -1;
 }
 #pocetna #typewriter {
   --tw: clamp(0.05rem, 0.25vw, 0.25rem);
   font-size: clamp(1rem, 5vw, 5rem);
   text-shadow: var(--tw) var(--tw) 0 #000;
+  z-index: 1;
 }
 #pocetna #typewriter > [blinking] {
   border-right: clamp(0.2rem, 1vw, 1rem) solid;

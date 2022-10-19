@@ -7,6 +7,10 @@
   --light-gray: #faf9fa;
   --black-text-shadow: 1px 1px 0 #000;
 }
+body {
+  opacity: 0;
+  transition: opacity 1s;
+}
 a[router-link] * {
   pointer-events: none;
 }
@@ -21,7 +25,6 @@ main#pocetna.main-active ~ footer {
   text-shadow: var(--black-text-shadow);
 }
 .main-title {
-  border-bottom: 0.3rem solid #ffbf00;
   transform: translateY(50%);
   animation: to-defaults 1s forwards;
 }
@@ -36,7 +39,7 @@ main#pocetna.main-active ~ footer {
   }
 }
 footer {
-  height: 30vh;
+  height: 35vh;
   background: url("../img/footer.png") bottom center / cover no-repeat;
   text-shadow: var(--black-text-shadow);
 }
@@ -76,4 +79,21 @@ header .navbar-sections-inactive {
   font-weight: bold !important;
   border: #eee !important;
   background-color: #eee !important;
+}
+
+/* ISHOD 2 */
+@media (min-width: 1200px) {
+  .main-title {
+    border-bottom: 0.3rem solid var(--bs-yellow);
+  }
+}
+@media (min-width: 768px) and (max-width: 1200px) {
+  .main-title {
+    border-bottom: 0.3rem solid var(--bs-orange);
+  }
+}
+@media (max-width: 767.98px) {
+  .main-title {
+    border-bottom: 0.3rem solid var(--bs-red);
+  }
 }

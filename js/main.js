@@ -11,6 +11,7 @@ const sectionsObserver = new IntersectionObserver((entries) => {
 changeRoute();
 $(window).on("popstate", changeRoute);
 $("[router-link]").on("click", changeRoute);
+$("#pocetna video").on("canplay", () => $("body").css("opacity", "1"));
 
 // O NAMA
 $("#o-nama > section").each((i, el) => sectionsObserver.observe(el));
@@ -23,7 +24,7 @@ $("[id^='novost-'] [role='button']").on("click", (e) => {
 // KONTAKT
 $("form").on("submit", (e) => {
   $(window).one("blur", () => {
-    $("form .btn-danger").click();
     e.target.reset();
+    $("form .btn-danger").click();
   });
 });

@@ -15,7 +15,7 @@ $("[router-link]").on("click", changeRoute);
 // O NAMA
 $("#o-nama > section").each((i, el) => sectionsObserver.observe(el));
 
-// NOVOSTI
+// NOVOST
 $("[id^='novost-'] [role='button']").on("click", (e) => {
   bsCarousel.to(e.target.dataset.n);
 });

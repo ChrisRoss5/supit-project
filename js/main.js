@@ -1,6 +1,5 @@
-$("header").replaceWith(await $.get("/components/header.html"));
-$("contact").replaceWith(await $.get("/components/modal-contact.html"));
-$("footer").replaceWith(await $.get("/components/footer.html"));
+for (const c of ["header", "footer", "contact"])
+  $(c).replaceWith(await $.get(`/html/components/${c}.html`));
 const { changeRoute } = await import("./router.js");
 
 changeRoute();

@@ -57,7 +57,7 @@ header .sections-off {
 }
 footer {
   height: 35vh;
-  background: url("../img/footer.png") bottom center / cover no-repeat;
+  background: url("/assets/img/footer.png") bottom center / cover no-repeat;
   text-shadow: var(--black-text-shadow);
 }
 

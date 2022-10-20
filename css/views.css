@@ -59,7 +59,7 @@
   content: " - ";
 }
 #o-nama > section#kako-do-nas > .section-content {
-  background: url("../img/map-bg-02.png") center / cover no-repeat fixed;
+  background: url("/assets/img/map-bg-02.png") center / cover no-repeat fixed;
 }
 
 /* NOVOSTI */

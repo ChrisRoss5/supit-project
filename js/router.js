@@ -22,7 +22,7 @@ const changeRoute = (e) => {
   if (!$("#" + path).length) changeView(path);
 };
 const changeView = async (path) => {
-  const html = await $.get(`/views/${path}.html`);
+  const html = await $.get(`/html/views/${path}.html`);
   if (html.startsWith("<!")) return changeView("pocetna");
   $("main").replaceWith(html);
 

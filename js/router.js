@@ -21,7 +21,6 @@ const changeRoute = (e) => {
   path = path.slice(1) || "pocetna";
   if (!$("#" + path).length) changeView(path);
 };
-
 const changeView = async (path) => {
   const html = await $.get(`/views/${path}.html`);
   if (html.startsWith("<!")) return changeView("pocetna");

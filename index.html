@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 
 <!--
-  Cilj mi je koristiti što više Bootstrap klasa, a za stylesheetove
-  ostavljam samo složena pravila i nepostojeće propertye u Bootstrapu.
+  Cilj mi je koristiti što više Bootstrap klasa,
+  a za stylesheetove ostaviti samo složena pravila
+  i nepostojeće prop/value parove u Bootstrapu.
 
   Inače, ovo je suprotno mojim metodama - izbjegavam bilo koji način
   styliranja u HTML datotekama, ali cilj je naučiti Bootstrap.
@@ -10,15 +11,16 @@
   Isto vrijedi za jQuery...
 
   Za projekt bih koristio TypeScript i CSS preprocessor,
-  ali cilj je pokretanje aplikacije bez servera i bez npm-a.
+  ali cilj je pokretanje aplikacije bez npm-a i setupa.
 
   Zbog toga, ova SPA (Single Page Application) ne koristi
   niti module bundler i ne postoji proces buildanja.
 
-  Također, pojedinačno učitavanje putanja je nemoguće bez
-  servera jer je potrebno za svaki 404 servirati index.html.
+  Kako bi pojedinačno učitavanje putanja bilo moguće,
+  server za svaki 404 mora servirati root index.html.
+  Za VSC Live Server opcija je u postavkama proširenja.
 
-  Projekt je hostan na Cloudflareu koji obavlja automatski
+  Projekt je hostan na Cloudflareu koji izvršava automatski
   deployment s Github repozitorija:
 
   https://github.com/ChrisRoss5/supit-projekt
@@ -27,8 +29,8 @@
 
   https://supit.k1k1.dev
 
-  Premda mi je ovo bio prvi susret s Bootstrapom, za kloniranje
-  algebrine stranice nije mi trebalo više od tjedan dana.
+  Iako mi je ovo bio prvi susret s Bootstrapom, za kloniranje
+  Algebrine stranice trebalo mi je manje od tjedan dana.
 -->
 
 <html lang="hr" class="bg-dark">
@@ -59,178 +61,10 @@
     class="d-flex flex-column min-vh-100"
     style="opacity: 0; transition: opacity 1s"
   >
-    <header class="sticky-top overflow-hidden">
-      <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/" router-link>
-            <img
-              class="img-fluid"
-              id="navbar-brand-img"
-              src="img/nav-brand.png"
-              alt="navbar-brand"
-            />
-          </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbar-collapse"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div id="navbar-collapse" class="collapse navbar-collapse">
-            <ul class="navbar-nav me-auto mb-2 mb-xl-0">
-              <li class="nav-item px-xxl-2">
-                <a class="nav-link" href="/" router-link
-                  ><i class="bi bi-house-fill px-2"></i>Početna</a
-                >
-              </li>
-              <li class="nav-item px-xxl-2">
-                <a class="nav-link" href="/o-nama" router-link
-                  ><i class="bi bi-chat-right-text-fill px-2"></i>O nama</a
-                >
-              </li>
-              <li class="nav-item px-xxl-2">
-                <a class="nav-link" href="/novosti" router-link
-                  ><i class="bi bi-info-circle-fill px-2"></i>Novosti</a
-                >
-              </li>
-              <li class="nav-item px-xxl-2">
-                <a class="nav-link" href="/nastavni-plan" router-link
-                  ><i class="bi bi-calendar3-fill px-2"></i>Nastavni plan</a
-                >
-              </li>
-              <li class="nav-item px-xxl-2">
-                <a
-                  class="nav-link"
-                  href="javascript:;"
-                  data-bs-toggle="modal"
-                  data-bs-target="#contact-modal"
-                  ><i class="bi bi-envelope-fill px-2"></i>Kontakt</a
-                >
-              </li>
-            </ul>
-          </div>
-          <ul
-            id="navbar-sections"
-            class="d-xl-flex navbar-nav me-auto sections-off"
-          >
-            <li class="nav-item px-0 px-xxl-2">
-              <a class="nav-link" href="#nase-vrijednosti" router-link
-                >Naše vrijednosti</a
-              >
-            </li>
-            <li class="nav-item px-0 px-xxl-2">
-              <a class="nav-link" href="#povijest" router-link>Povijest</a>
-            </li>
-            <li class="nav-item px-0 px-xxl-2">
-              <a class="nav-link" href="#algebra-grupa" router-link
-                >Algebra grupa</a
-              >
-            </li>
-            <li class="nav-item px-0 px-xxl-2">
-              <a class="nav-link" href="#kako-do-nas" router-link
-                >Kako do nas</a
-              >
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </header>
-
+    <header></header>
     <main></main>
-
-    <div id="contact-modal" class="modal fade">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content h-50">
-          <div class="modal-header">
-            <h2 class="modal-title">
-              <i class="bi bi-envelope-fill px-2 text-info"></i>Kontaktirajte
-              nas
-            </h2>
-          </div>
-          <form
-            class="modal-body"
-            action="https://www.fulek.com/VUA/SUPIT/ContactUs"
-            method="post"
-            target="_blank"
-            spellcheck="false"
-            autocomplete
-          >
-            <div class="mb-3">
-              <label for="name" class="form-label">Puno ime:</label>
-              <input
-                type="text"
-                class="form-control"
-                id="name"
-                name="name"
-                title="Ovo polje je obavezno!"
-                oninvalid="this.setCustomValidity('Ispunite ovo polje!')"
-                oninput="this.setCustomValidity('')"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">E-mail:</label>
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                name="email"
-                title="Ovo polje je obavezno!"
-                oninvalid="this.setCustomValidity('Neispravan email!')"
-                oninput="this.setCustomValidity('')"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="importance" class="form-label">Važnost poruke:</label>
-              <select class="form-select" id="importance" name="importance">
-                <option value="1" selected>Visoka</option>
-                <option value="0">Niska</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="message" class="form-label">Vaša poruka:</label>
-              <textarea
-                class="form-control"
-                id="message"
-                name="message"
-                rows="4"
-                title="Ovo polje je obavezno!"
-                oninvalid="this.setCustomValidity('Ispunite ovo polje!')"
-                oninput="this.setCustomValidity('')"
-                required
-              ></textarea>
-            </div>
-            <div class="mb-3">
-              <label class="form-check-label" for="newsletter">
-                Primaj newsletter:
-              </label>
-              <input
-                type="checkbox"
-                class="form-check-input float-none ms-2 align-text-top"
-                id="newsletter"
-                name="newsletter"
-              />
-            </div>
-            <button type="submit" class="btn btn-primary me-2">Pošalji</button>
-            <button class="btn btn-danger" data-bs-dismiss="modal">
-              Odustani
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <footer
-      class="mt-auto d-flex justify-content-center align-items-center text-center fs-1 text-white px-5"
-    >
-      <div>
-        BUDI IZVRSTAN U ONOM ŠTO VOLIŠ
-        <div class="text-warning">ZAISKRI</div>
-      </div>
-    </footer>
+    <footer></footer>
+    <contact></contact>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

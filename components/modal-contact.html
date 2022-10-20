@@ -1,0 +1,79 @@
+<div id="modal-contact" class="modal fade">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content h-50">
+      <div class="modal-header">
+        <h2 class="modal-title">
+          <i class="bi bi-envelope-fill px-2 text-info"></i>Kontaktirajte nas
+        </h2>
+      </div>
+      <form
+        class="modal-body"
+        action="https://www.fulek.com/VUA/SUPIT/ContactUs"
+        method="post"
+        target="_blank"
+        spellcheck="false"
+        autocomplete
+      >
+        <div class="mb-3">
+          <label for="name" class="form-label">Puno ime:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            title="Ovo polje je obavezno!"
+            oninvalid="this.setCustomValidity('Ispunite ovo polje!')"
+            oninput="this.setCustomValidity('')"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">E-mail:</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            title="Ovo polje je obavezno!"
+            oninvalid="this.setCustomValidity('Neispravan email!')"
+            oninput="this.setCustomValidity('')"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="importance" class="form-label">Važnost poruke:</label>
+          <select class="form-select" id="importance" name="importance">
+            <option value="1" selected>Visoka</option>
+            <option value="0">Niska</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label">Vaša poruka:</label>
+          <textarea
+            class="form-control"
+            id="message"
+            name="message"
+            rows="4"
+            title="Ovo polje je obavezno!"
+            oninvalid="this.setCustomValidity('Ispunite ovo polje!')"
+            oninput="this.setCustomValidity('')"
+            required
+          ></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-check-label" for="newsletter">
+            Primaj newsletter:
+          </label>
+          <input
+            type="checkbox"
+            class="form-check-input float-none ms-2 align-text-top"
+            id="newsletter"
+            name="newsletter"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary me-2">Pošalji</button>
+        <button class="btn btn-danger" data-bs-dismiss="modal">Odustani</button>
+      </form>
+    </div>
+  </div>
+</div>

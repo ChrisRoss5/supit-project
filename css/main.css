@@ -33,11 +33,7 @@ main#pocetna ~ footer {
     width: 60% !important;
   }
 }
-footer {
-  height: 35vh;
-  background: url("../img/footer.png") bottom center / cover no-repeat;
-  text-shadow: var(--black-text-shadow);
-}
+
 @keyframes to-defaults {
   to {
     transform: none;
@@ -45,7 +41,7 @@ footer {
   }
 }
 
-/* HEADER */
+/* COMPONENTS */
 
 header #navbar-brand-img {
   width: 150px;
@@ -58,6 +54,11 @@ header .sections-off {
   pointer-events: none;
   transform: translateX(100%);
   opacity: 0;
+}
+footer {
+  height: 35vh;
+  background: url("../img/footer.png") bottom center / cover no-repeat;
+  text-shadow: var(--black-text-shadow);
 }
 
 /* JQUERY UI */
@@ -77,6 +78,7 @@ header .sections-off {
 }
 
 /* ZA ISHOD */
+
 @media (min-width: 1200px) {
   .main-title {
     border-bottom: 0.3rem solid var(--bs-yellow);

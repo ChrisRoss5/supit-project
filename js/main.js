@@ -1,13 +1,10 @@
-import { changeRoute } from "./router.js";
+$("header").replaceWith(await $.get("/components/header.html"));
+$("contact").replaceWith(await $.get("/components/modal-contact.html"));
+$("footer").replaceWith(await $.get("/components/footer.html"));
+const { changeRoute } = await import("./router.js");
 
-console.log("PAGE LOADED");
-
-// GENERAL
 changeRoute();
 $(window).on("popstate", changeRoute);
-$("[router-link]").on("click", changeRoute);
-
-// KONTAKT
 $("form").on("submit", (e) => {
   $(window).one("blur", () => {
     e.target.reset();

@@ -147,6 +147,6 @@
   #nastavni-plan tr:not(#totals) td:last-child {
     position: absolute;
     right: 0;
-    bottom: 1rem;
+    bottom: 0;
   }
 }

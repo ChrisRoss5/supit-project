@@ -1,10 +1,42 @@
 <!DOCTYPE html>
+
+<!--
+  Cilj mi je koristiti što više Bootstrap klasa, a za stylesheetove
+  ostavljam samo složena pravila i nepostojeće propertye u Bootstrapu.
+
+  Inače, ovo je suprotno mojim metodama - izbjegavam bilo koji način
+  styliranja u HTML datotekama, ali cilj je naučiti Bootstrap.
+
+  Isto vrijedi za jQuery...
+
+  Za projekt bih koristio TypeScript i CSS preprocessor,
+  ali cilj je pokretanje aplikacije bez servera i bez npm-a.
+
+  Zbog toga, ova SPA (Single Page Application) ne koristi
+  niti module bundler i ne postoji proces buildanja.
+
+  Također, pojedinačno učitavanje putanja je nemoguće bez
+  servera jer je potrebno za svaki 404 servirati index.html.
+
+  Projekt je hostan na Cloudflareu koji obavlja automatski
+  deployment s Github repozitorija:
+
+  https://github.com/ChrisRoss5/supit-projekt
+
+  na
+
+  https://supit.k1k1.dev
+
+  Premda mi je ovo bio prvi susret s Bootstrapom, za kloniranje
+  algebrine stranice nije mi trebalo više od tjedan dana.
+-->
+
 <html lang="hr" class="bg-dark">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SUPIT - Projektni zadatak</title>
+    <title>SUPIT Projekt</title>
     <link rel="icon" href="favicon.ico" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
@@ -22,7 +54,11 @@
     <link rel="stylesheet" href="css/views.css" />
   </head>
 
-  <body class="d-flex flex-column min-vh-100">
+  <!-- Jedino mjesto na kojem koristim style atribut, zbog loading flickera -->
+  <body
+    class="d-flex flex-column min-vh-100"
+    style="opacity: 0; transition: opacity 1s"
+  >
     <header class="sticky-top overflow-hidden">
       <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
         <div class="container-fluid">
@@ -77,7 +113,7 @@
           </div>
           <ul
             id="navbar-sections"
-            class="d-xl-flex navbar-nav me-auto navbar-sections-inactive"
+            class="d-xl-flex navbar-nav me-auto sections-off"
           >
             <li class="nav-item px-0 px-xxl-2">
               <a class="nav-link" href="#nase-vrijednosti" router-link
@@ -102,716 +138,7 @@
       </nav>
     </header>
 
-    <main
-      id="pocetna"
-      class="container col d-flex justify-content-center align-items-center"
-    >
-      <video class="position-fixed w-100 h-100" autoplay loop muted>
-        <source src="video/typing.mp4" type="video/mp4" />
-      </video>
-      <div id="typewriter" class="text-white">
-        <div id="tw-line-1" blinking></div>
-        <span id="tw-line-2" class="text-danger"></span
-        ><span id="tw-dot">.</span>
-      </div>
-    </main>
-
-    <main
-      id="o-nama"
-      data-bs-spy="scroll"
-      data-bs-target="#navbar-sections"
-      data-bs-smooth-scroll="true"
-    >
-      <div class="main-img d-flex align-items-end overflow-hidden">
-        <img class="w-100" src="img/campus.png" alt="campus" />
-      </div>
-      <h1 class="main-title text-center w-50 p-4 mx-auto">O nama</h1>
-      <section id="nase-vrijednosti">
-        <h2
-          role="button"
-          class="section-title collapsed text-center py-4 py-xl-5 my-3 my-xl-0"
-          data-bs-toggle="collapse"
-          data-bs-target="#nase-vrijednosti > .section-content"
-        >
-          <i class="bi bi-lightning-fill"></i>Naše vrijednosti
-        </h2>
-        <div class="section-content collapse d-xl-block">
-          <div class="cursive px-2 py-4 py-xl-5 mb-4 mb-xl-5">
-            <p class="container w-sm-60">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque est
-              laudantium amet et vitae voluptas non quaerat earum, deserunt
-              neque qui quod, nostrum cumque consequatur delectus in? Nemo,
-              aspernatur facilis?
-              <br /><br />Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Perferendis reprehenderit vitae fugit a quia voluptatem
-              mollitia, dolorum omnis? Quod ut enim eligendi animi cumque ab
-              nulla quas minima, rem assumenda!
-            </p>
-          </div>
-          <div class="container">
-            <div class="row g-2">
-              <div class="col-md-4">
-                <div class="p-3 border border-2 rounded-1 h-100">
-                  <h4 class="text-uppercase border-2 border-bottom pb-3 mb-3">
-                    Lorem ipsum, dolor sit, Lorem ipsum, dolor sit
-                  </h4>
-                  <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. A
-                    itaque provident accusamus sint harum sed nesciunt minima
-                    excepturi tempore alias modi culpa dicta quas, esse magnam
-                    in, veritatis odio. Non!
-                  </p>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="p-3 border border-2 rounded-1 h-100">
-                  <h4 class="text-uppercase border-2 border-bottom pb-3 mb-3">
-                    Lorem ipsum, dolor sit
-                  </h4>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Dolorum, ipsa exercitationem ipsum laborum rem dolore
-                    impedit magni nisi ab natus sint ex minus sit, ratione
-                    eveniet neque dolorem, cum hic?
-                  </p>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="p-3 border border-2 rounded-1 h-100">
-                  <h4 class="text-uppercase border-2 border-bottom pb-3 mb-3">
-                    Lorem ipsum, dolor sit
-                  </h4>
-                  <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Ipsum, autem. Enim, fuga magni architecto nostrum deleniti
-                    illo nulla sed iure a aliquam aspernatur. Vel, asperiores
-                    veniam reiciendis quasi perspiciatis perferendis!
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="povijest">
-        <h2
-          role="button"
-          class="section-title collapsed text-center py-4 py-xl-5 my-3 my-xl-0"
-          data-bs-toggle="collapse"
-          data-bs-target="#povijest > .section-content"
-        >
-          <i class="bi bi-clock-history"></i>&nbsp;Povijest
-        </h2>
-        <div class="section-content collapse d-xl-block">
-          <div class="cursive px-2 py-4 py-xl-5 mb-4 mb-xl-5">
-            <p class="container w-sm-60">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet
-              ab aperiam enim impedit, error labore temporibus vero dicta itaque
-              magnam molestias, nulla cum omnis ex voluptate nostrum animi odit
-              eos!<br /><br />Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Molestiae enim veniam in! Vel repellat labore, iste iure
-              adipisci eum in distinctio nobis, ex amet necessitatibus odit
-              mollitia nulla, quo recusandae.
-            </p>
-          </div>
-          <div class="container">
-            <div class="row row-cols-xxl-3 row-cols-sm-2 row-cols-1 g-2">
-              <div class="col">
-                <div class="p-3 border border-2 rounded-1 h-100">
-                  <h4 class="text-uppercase border-2 border-bottom pb-3 mb-3">
-                    <span class="text-primary">2006.</span>Lorem, ipsum dolor
-                    sit, Lorem ipsum, dolor sit
-                  </h4>
-                  <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. A
-                    itaque provident accusamus sint harum sed nesciunt minima
-                    excepturi tempore alias modi culpa dicta quas, esse magnam
-                    in, veritatis odio. Non!
-                  </p>
-                </div>
-              </div>
-              <div class="col">
-                <div class="p-3 border border-2 rounded-1 h-100">
-                  <h4 class="text-uppercase border-2 border-bottom pb-3 mb-3">
-                    <span class="text-primary">2006.</span>Lorem, ipsum dolor
-                    sit
-                  </h4>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Dolorum, ipsa exercitationem ipsum laborum rem dolore
-                    impedit magni nisi ab natus sint ex minus sit, ratione
-                    eveniet neque dolorem, cum hic?
-                  </p>
-                </div>
-              </div>
-              <div class="col">
-                <div class="p-3 border border-2 rounded-1 h-100">
-                  <h4 class="text-uppercase border-2 border-bottom pb-3 mb-3">
-                    <span class="text-primary">2006.</span>Lorem, ipsum dolor
-                    sit
-                  </h4>
-                  <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Ipsum, autem. Enim, fuga magni architecto nostrum deleniti
-                    illo nulla sed iure a aliquam aspernatur. Vel, asperiores
-                    veniam reiciendis quasi perspiciatis perferendis!
-                  </p>
-                </div>
-              </div>
-              <div class="col">
-                <div class="p-3 border border-2 rounded-1 h-100">
-                  <h4 class="text-uppercase border-2 border-bottom pb-3 mb-3">
-                    <span class="text-primary">2006.</span>Lorem, ipsum dolor
-                    sit
-                  </h4>
-                  <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Ipsum, autem. Enim, fuga magni architecto nostrum deleniti
-                    illo nulla sed iure a aliquam aspernatur. Vel, asperiores
-                    veniam reiciendis quasi perspiciatis perferendis!
-                  </p>
-                </div>
-              </div>
-              <div class="col">
-                <div class="p-3 border border-2 rounded-1 h-100">
-                  <h4 class="text-uppercase border-2 border-bottom pb-3 mb-3">
-                    <span class="text-primary">2006.</span>Lorem, ipsum dolor
-                    sit
-                  </h4>
-                  <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Ipsum, autem. Enim, fuga magni architecto nostrum deleniti
-                    illo nulla sed iure a aliquam aspernatur. Vel, asperiores
-                    veniam reiciendis quasi perspiciatis perferendis!
-                  </p>
-                </div>
-              </div>
-              <div class="col">
-                <div class="p-3 border border-2 rounded-1 h-100">
-                  <h4 class="text-uppercase border-2 border-bottom pb-3 mb-3">
-                    <span class="text-primary">2006.</span>Lorem, ipsum dolor
-                    sit
-                  </h4>
-                  <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Ipsum, autem. Enim, fuga magni architecto nostrum deleniti
-                    illo nulla sed iure a aliquam aspernatur. Vel, asperiores
-                    veniam reiciendis quasi perspiciatis perferendis!
-                  </p>
-                </div>
-              </div>
-              <div class="col">
-                <div class="p-3 border border-2 rounded-1 h-100">
-                  <h4 class="text-uppercase border-2 border-bottom pb-3 mb-3">
-                    <span class="text-primary">2006.</span>Lorem, ipsum dolor
-                    sit
-                  </h4>
-                  <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Ipsum, autem. Enim, fuga magni architecto nostrum deleniti
-                    illo nulla sed iure a aliquam aspernatur. Vel, asperiores
-                    veniam reiciendis quasi perspiciatis perferendis!
-                  </p>
-                </div>
-              </div>
-              <div class="col">
-                <div class="p-3 border border-2 rounded-1 h-100">
-                  <h4 class="text-uppercase border-2 border-bottom pb-3 mb-3">
-                    <span class="text-primary">2006.</span>Lorem, ipsum dolor
-                    sit
-                  </h4>
-                  <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Ipsum, autem. Enim, fuga magni architecto nostrum deleniti
-                    illo nulla sed iure a aliquam aspernatur. Vel, asperiores
-                    veniam reiciendis quasi perspiciatis perferendis!
-                  </p>
-                </div>
-              </div>
-              <div class="col">
-                <div class="p-3 border border-2 rounded-1 h-100">
-                  <h4 class="text-uppercase border-2 border-bottom pb-3 mb-3">
-                    <span class="text-primary">2006.</span>Lorem, ipsum dolor
-                    sit
-                  </h4>
-                  <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Ipsum, autem. Enim, fuga magni architecto nostrum deleniti
-                    illo nulla sed iure a aliquam aspernatur. Vel, asperiores
-                    veniam reiciendis quasi perspiciatis perferendis!
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="algebra-grupa">
-        <h2
-          role="button"
-          class="section-title collapsed text-center py-4 py-xl-5 my-3 my-xl-0"
-          data-bs-toggle="collapse"
-          data-bs-target="#algebra-grupa > .section-content"
-        >
-          <i class="bi bi-people-fill"></i>&nbsp;Algebra grupa
-        </h2>
-        <div class="section-content collapse d-xl-block">
-          <div class="cursive px-2 py-4 py-xl-5 mb-4 mb-xl-5">
-            <p class="container w-sm-60">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Doloribus ullam, delectus beatae quis, aut ut accusamus
-              reprehenderit facilis sed magnam architecto! Molestiae facere
-              nihil tempore quam maxime quasi, necessitatibus alias.
-              <br /><br />Lorem ipsum, dolor sit amet consectetur adipisicing
-              elit. Dicta ipsum nobis voluptate asperiores atque sapiente
-              perspiciatis, aperiam magnam recusandae deserunt vel sit
-              laboriosam odio beatae. Dolorum earum id nihil rerum.
-            </p>
-          </div>
-          <div class="container">
-            <div class="row row-cols-xxl-4 row-cols-sm-2 row-cols-1 g-2">
-              <div class="col">
-                <div class="p-3 h-100">
-                  <h5 class="text-uppercase border-2 border-bottom pb-3 mb-3">
-                    Lorem ipsum, dolor sit, Lorem ipsum, dolor sit
-                  </h5>
-                  <div class="text-center">
-                    <img
-                      class="img-fluid"
-                      src="img/certificate.png"
-                      alt="certifikat ecdl"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="p-3 h-100">
-                  <h5 class="text-uppercase border-2 border-bottom pb-3 mb-3">
-                    Lorem ipsum, dolor sit
-                  </h5>
-                  <div class="text-center">
-                    <img
-                      class="img-fluid"
-                      src="img/certificate.png"
-                      alt="certifikat ecdl"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="p-3 h-100">
-                  <h5 class="text-uppercase border-2 border-bottom pb-3 mb-3">
-                    Lorem ipsum, dolor sit
-                  </h5>
-                  <div class="text-center">
-                    <img
-                      class="img-fluid"
-                      src="img/certificate.png"
-                      alt="certifikat ecdl"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="p-3 h-100">
-                  <h5 class="text-uppercase border-2 border-bottom pb-3 mb-3">
-                    Lorem ipsum, dolor sit
-                  </h5>
-                  <div class="text-center">
-                    <img
-                      class="img-fluid"
-                      src="img/certificate.png"
-                      alt="certifikat ecdl"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="p-3 h-100">
-                  <h5 class="text-uppercase border-2 border-bottom pb-3 mb-3">
-                    Lorem ipsum, dolor sit
-                  </h5>
-                  <div class="text-center">
-                    <img
-                      class="img-fluid"
-                      src="img/certificate.png"
-                      alt="certifikat ecdl"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="p-3 h-100">
-                  <h5 class="text-uppercase border-2 border-bottom pb-3 mb-3">
-                    Lorem ipsum, dolor sit
-                  </h5>
-                  <div class="text-center">
-                    <img
-                      class="img-fluid"
-                      src="img/certificate.png"
-                      alt="certifikat ecdl"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="p-3 h-100">
-                  <h5 class="text-uppercase border-2 border-bottom pb-3 mb-3">
-                    Lorem ipsum, dolor sit
-                  </h5>
-                  <div class="text-center">
-                    <img
-                      class="img-fluid"
-                      src="img/certificate.png"
-                      alt="certifikat ecdl"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="p-3 h-100">
-                  <h5 class="text-uppercase border-2 border-bottom pb-3 mb-3">
-                    Lorem ipsum, dolor sit
-                  </h5>
-                  <div class="text-center">
-                    <img
-                      class="img-fluid"
-                      src="img/certificate.png"
-                      alt="certifikat ecdl"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="kako-do-nas">
-        <h2
-          role="button"
-          class="section-title collapsed text-center py-4 py-xl-5 my-3 my-xl-0"
-          data-bs-toggle="collapse"
-          data-bs-target="#kako-do-nas > .section-content"
-        >
-          <i class="bi bi-compass"></i>&nbsp;Kako do nas?
-        </h2>
-        <div class="section-content collapse d-xl-block py-xl-5 py-2">
-          <div class="container mb-4">
-            <div class="row row-cols-xl-2 row-cols-1 gx-4 gy-3">
-              <div class="col">
-                <div class="p-3 border border-2 rounded-1 h-100 bg-white">
-                  <section>
-                    <h4 class="pb-2">
-                      <i class="bi bi-arrow-90deg-down text-primary"></i
-                      >&nbsp;Lokacija
-                    </h4>
-                    <p class="px-5 pb-2">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Ullam rerum alias ad unde, omnis, maiores cum explicabo in
-                      sunt doloribus accusamus ipsam cumque nisi quisquam!
-                      Beatae et tempore dolore ipsa! Lorem ipsum dolor sit amet
-                      consectetur adipisicing elit. Animi ea id officiis.
-                      Temporibus asperiores dicta earum atque sunt, omnis
-                      pariatur accusamus minus velit, et alias voluptatibus
-                      blanditiis architecto ea eveniet.
-                    </p>
-                  </section>
-                  <section>
-                    <h4 class="pb-2">
-                      <i class="bi bi-arrow-90deg-right text-primary"></i
-                      >&nbsp;Kako do nas?
-                    </h4>
-                    <p class="px-5 pb-2">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Ullam rerum alias ad unde, omnis, maiores cum explicabo in
-                      sunt doloribus accusamus ipsam cumque nisi quisquam!
-                      Beatae et tempore dolore ipsa!
-                    </p>
-                  </section>
-                </div>
-              </div>
-              <div class="col">
-                <div class="p-3 border border-2 rounded-1 h-100 bg-white">
-                  <section>
-                    <h4 class="pb-2">
-                      <i class="bi bi-arrow-90deg-up text-primary"></i
-                      >&nbsp;Javni prijevoz
-                    </h4>
-                    <p class="px-5 pb-2">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Ullam rerum alias ad unde, omnis, maiores cum explicabo in
-                      sunt doloribus accusamus ipsam cumque nisi quisquam!
-                      Beatae et tempore dolore ipsa!
-                    </p>
-                  </section>
-                  <section>
-                    <h4 class="pb-2">
-                      <i class="bi bi-arrow-90deg-left text-primary"></i
-                      >&nbsp;Osobno vozilo
-                    </h4>
-                    <p class="px-5 pb-2">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Ullam rerum alias ad unde, omnis, maiores cum explicabo in
-                      sunt doloribus accusamus ipsam cumque nisi quisquam!
-                      Beatae et tempore dolore ipsa!
-                    </p>
-                  </section>
-                  <section>
-                    <h4 class="pb-2">
-                      <i class="bi bi-arrow-90deg-down text-primary"></i
-                      >&nbsp;Parking
-                    </h4>
-                    <p class="px-5 pb-2">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Ullam rerum alias ad unde, omnis, maiores cum explicabo in
-                      sunt doloribus accusamus ipsam cumque nisi quisquam!
-                      Beatae et tempore dolore ipsa!
-                    </p>
-                  </section>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="container">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2781.0500120319143!2d15.93893681556909!3d45.81025677910652!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4765d6d74e265877%3A0x1a4f4eae9fc461c5!2sAlgebra%20University%20College!5e0!3m2!1sen!2shr!4v1665771951174!5m2!1sen!2shr"
-              class="w-100 border border-2 rounded-1"
-              height="450"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <main id="novosti">
-      <h1 class="main-title text-center w-50 p-4 mx-auto">Novosti</h1>
-      <section>
-        <div
-          class="container row justify-content-between gy-3 py-4 py-xl-5 my-4 my-xl-5 mx-auto fw-bold"
-        >
-          <a
-            href="/novost-1"
-            class="circle position-relative d-flex justify-content-center align-items-center text-center overflow-hidden col-12 col-xl-3 text-decoration-none"
-            router-link
-          >
-            <div class="text-white">
-              <div class="text-warning">20.10.2020.</div>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </div>
-            <img
-              src="img/logo.png"
-              alt="logo"
-              class="position-absolute h-100"
-            />
-          </a>
-          <a
-            href="/novost-2"
-            class="circle position-relative d-flex justify-content-center align-items-center text-center overflow-hidden col-12 col-xl-3 text-decoration-none"
-            router-link
-          >
-            <div class="text-white">
-              <div class="text-warning">20.10.2020.</div>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </div>
-            <img
-              src="img/logo.png"
-              alt="logo"
-              class="position-absolute h-100"
-            />
-          </a>
-          <a
-            href="/novost-3"
-            class="circle position-relative d-flex justify-content-center align-items-center text-center overflow-hidden col-12 col-xl-3 text-decoration-none"
-            router-link
-          >
-            <div class="text-white">
-              <div class="text-warning">20.10.2020.</div>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </div>
-            <img
-              src="img/logo.png"
-              alt="logo"
-              class="position-absolute h-100"
-            />
-          </a>
-        </div>
-      </section>
-    </main>
-
-    <main id="novost-1">
-      <div
-        class="main-img d-flex align-items-center justify-content-center overflow-hidden text-white"
-      >
-        <img class="w-100" src="img/news.png" alt="novost" />
-        <div class="container w-sm-60 position-absolute text-center fs-1">
-          Student Kristijan Rosandić napravio ovu stranicu...
-        </div>
-      </div>
-      <h1 class="main-title text-center w-50 p-4 mx-auto">
-        Nevjerojatna novost 1
-      </h1>
-      <p class="container w-sm-60 py-4 py-xl-5 fs-5">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, possimus
-        praesentium corporis minima quae dignissimos neque. At id eveniet rerum
-        et facere illum quis quo, mollitia repellendus vel, quas neque!
-      </p>
-      <div
-        class="container w-sm-60 d-flex justify-content-center row-cols-xxl-2 mb-5"
-      >
-        <div class="row">
-          <div class="col-6">
-            <div
-              role="button"
-              class="overflow-hidden rounded w-100 h-100"
-              data-n="0"
-              data-bs-toggle="modal"
-              data-bs-target="#carousel-modal"
-            >
-              <img
-                src="img/news.png"
-                alt="slika-1"
-                class="w-100 h-100 pe-none"
-              />
-            </div>
-          </div>
-          <div class="col-6">
-            <div
-              role="button"
-              class="overflow-hidden rounded w-100 h-100"
-              data-n="1"
-              data-bs-toggle="modal"
-              data-bs-target="#carousel-modal"
-            >
-              <img
-                src="img/campus.png"
-                alt="slika-2"
-                class="w-100 h-100 pe-none"
-              />
-            </div>
-          </div>
-          <video class="col-12 pt-4" controls>
-            <source src="video/typing.mp4" type="video/mp4" />
-          </video>
-        </div>
-      </div>
-      <div id="carousel-modal" class="modal fade">
-        <div class="modal-dialog modal-fullscreen">
-          <div
-            id="carousel-controls"
-            class="modal-content h-auto mh-100 position-absolute top-50 translate-middle-y carousel slide bg-transparent"
-            data-bs-ride="carousel"
-          >
-            <div class="carousel-inner d-flex align-items-center">
-              <div class="carousel-item active">
-                <img src="img/news.png" class="d-block w-100" />
-              </div>
-              <div class="carousel-item">
-                <img src="img/campus.png" class="d-block w-100" />
-              </div>
-            </div>
-            <button
-              class="carousel-control-prev top-50 translate-middle-y"
-              data-bs-target="#carousel-controls"
-              data-bs-slide="prev"
-            >
-              <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button
-              class="carousel-control-next top-50 translate-middle-y"
-              data-bs-target="#carousel-controls"
-              data-bs-slide="next"
-            >
-              <span class="carousel-control-next-icon"></span>
-            </button>
-          </div>
-        </div>
-        <div
-          id="modal-close"
-          class="position-absolute top-0 end-0 rounded-1 bg-white"
-        >
-          <button class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-      </div>
-    </main>
-
-    <main id="novost-2">
-      <div
-        class="main-img d-flex align-items-center justify-content-center overflow-hidden text-white"
-      >
-        <img class="w-100" src="img/news.png" alt="novost" />
-        <div class="container w-sm-60 position-absolute text-center fs-1">
-          Student Kristijan Rosandić napravio ovu stranicu...
-        </div>
-      </div>
-      <h1 class="main-title text-center w-50 p-4 mx-auto">
-        Nevjerojatna novost 2
-      </h1>
-      <p class="container w-sm-60 py-4 py-xl-5 fs-5">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, possimus
-        praesentium corporis minima quae dignissimos neque. At id eveniet rerum
-        et facere illum quis quo, mollitia repellendus vel, quas neque!
-      </p>
-    </main>
-
-    <main id="novost-3">
-      <div
-        class="main-img d-flex align-items-center justify-content-center overflow-hidden text-white"
-      >
-        <img class="w-100" src="img/news.png" alt="novost" />
-        <div class="container w-sm-60 position-absolute text-center fs-1">
-          Student Kristijan Rosandić napravio ovu stranicu...
-        </div>
-      </div>
-      <h1 class="main-title text-center w-50 p-4 mx-auto">
-        Nevjerojatna novost 3
-      </h1>
-      <p class="container w-sm-60 py-4 py-xl-5 fs-5">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, possimus
-        praesentium corporis minima quae dignissimos neque. At id eveniet rerum
-        et facere illum quis quo, mollitia repellendus vel, quas neque!
-      </p>
-    </main>
-
-    <main id="nastavni-plan">
-      <h1 class="main-title text-center w-50 p-4 mx-auto">Nastavni plan</h1>
-      <div class="container py-xl-5 py-2">
-        <div class="row row-cols-xl-2 row-cols-1 gx-xl-5 gx-0 gy-3">
-          <div class="col">
-            <label class="pb-2 fw-bold">Naziv kolegija:</label>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Započni unos naziva kolegija..."
-              spellcheck="false"
-            />
-          </div>
-          <div class="col pb-5">
-            <table class="w-100">
-              <thead>
-                <tr>
-                  <th>Kolegij</th>
-                  <th>ECTS</th>
-                  <th>Sati</th>
-                  <th>P</th>
-                  <th>V</th>
-                  <th colspan="2">Tip</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr id="totals" class="fw-bold">
-                  <td>Ukupno:</td>
-                  <td id="total-ects" class="text-danger"></td>
-                  <td id="total-hours" class="text-danger"></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </main>
+    <main></main>
 
     <div id="contact-modal" class="modal fade">
       <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -837,7 +164,7 @@
                 class="form-control"
                 id="name"
                 name="name"
-                title="Ispunite ovo polje!"
+                title="Ovo polje je obavezno!"
                 oninvalid="this.setCustomValidity('Ispunite ovo polje!')"
                 oninput="this.setCustomValidity('')"
                 required
@@ -850,7 +177,7 @@
                 class="form-control"
                 id="email"
                 name="email"
-                title="Ispunite ovo polje!"
+                title="Ovo polje je obavezno!"
                 oninvalid="this.setCustomValidity('Neispravan email!')"
                 oninput="this.setCustomValidity('')"
                 required
@@ -870,7 +197,7 @@
                 id="message"
                 name="message"
                 rows="4"
-                title="Ispunite ovo polje!"
+                title="Ovo polje je obavezno!"
                 oninvalid="this.setCustomValidity('Ispunite ovo polje!')"
                 oninput="this.setCustomValidity('')"
                 required

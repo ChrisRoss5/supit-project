@@ -7,15 +7,10 @@
   --light-gray: #faf9fa;
   --black-text-shadow: 1px 1px 0 #000;
 }
-body {
-  opacity: 0;
-  transition: opacity 1s;
-}
 a[router-link] * {
   pointer-events: none;
 }
-main:not(.main-active),
-main#pocetna.main-active ~ footer {
+main#pocetna ~ footer {
   display: none !important;
 }
 .main-img {
@@ -59,7 +54,7 @@ header #navbar-sections {
   display: none;
   transition: 500ms cubic-bezier(0.7, 1.89, 0.48, 0.6);
 }
-header .navbar-sections-inactive {
+header .sections-off {
   pointer-events: none;
   transform: translateX(100%);
   opacity: 0;
@@ -81,7 +76,7 @@ header .navbar-sections-inactive {
   background-color: #eee !important;
 }
 
-/* ISHOD 2 */
+/* ZA ISHOD */
 @media (min-width: 1200px) {
   .main-title {
     border-bottom: 0.3rem solid var(--bs-yellow);

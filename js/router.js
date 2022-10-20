@@ -1,17 +1,15 @@
-import courses from "./courses.js";
-import typewriter from "./typewriter.js";
-
+const sectionsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(({ target, isIntersecting }) => {
+    target.classList[isIntersecting ? "add" : "remove"]("section-visible");
+  });
+});
 const bsNavbarCollapse = new bootstrap.Collapse("#navbar-collapse", {
   toggle: false,
 });
-let bsScrollSpyInstance;
-window.onload = () =>
-  (bsScrollSpyInstance = bootstrap.ScrollSpy.getInstance($("#o-nama")[0]));
+const bsScrollConfig = { target: "#navbar-sections", smoothScroll: true };
 
-export const changeRoute = (e) => {
+const changeRoute = (e) => {
   let path = location.pathname;
-
-  // event
   if (e && e.type == "click") {
     e.preventDefault();
     const href = e.target.getAttribute("href");
@@ -20,31 +18,45 @@ export const changeRoute = (e) => {
     if (href[0] == "#") return;
     path = href;
   }
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  path = path.slice(1) || "pocetna";
+  if (!$("#" + path).length) changeView(path);
+};
 
-  // <main>
-  $(".main-active").removeClass("main-active");
-  let $activeMain = $("#" + (path.slice(1) || "pocetna"));
-  if (!$activeMain.length) $activeMain = $("#pocetna");
-  const activeId = $activeMain.addClass("main-active").attr("id");
+const changeView = async (path) => {
+  const html = await $.get(`/views/${path}.html`);
+  if (html.startsWith("<!")) return changeView("pocetna");
+  $("main").replaceWith(html);
 
-  // <nav-link>
-  bsNavbarCollapse.hide();
+  bsNavbarCollapse.hide(); // for mobile users
   $(".nav-link.active").removeClass("active");
-  if (activeId == "pocetna") {
-    $(".nav-link[href='/']").addClass("active");
-    typewriter.run();
-  } else {
-    $(`.nav-link[href='/${activeId}']`).addClass("active");
-    typewriter.reset();
+  $("[router-link]").off("click").on("click", changeRoute);
+  $("body").css("opacity", "1");
+  $(window).scrollTop(0);
+
+  switch (path) {
+    case "pocetna":
+      $(".nav-link[href='/']").addClass("active");
+      (await import("./typewriter.js")).default();
+      break;
+    case "o-nama":
+      $("#o-nama > section").each((i, el) => sectionsObserver.observe(el));
+      $("#navbar-sections").removeClass("sections-off");
+      new bootstrap.ScrollSpy("#o-nama", bsScrollConfig);
+      if (location.hash) $(location.hash)[0].scrollIntoView();
+      break;
+    case "novost-1":
+      const bsCarousel = new bootstrap.Carousel("#carousel-controls");
+      $("#novost-1 [role='button']").on("click", (e) => {
+        bsCarousel.to(e.target.dataset.n);
+      });
+      break;
+    case "nastavni-plan":
+      (await import("./courses.js")).default();
+      break;
   }
 
-  // O NAMA
-  if (activeId == "o-nama") {
-    $("#navbar-sections").removeClass("navbar-sections-inactive");
-    if (bsScrollSpyInstance) bsScrollSpyInstance.refresh();
-  } else $("#navbar-sections").addClass("navbar-sections-inactive");
-
-  // NASTAVNI PLAN
-  if (activeId == "nastavni-plan") courses.init();
+  if (path != "pocetna") $(`.nav-link[href='/${path}']`).addClass("active");
+  if (path != "o-nama") $("#navbar-sections").addClass("sections-off");
 };
+
+export { changeRoute };

@@ -1,22 +1,23 @@
-<main id="prijava" class="m-auto">
-    <h3>Prijava korisnika</h3>
-    <div class="container py-xl-5 py-2">
-        <form class="modal-body" action="https://www.fulek.com/data/api/user/login" method="post"
-            spellcheck="false" autocomplete>
-            <div class="mb-3">
-                <label for="name" class="form-label">Korisničko ime:</label>
-                <input type="text" class="form-control" id="name" name="name" title="Ovo polje je obavezno!"
-                    oninvalid="this.setCustomValidity('Ispunite ovo polje!')" oninput="this.setCustomValidity('')"
-                    required />
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Lozinka:</label>
-                <input type="email" class="form-control" id="email" name="email" title="Ovo polje je obavezno!"
-                    oninvalid="this.setCustomValidity('Neispravan email!')" oninput="this.setCustomValidity('')"
-                    required />
-            </div>
-            <button type="submit" class="btn btn-primary me-2">Prijavi se</button>
-            <div>Nemaš račun? Registriraj se.</div>
-        </form>
-    </div>
+<main id="prijava" class="m-auto p-3">
+    <h5 class="mb-4">PRIJAVA KORISNIKA</h5>
+    <form class="modal-body" action="https://www.fulek.com/data/api/user/login" method="post" spellcheck="false"
+        autocomplete>
+        <div class="mb-3">
+            <label for="email" class="form-label fw-bold">Korisničko ime:</label>
+            <input type="email" class="form-control" id="email" name="email" title="Ovo polje je obavezno!"
+                placeholder="E-mail adresa..." oninvalid="this.setCustomValidity('Neispravan email!')"
+                oninput="this.setCustomValidity('')" required />
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label fw-bold">Lozinka:</label>
+            <input type="password" class="form-control" id="password" name="password" title="Ovo polje je obavezno!"
+                oninvalid="this.setCustomValidity('Ispunite ovo polje!')" oninput="this.setCustomValidity('')"
+                required />
+        </div>
+        <button type="submit" class="btn me-2 text-light bg-dark w-100">Prijavi se</button>
+        <div id="success" class="d-none text-danger">Uspješna prijava :) Na početnu stranicu za 3,2,1...</div>
+        <div class="pt-3">Nemaš račun? <a class="text-primary text-decoration-none" href="/registracija" router-link>Registriraj
+                se</a>
+        </div>
+    </form>
 </main>

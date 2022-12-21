@@ -33,7 +33,6 @@ main#pocetna ~ footer {
     width: 60% !important;
   }
 }
-
 @keyframes to-defaults {
   to {
     transform: none;
@@ -43,9 +42,9 @@ main#pocetna ~ footer {
 
 /* COMPONENTS */
 
-header #navbar-brand-img {
+/* header #navbar-brand-img {
   width: 150px;
-}
+} */
 header #navbar-sections {
   display: none;
   transition: 500ms cubic-bezier(0.7, 1.89, 0.48, 0.6);

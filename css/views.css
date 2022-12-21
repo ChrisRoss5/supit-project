@@ -1,3 +1,11 @@
+/* PRIJAVA/REGISTRACIJA */
+
+#prijava, #registracija {
+  width: min(500px, 100%);
+  opacity: 0;
+  animation: to-defaults 1s forwards;
+}
+
 /* POCETNA */
 
 #pocetna > video {

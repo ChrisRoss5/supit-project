@@ -33,6 +33,10 @@ const changeView = async (path) => {
   $(window).scrollTop(0);
 
   switch (path) {
+    case "prijava":
+    case "registracija":
+      (await import("./auth.js")).default();
+      break;
     case "pocetna":
       $(".nav-link[href='/']").addClass("active");
       (await import("./typewriter.js")).default();

@@ -1,0 +1,22 @@
+<main id="prijava" class="m-auto">
+    <h3>Prijava korisnika</h3>
+    <div class="container py-xl-5 py-2">
+        <form class="modal-body" action="https://www.fulek.com/data/api/user/login" method="post"
+            spellcheck="false" autocomplete>
+            <div class="mb-3">
+                <label for="name" class="form-label">Korisničko ime:</label>
+                <input type="text" class="form-control" id="name" name="name" title="Ovo polje je obavezno!"
+                    oninvalid="this.setCustomValidity('Ispunite ovo polje!')" oninput="this.setCustomValidity('')"
+                    required />
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Lozinka:</label>
+                <input type="email" class="form-control" id="email" name="email" title="Ovo polje je obavezno!"
+                    oninvalid="this.setCustomValidity('Neispravan email!')" oninput="this.setCustomValidity('')"
+                    required />
+            </div>
+            <button type="submit" class="btn btn-primary me-2">Prijavi se</button>
+            <div>Nemaš račun? Registriraj se.</div>
+        </form>
+    </div>
+</main>

@@ -8,19 +8,18 @@
       </div>
       <form
         class="modal-body"
-        action="https://www.fulek.com/VUA/SUPIT/ContactUs"
+        action="https://www.fulek.com/mvc/supit/project-contact-form"
         method="post"
-        target="_blank"
         spellcheck="false"
         autocomplete
       >
         <div class="mb-3">
-          <label for="name" class="form-label">Puno ime:</label>
+          <label for="FullName" class="form-label fw-bold">Puno ime:</label>
           <input
             type="text"
             class="form-control"
             id="name"
-            name="name"
+            name="FullName"
             title="Ovo polje je obavezno!"
             oninvalid="this.setCustomValidity('Ispunite ovo polje!')"
             oninput="this.setCustomValidity('')"
@@ -28,12 +27,12 @@
           />
         </div>
         <div class="mb-3">
-          <label for="email" class="form-label">E-mail:</label>
+          <label for="Email" class="form-label fw-bold">E-mail:</label>
           <input
             type="email"
             class="form-control"
             id="email"
-            name="email"
+            name="Email"
             title="Ovo polje je obavezno!"
             oninvalid="this.setCustomValidity('Neispravan email!')"
             oninput="this.setCustomValidity('')"
@@ -41,18 +40,18 @@
           />
         </div>
         <div class="mb-3">
-          <label for="importance" class="form-label">Važnost poruke:</label>
-          <select class="form-select" id="importance" name="importance">
-            <option value="1" selected>Visoka</option>
-            <option value="0">Niska</option>
+          <label for="Importance" class="form-label fw-bold">Važnost poruke:</label>
+          <select class="form-select" id="importance" name="Importance">
+            <option value="Visoka" selected>Visoka</option>
+            <option value="Niska">Niska</option>
           </select>
         </div>
         <div class="mb-3">
-          <label for="message" class="form-label">Vaša poruka:</label>
+          <label for="Message" class="form-label fw-bold">Vaša poruka:</label>
           <textarea
             class="form-control"
             id="message"
-            name="message"
+            name="Message"
             rows="4"
             title="Ovo polje je obavezno!"
             oninvalid="this.setCustomValidity('Ispunite ovo polje!')"
@@ -61,14 +60,14 @@
           ></textarea>
         </div>
         <div class="mb-3">
-          <label class="form-check-label" for="newsletter">
-            Primaj newsletter:
+          <label class="form-check-label fw-bold" for="ReceiveNewsletter">
+            Želim primati obavijesti:
           </label>
           <input
             type="checkbox"
             class="form-check-input float-none ms-2 align-text-top"
             id="newsletter"
-            name="newsletter"
+            name="ReceiveNewsletter"
           />
         </div>
         <button type="submit" class="btn btn-primary me-2">Pošalji</button>

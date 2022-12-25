@@ -1,6 +1,7 @@
 /* PRIJAVA/REGISTRACIJA */
 
-#prijava, #registracija {
+#prijava,
+#registracija {
   width: min(500px, 100%);
   opacity: 0;
   animation: to-defaults 1s forwards;
@@ -20,9 +21,6 @@
 #pocetna #typewriter > [blinking] {
   border-right: clamp(0.2rem, 1vw, 1rem) solid;
   animation: blinking-caret 750ms step-end infinite;
-}
-#pocetna #tw-dot {
-  display: none;
 }
 @keyframes blinking-caret {
   from,
@@ -131,8 +129,9 @@
 
 /* NASTAVNI PLAN */
 
-#nastavni-plan table {
-  display: none;
+#nastavni-plan .container {
+  transform: translateX(100%);
+  animation: to-defaults 1s forwards;
 }
 #nastavni-plan th,
 #nastavni-plan td {

@@ -1,14 +1,6 @@
 <header class="sticky-top overflow-hidden">
   <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
     <div class="container-fluid">
-      <!-- <a class="navbar-brand" href="/" router-link>
-        <img
-          class="img-fluid"
-          id="navbar-brand-img"
-          src="assets/img/nav-brand.png"
-          alt="navbar-brand"
-        />
-      </a> -->
       <button
         class="navbar-toggler"
         type="button"
@@ -18,11 +10,17 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div id="navbar-collapse" class="collapse navbar-collapse">
-        <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+        <ul class="navbar-nav me-auto mb-2 mb-xl-0 py-2">
           <li class="nav-item px-xxl-2">
-            <a class="nav-link" href="/prijava" router-link
-              >Prijavi se<i class="bi bi-box-arrow-in-right text-primary d-inline-block mx-2" style="transform: scale(1.5);"></i></a
-            >
+            <a class="nav-link ps-2" href="/prijava" router-link
+              >Prijavi se<i
+                class="bi bi-box-arrow-in-right px-2 text-info d-inline-block"
+              ></i
+            ></a>
+            <a class="nav-link" style="display: none" href="/odjava"
+              ><i class="bi bi-box-arrow-in-left px-2 d-inline-block ms-1"></i
+              >Odjavi <span id="header-username" class="text-info"></span
+            ></a>
           </li>
           <li class="nav-item px-xxl-2">
             <a class="nav-link" href="/" router-link

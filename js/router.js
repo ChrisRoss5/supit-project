@@ -21,6 +21,7 @@ const changeRoute = (e) => {
   path = path.slice(1) || "pocetna";
   if (!$("#" + path).length) changeView(path);
 };
+
 const changeView = async (path) => {
   const html = await $.get(`/html/views/${path}.html`);
   if (html.startsWith("<!")) return changeView("pocetna");
@@ -44,7 +45,7 @@ const changeView = async (path) => {
     case "o-nama":
       $("#o-nama > section").each((i, el) => sectionsObserver.observe(el));
       $("#navbar-sections").removeClass("sections-off");
-      new bootstrap.ScrollSpy("#o-nama", bsScrollConfig);
+      new bootstrap.ScrollSpy("#o-nama", bsScrollConfig); // nosonar
       if (location.hash) $(location.hash)[0].scrollIntoView();
       break;
     case "novost-1":
@@ -62,4 +63,4 @@ const changeView = async (path) => {
   if (path != "o-nama") $("#navbar-sections").addClass("sections-off");
 };
 
-export { changeRoute };
+export { changeRoute, changeView };

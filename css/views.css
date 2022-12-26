@@ -64,8 +64,11 @@
   color: initial;
   content: " - ";
 }
+#o-nama > section#algebra-grupa img {
+  max-height: 5rem;
+}
 #o-nama > section#kako-do-nas > .section-content {
-  background: url("/assets/img/map-bg-02.png") center / cover no-repeat fixed;
+  background: url("/assets/img/kakoDoNas.jpg") center / cover no-repeat fixed;
 }
 
 /* NOVOSTI */
@@ -84,7 +87,7 @@
   }
 }
 #novosti .circle {
-  border: 1rem solid transparent;
+  border: 1.5rem solid transparent;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   box-shadow: 0 0 6px 3px #ccc;
@@ -92,9 +95,6 @@
 #novosti .circle div {
   text-shadow: var(--black-text-shadow);
   z-index: 1;
-}
-#novosti .circle img {
-  opacity: 0.75;
 }
 
 /* NOVOST */
@@ -116,6 +116,7 @@
 }
 [id^="novost-"] #modal-close {
   transform: scale(2) translate(-50%, 50%);
+  filter: invert(1);
 }
 [id^="novost-"] #modal-carousel {
   background: #000000e0;
@@ -143,17 +144,4 @@
 }
 #nastavni-plan tbody > tr:nth-child(odd):not(#totals) {
   background: #eee;
-}
-@media (max-width: 575.98px) {
-  #nastavni-plan tr:not(#totals) {
-    position: relative;
-  }
-  #nastavni-plan tr:not(#totals) td:not(:last-child) {
-    padding-bottom: 3rem;
-  }
-  #nastavni-plan tr:not(#totals) td:last-child {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-  }
 }

@@ -1,21 +1,23 @@
 /* https://api.jqueryui.com/autocomplete/ */
 
+import { signOut } from "./auth.js";
+
 const coursesURL = "https://www.fulek.com/data/api/supit/curriculum-list/hr";
 const courseURL = "https://www.fulek.com/data/api/supit/get-curriculum";
 
-export default async () => {
+const init = async () => {
   if (!window.isSignedIn()) return $("#signed-out").show().next().hide();
 
-  const courses = (await $.getJSON(coursesURL)).data;
-  const $table = $("#nastavni-plan table");
-  const $totals = $("#totals");
-  const $totalECTS = $("#total-ects");
-  const $totalHours = $("#total-hours");
-  const selectedCoursesIds = [];
+  const { data: courses } = await $.getJSON(coursesURL).fail(() => {
+    alert("Greška prilikom dohvaćanja nastavnog plana! Bit ćete odjavljeni.");
+    signOut();
+    init();
+  });
 
+  const selectedCourses = [];
   const addCourse = ({ data: course }) => {
-    selectedCoursesIds.push(course.id);
-    updateTotal(course.ects, course.sati);
+    selectedCourses.push(course);
+    updateTotals();
     const $tr = $(`<tr>
       <td>${course.kolegij}</td>
       <td>${course.ects}</td>
@@ -26,28 +28,30 @@ export default async () => {
     </tr>`);
     const $del = $("<td><button class='btn btn-danger'>Obriši</button></td>");
     $del.on("click", () => {
-      selectedCoursesIds.splice(selectedCoursesIds.indexOf(course.id), 1);
-      updateTotal(-course.ects, -course.sati);
+      selectedCourses.splice(selectedCourses.indexOf(course), 1);
+      updateTotals();
       $tr.remove();
     });
-    $totals.before($tr.append($del));
+    $("#totals").before($tr.append($del));
   };
 
-  const updateTotal = (ects, hours) => {
-    $totalECTS.text(parseInt($totalECTS.text() || 0) + ects);
-    $totalHours.text(parseInt($totalHours.text() || 0) + hours);
-    $table.css("display", selectedCoursesIds.length ? "table" : "none");
+  const updateTotals = () => {
+    for (const val of ["ects", "sati", "predavanja", "vjezbe"])
+      $("#" + val).text(selectedCourses.reduce((a, b) => a + b[val], 0));
+    $("#nastavni-plan table")[selectedCourses.length ? "show" : "hide"]();
   };
 
-  const config = {
-    source: courses.map((i) => i.kolegij),
-    delay: 0,
-    select: (e, ui) => {
-      const { id } = courses.find((i) => i.kolegij == ui.item.label);
-      if (!selectedCoursesIds.includes(id))
-        $.getJSON(courseURL + "/" + id, addCourse);
-    },
-  };
-
-  $("#nastavni-plan input").autocomplete(config).focus();
+  $("#nastavni-plan input")
+    .autocomplete({
+      source: courses.map((i) => i.kolegij),
+      delay: 0,
+      select: (e, ui) => {
+        const { id } = courses.find((i) => i.kolegij == ui.item.label);
+        if (selectedCourses.every((i) => i.id != id))
+          $.getJSON(courseURL + "/" + id, addCourse);
+      },
+    })[0]
+    .focus({ preventScroll: true });
 };
+
+export default init;

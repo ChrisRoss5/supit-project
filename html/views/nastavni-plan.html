@@ -20,23 +20,25 @@
           spellcheck="false"
         />
       </div>
-      <div class="col pb-5">
+      <div class="col mb-5 overflow-auto">
         <table class="w-100" style="display: none">
           <thead>
             <tr>
               <th>Kolegij</th>
               <th>ECTS</th>
               <th>Sati</th>
-              <th>P</th>
-              <th>V</th>
+              <th>Predavanja</th>
+              <th>Vježbe</th>
               <th colspan="2">Tip</th>
             </tr>
           </thead>
           <tbody>
             <tr id="totals" class="fw-bold">
-              <td>Ukupno:</td>
-              <td id="total-ects" class="text-danger"></td>
-              <td id="total-hours" class="text-danger"></td>
+              <td class="text-end">Ukupno:</td>
+              <td id="ects"></td>
+              <td id="sati"></td>
+              <td id="predavanja"></td>
+              <td id="vjezbe"></td>
             </tr>
           </tbody>
         </table>

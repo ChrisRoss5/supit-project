@@ -4,10 +4,15 @@
 :root {
   --purple: #c21b67;
   --purple-02: #c21b6633;
-  --light-gray: #faf9fa;
   --black-text-shadow: 1px 1px 0 #000;
 }
-html,
+@media (hover: none) and (pointer: coarse) {
+  html {
+    /* prevents overflow when auto focusing on transitioning input
+    being transform translated from outside the mobile viewport */
+    overflow-x: clip;
+  }
+}
 body {
   overflow-x: clip;
 }
@@ -29,7 +34,8 @@ main#pocetna ~ footer {
   animation: to-defaults 1s forwards;
 }
 @media (max-width: 1199.98px) {
-  .main-title {
+  .main-title,
+  .news-title {
     width: 100% !important;
   }
 }

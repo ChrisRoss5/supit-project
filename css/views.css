@@ -36,7 +36,6 @@
 
 #o-nama .cursive {
   font: 1.5rem "Dancing Script", cursive;
-  background-color: var(--light-gray);
 }
 #o-nama .section-title {
   color: var(--purple);
@@ -59,6 +58,7 @@
 }
 #o-nama > section:not(#kako-do-nas) .row {
   text-align: justify;
+  letter-spacing: -1px;
 }
 #o-nama > section#povijest .text-primary::after {
   color: initial;
@@ -73,9 +73,6 @@
 
 /* NOVOSTI */
 
-#novosti > section {
-  background-color: var(--light-gray);
-}
 #novosti .container {
   opacity: 0;
   transform: scale(0.5);
@@ -99,6 +96,9 @@
 
 /* NOVOST */
 
+[id^="novost-"] .news-title {
+  font-size: clamp(1rem, 5vw, 3rem);
+}
 [id^="novost-"] [role="button"] {
   transition: box-shadow 250ms;
 }

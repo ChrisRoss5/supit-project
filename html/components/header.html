@@ -1,0 +1,80 @@
+<header class="sticky-top overflow-hidden">
+  <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+    <div class="container-fluid">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbar-collapse"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navbar-collapse" class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto mb-2 mb-xl-0 py-2">
+          <li class="nav-item px-xxl-2">
+            <a class="nav-link ps-2" href="/prijava" router-link
+              >Prijavi se<i
+                class="bi bi-box-arrow-in-right px-2 text-info d-inline-block"
+              ></i
+            ></a>
+            <a class="nav-link" style="display: none" href="/odjava"
+              ><i class="bi bi-box-arrow-in-left px-2 d-inline-block ms-1"></i
+              >Odjavi <span id="header-username" class="text-info"></span
+            ></a>
+          </li>
+          <li class="nav-item px-xxl-2">
+            <a class="nav-link" href="/" router-link
+              ><i class="bi bi-house-fill px-2"></i>Početna</a
+            >
+          </li>
+          <li class="nav-item px-xxl-2">
+            <a class="nav-link" href="/o-nama" router-link
+              ><i class="bi bi-chat-right-text-fill px-2"></i>O nama</a
+            >
+          </li>
+          <li class="nav-item px-xxl-2">
+            <a class="nav-link" href="/novosti" router-link
+              ><i class="bi bi-info-circle-fill px-2"></i>Novosti</a
+            >
+          </li>
+          <li class="nav-item px-xxl-2">
+            <a class="nav-link" href="/nastavni-plan" router-link
+              ><i class="bi bi-calendar3-fill px-2"></i>Nastavni plan</a
+            >
+          </li>
+          <li class="nav-item px-xxl-2">
+            <a
+              class="nav-link"
+              href="javascript:;"
+              data-bs-toggle="modal"
+              data-bs-target="#modal-contact"
+              ><i class="bi bi-envelope-fill px-2"></i>Kontakt</a
+            >
+          </li>
+        </ul>
+      </div>
+      <ul
+        id="navbar-sections"
+        class="d-xl-flex navbar-nav me-auto"
+        style="display: none;"
+      >
+        <li class="nav-item px-0 px-xxl-2">
+          <a class="nav-link" href="#nase-vrijednosti" router-link
+            >Naše vrijednosti</a
+          >
+        </li>
+        <li class="nav-item px-0 px-xxl-2">
+          <a class="nav-link" href="#povijest" router-link>Povijest</a>
+        </li>
+        <li class="nav-item px-0 px-xxl-2">
+          <a class="nav-link" href="#algebra-grupa" router-link
+            >Algebra grupa</a
+          >
+        </li>
+        <li class="nav-item px-0 px-xxl-2">
+          <a class="nav-link" href="#kako-do-nas" router-link>Kako do nas</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

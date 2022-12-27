@@ -58,6 +58,9 @@
 }
 #o-nama > section:not(#kako-do-nas) .row {
   text-align: justify;
+}
+#o-nama > section:not(#kako-do-nas) .row h5,
+#o-nama > section:not(#kako-do-nas) .row h6 {
   letter-spacing: -1px;
 }
 #o-nama > section#povijest .text-primary::after {

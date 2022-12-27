@@ -7,8 +7,13 @@ const bsNavbarCollapse = new bootstrap.Collapse("#navbar-collapse", {
   toggle: false,
 });
 const bsScrollConfig = { target: "#navbar-sections", smoothScroll: true };
+const toggleNavbarSections = (show = false) =>
+  $("#navbar-sections")
+    [show ? "removeClass" : "addClass"]("sections-hidden")
+    .find("a")
+    .attr("tabindex", show ? "0" : "-1");
 
-const changeRoute = (e) => {
+export const changeRoute = (e) => {
   let path = location.pathname;
   if (e && e.type == "click") {
     e.preventDefault();
@@ -22,7 +27,7 @@ const changeRoute = (e) => {
   if (!$("#" + path).length) changeView(path);
 };
 
-const changeView = async (path) => {
+export const changeView = async (path) => {
   const html = await $.get(`/html/views/${path}.html`);
   if (html.startsWith("<!")) return changeView("pocetna");
   $("main").replaceWith(html);
@@ -44,7 +49,7 @@ const changeView = async (path) => {
       break;
     case "o-nama":
       $("#o-nama > section").each((i, el) => sectionsObserver.observe(el));
-      $("#navbar-sections").removeClass("sections-off");
+      toggleNavbarSections(true);
       new bootstrap.ScrollSpy("#o-nama", bsScrollConfig); // nosonar
       if (location.hash) $(location.hash)[0].scrollIntoView();
       break;
@@ -60,7 +65,5 @@ const changeView = async (path) => {
   }
 
   if (path != "pocetna") $(`.nav-link[href='/${path}']`).addClass("active");
-  if (path != "o-nama") $("#navbar-sections").addClass("sections-off");
+  if (path != "o-nama") toggleNavbarSections(false);
 };
-
-export { changeRoute, changeView };

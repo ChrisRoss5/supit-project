@@ -1,12 +1,13 @@
-for (const c of ["header", "footer", "contact"])
-  $(c).replaceWith(await $.get(`/html/components/${c}.html`));
+// Building
+const getComponent = (c) =>
+  $.get(`/html/components/${c}.html`, (html) => $(c).replaceWith(html));
+await Promise.all(["header", "footer", "contact"].map(getComponent));
 
+// Routing
 const { changeRoute } = await import("./router.js");
-
+$(window).on("popstate", changeRoute);
 changeRoute();
 
-$(window).on("popstate", changeRoute);
-
+// Authenticating
 window.isSignedIn = () => localStorage.username && localStorage.token;
-
 if (window.isSignedIn()) (await import("./auth.js")).signIn(localStorage);

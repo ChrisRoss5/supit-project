@@ -1,18 +1,5 @@
-const { changeView } = await import("./router.js");
-
-const enableButton = (button) => {
-  button
-    .attr("disabled", false)
-    .removeClass("btn-outline-dark")
-    .addClass("btn-dark");
-};
-
-const disableButton = (button) => {
-  button
-    .attr("disabled", true)
-    .removeClass("btn-dark")
-    .addClass("btn-outline-dark");
-};
+import { changeView } from "./router.js";
+import { disableButton, enableButton } from "./utils.js";
 
 const init = () => {
   const $submitBtn = $("form#auth button[type='submit']");

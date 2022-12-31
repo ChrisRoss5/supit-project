@@ -1,14 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
+  --purple: #c21b67;
+  --purple-02: #c21b6633;
+  --black-text-shadow: 1px 1px 0 #000;
 }
 
+.router-link-active:not(.hash-btn) {
+  @apply text-white !important;
+}
+
+.cursive {
+  font: 1.5rem "Dancing Script", cursive;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  html {
+    /* prevents overflow when auto focusing on transitioning input
+    being transform translated from outside the mobile viewport */
+    overflow-x: clip;
+  }
+}
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  overflow-x: clip;
+}
+a[router-link] * {
+  pointer-events: none;
+}
+main#pocetna ~ footer {
+  display: none !important;
+}
+.main-img {
+  max-height: 35vh;
+  transform: translateY(-100%);
+  animation: to-defaults 1s forwards;
+  text-shadow: var(--black-text-shadow);
+}
+.main-title {
+  border-bottom: 0.3rem solid var(--bs-yellow);
+  transform: translateY(50%);
+  animation: to-defaults 1s forwards;
 }

@@ -7,7 +7,6 @@
       {{ isLogin ? "PRIJAVA" : "REGISTRACIJA" }} KORISNIKA
     </div>
     <form
-      id="auth"
       :action="formAction"
       method="post"
       spellcheck="false"
@@ -47,21 +46,21 @@
       </div>
       <button
         type="submit"
-        class="w-full rounded-md bg-neutral-700 px-4 py-2 text-white"
+        class="mb-2 w-full rounded-md border-4 border-transparent bg-neutral-700 px-4 py-2 text-white transition-all duration-150 hover:bg-neutral-600"
+        :class="{
+          ' !border-neutral-300 !bg-white text-black': isSubmitting,
+        }"
+        :disabled="isSubmitting"
       >
         {{ isLogin ? "Prijavi" : "Registriraj" }} se
       </button>
-      <div
-        id="success"
-        class="text-danger"
-        :class="{ hidden: !formStatus.success }"
-      >
+      <div class="text-red-500" v-show="formResponse.isSuccess">
         Uspješna prijava :) Na početnu stranicu za 3,2,1...
       </div>
       <div
-        id="error"
-        class="text-danger"
-        :class="{ hidden: !formStatus.error }"
+        class="text-red-500"
+        v-show="formResponse.errorMessages.length"
+        v-html="formResponse.errorMessages.join('<br />')"
       ></div>
       <div v-show="isLogin" class="pt-3">
         Nemaš račun?
@@ -74,48 +73,40 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute } from "vue-router";
-import { computed, reactive } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { computed, reactive, ref } from "vue";
+import { User, useStore } from "@/store";
 
-const api = "https://www.fulek.com/data/api/user/";
+const store = useStore();
 const route = useRoute();
+const router = useRouter();
 const isLogin = computed(() => route.name == "prijava");
-const formAction = computed(() => api + (isLogin.value ? "login" : "register"));
-const form = reactive({
-  username: "",
-  password: "",
+const form = reactive({ username: "", password: "" });
+const formAction = computed(
+  () =>
+    "https://www.fulek.com/data/api/user/" +
+    (isLogin.value ? "login" : "register")
+);
+const formResponse = reactive({
+  isSuccess: false,
+  errorMessages: [] as string[],
+  data: null as null | User,
+  statusCode: 0,
 });
-const formStatus = reactive({
-  success: false,
-  error: false,
-});
+const isSubmitting = ref(false);
 
 async function onSubmit() {
-  console.log(formAction.value);
-  console.log(JSON.stringify(form));
-
+  isSubmitting.value = true;
   const response = await fetch(formAction.value, {
     method: "POST",
     body: JSON.stringify(form),
     headers: { "Content-Type": "application/json" },
   });
-  const { data } = await response.json();
-
-  /* if (!response.isSuccess) {
-      $("#error").show().html(response.errorMessages.join("<br>"));
-      enableButton($submitBtn);
-      return;
-    }
-    if (!response.data) {
-      replaceRoute("/prijava");
-      return;
-    }
-    $("#success").show().next().hide();
-    signIn(response.data);
-    setTimeout(() => {
-      if (location.pathname == "/prijava") replaceRoute("/");
-    }, 3000); */
-
-  console.log(response, data);
+  isSubmitting.value = false;
+  Object.assign(formResponse, await response.json());
+  if (!formResponse.isSuccess) return;
+  if (!formResponse.data) return router.push("/prijava");
+  setTimeout(() => isLogin.value && router.push("/"), 3000);
+  store.signIn(formResponse.data);
 }
 </script>

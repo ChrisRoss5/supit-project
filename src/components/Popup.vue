@@ -1,8 +1,8 @@
 <template>
   <TransitionRoot :show="show" as="template">
-    <Dialog class="relative z-10" @close="$emit('close')">
+    <Dialog class="relative z-50" @close="$emit('close')">
       <TransitionChild
-        class="fixed inset-0 bg-black bg-opacity-25"
+        class="fixed inset-0 bg-black bg-opacity-50"
         enter="duration-300"
         enter-from="opacity-0"
         enter-to="opacity-100"

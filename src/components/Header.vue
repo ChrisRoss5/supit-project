@@ -1,5 +1,5 @@
 <template>
-  <header class="sticky top-0 overflow-hidden bg-neutral-800">
+  <header class="sticky top-0 overflow-hidden bg-neutral-800 z-40">
     <nav
       class="flex flex-col flex-wrap whitespace-nowrap py-2 px-5 text-neutral-400 lg:flex-row lg:gap-4 lg:py-5 lg:px-10"
     >
@@ -9,7 +9,12 @@
             {{ isNavbarExpanded ? "close" : "menu" }}
           </span>
         </button>
-        <RouterLink to="/prijava" class="nav-btn">
+        <button v-if="store.isSignedIn" class="nav-btn" @click="store.signOut">
+          <span class="material-icons rotate-180 pl-2"> logout </span>
+          <span>Odjavi</span>
+          <span class="pl-2 text-cyan-400">{{ store.user.username }}</span>
+        </button>
+        <RouterLink v-else to="/prijava" class="nav-btn">
           <span>Prijavi se</span>
           <span class="material-icons pl-2 text-cyan-400"> login </span>
         </RouterLink>
@@ -47,7 +52,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import HeaderLinks from "./HeaderLinks.vue";
+import { useStore } from "@/store";
 
+const store = useStore();
 const isNavbarExpanded = ref(false);
 const hashes = [
   { hash: "#nase-vrijednosti", label: "Naše vrijednosti" },

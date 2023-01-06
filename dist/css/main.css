@@ -62,6 +62,7 @@ header #navbar-sections {
 header #navbar-sections.sections-hidden {
   transform: translateX(100%);
   opacity: 0;
+  height: 0;
 }
 footer {
   height: 35vh;

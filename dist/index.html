@@ -11,38 +11,95 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
       rel="stylesheet"
     />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   </head>
   <style>
+    * {
+      font-family: "Montserrat", sans-serif;
+    }
+    a {
+      display: block;
+      text-decoration: none;
+      color: initial;
+    }
     body {
       display: grid;
       place-content: center;
       min-height: 100vh;
+      background: #f8fafc;
       margin: 0;
-      font-family: "Montserrat", sans-serif;
+      gap: 1rem;
     }
-    a {
-      margin: 0.5rem;
-      display: block;
+    body > div {
+      background: #fff;
+      padding: 2rem;
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
     }
-    button {
+    h2 {
+      margin-top: 0;
+    }
+    .main-link {
+      padding: 1rem;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+        0 2px 4px -2px rgb(0 0 0 / 0.1);
+      text-align: center;
+    }
+    .reports {
+      gap: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    .reports > a {
+      padding: 1rem;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+        0 2px 4px -2px rgb(0 0 0 / 0.1);
+    }
+    .reports div {
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .reports img {
       width: 100%;
-      cursor: pointer;
-      padding: 2rem 4rem;
-      font-size: 20px;
     }
   </style>
   <body>
-    <a href="https://vanilla.supit.k1k1.dev/">
-      <button>
+    <div>
+      <a
+        class="main-link"
+        href="https://vanilla.supit.k1k1.dev/"
+        target="_blank"
+      >
         <h2>vanilla.supit.k1k1.dev</h2>
-        <p>Vanilla (ESM, jQuery, Bootstrap)</p>
-      </button>
-    </a>
-    <a href="https://vue.supit.k1k1.dev/">
-      <button>
+        ESM, jQuery, Bootstrap
+      </a>
+      <div class="reports">
+        <a href="lighthouse/vanilla/mobile.html" target="_blank">
+          <img src="lighthouse/vanilla/mobile.png" />
+          <div>Open mobile report</div>
+        </a>
+        <a href="lighthouse/vanilla/desktop.html" target="_blank">
+          <img src="lighthouse/vanilla/desktop.png" />
+          <div>Open desktop report</div>
+        </a>
+      </div>
+    </div>
+    <div>
+      <a class="main-link" href="https://vue.supit.k1k1.dev/" target="_blank">
         <h2>vue.supit.k1k1.dev</h2>
-        <p>Vue (Vite + TypeScript + SCSS, Vue, Tailwind)</p>
-      </button>
-    </a>
+        Vite + TypeScript + PostCSS, Vue, Tailwind
+      </a>
+      <div class="reports">
+        <a href="lighthouse/vue/mobile.html" target="_blank">
+          <img src="lighthouse/vue/mobile.png" />
+          <div>Open mobile report</div>
+        </a>
+        <a href="lighthouse/vue/desktop.html" target="_blank">
+          <img src="lighthouse/vue/desktop.png" />
+          <div>Open desktop report</div>
+        </a>
+      </div>
+    </div>
   </body>
 </html>

@@ -9,16 +9,20 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div id="navbar-collapse" class="collapse navbar-collapse">
-        <ul class="navbar-nav me-auto mb-2 mb-xl-0 py-2">
+      <div class="navbar-nav">
+        <div class="nav-item">
+          <a class="nav-link ps-2" href="/prijava" router-link
+            >Prijavi se<i
+              class="bi bi-box-arrow-in-right text-info d-inline-block px-2"
+            ></i
+          ></a>
+        </div>
+      </div>
+      <div id="navbar-collapse" class="navbar-collapse collapse">
+        <ul class="navbar-nav me-auto mb-xl-0 mb-2 py-2">
           <li class="nav-item px-xxl-2">
-            <a class="nav-link ps-2" href="/prijava" router-link
-              >Prijavi se<i
-                class="bi bi-box-arrow-in-right px-2 text-info d-inline-block"
-              ></i
-            ></a>
             <a class="nav-link" style="display: none" href="/odjava"
-              ><i class="bi bi-box-arrow-in-left px-2 d-inline-block ms-1"></i
+              ><i class="bi bi-box-arrow-in-left d-inline-block ms-1 px-2"></i
               >Odjavi <span id="header-username" class="text-info"></span
             ></a>
           </li>
@@ -56,22 +60,22 @@
       <ul
         id="navbar-sections"
         class="d-xl-flex navbar-nav me-auto"
-        style="display: none;"
+        style="display: none"
       >
-        <li class="nav-item px-0 px-xxl-2">
+        <li class="nav-item px-xxl-2 px-0">
           <a class="nav-link" href="#nase-vrijednosti" router-link
             >Naše vrijednosti</a
           >
         </li>
-        <li class="nav-item px-0 px-xxl-2">
+        <li class="nav-item px-xxl-2 px-0">
           <a class="nav-link" href="#povijest" router-link>Povijest</a>
         </li>
-        <li class="nav-item px-0 px-xxl-2">
+        <li class="nav-item px-xxl-2 px-0">
           <a class="nav-link" href="#algebra-grupa" router-link
             >Algebra grupa</a
           >
         </li>
-        <li class="nav-item px-0 px-xxl-2">
+        <li class="nav-item px-xxl-2 px-0">
           <a class="nav-link" href="#kako-do-nas" router-link>Kako do nas</a>
         </li>
       </ul>

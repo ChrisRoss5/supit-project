@@ -99,6 +99,10 @@
 
 /* NOVOST */
 
+[id^="novost-"] > .container {
+  opacity: 0;
+  animation: to-defaults 1s forwards;
+}
 [id^="novost-"] .news-title {
   font-size: clamp(1rem, 5vw, 3rem);
 }

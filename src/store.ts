@@ -1,13 +1,10 @@
 import { defineStore } from "pinia";
 import { computed, reactive, ref } from "vue";
-import router from "./router";
-
-export interface User {
-  username: string;
-  token: string;
-}
+import { useRouter } from "vue-router";
+import type { User } from "@/types";
 
 export const useStore = defineStore("main", () => {
+  const router = useRouter();
   const isContactOpen = ref(false);
   const { token, username } = localStorage;
   const user: User = reactive({ token, username });

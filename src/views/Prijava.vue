@@ -75,7 +75,8 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from "vue-router";
 import { computed, reactive, ref } from "vue";
-import { User, useStore } from "@/store";
+import { useStore } from "@/store";
+import type { APICall, User } from "@/types";
 
 const store = useStore();
 const route = useRoute();
@@ -87,23 +88,24 @@ const formAction = computed(
     "https://www.fulek.com/data/api/user/" +
     (isLogin.value ? "login" : "register")
 );
-const formResponse = reactive({
+const formResponse = reactive<APICall<User>>({
   isSuccess: false,
-  errorMessages: [] as string[],
-  data: null as null | User,
+  errorMessages: [],
   statusCode: 0,
 });
 const isSubmitting = ref(false);
 
 async function onSubmit() {
   isSubmitting.value = true;
-  const response = await fetch(formAction.value, {
-    method: "POST",
-    body: JSON.stringify(form),
-    headers: { "Content-Type": "application/json" },
-  });
+  Object.assign(
+    formResponse,
+    await fetch(formAction.value, {
+      method: "POST",
+      body: JSON.stringify(form),
+      headers: { "Content-Type": "application/json" },
+    }).then((response) => response.json())
+  );
   isSubmitting.value = false;
-  Object.assign(formResponse, await response.json());
   if (!formResponse.isSuccess) return;
   if (!formResponse.data) return router.push("/prijava");
   setTimeout(() => isLogin.value && router.push("/"), 3000);

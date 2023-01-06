@@ -8,9 +8,13 @@
       />
     </div>
     <h1 class="main-title">O nama</h1>
-    <section v-for="section in sections" :id="section.id">
+    <section
+      v-for="section in sections"
+      :id="section.id"
+      class="transition duration-1000"
+    >
       <h2
-        class="relative my-4 py-4 text-center text-3xl lg:bg-transparent"
+        class="black-text-shadow relative py-8 text-center text-3xl font-semibold text-[var(--purple)] lg:bg-transparent"
         :style="{
           'background-color': section.toggled ? 'var(--purple-02)' : '',
         }"
@@ -34,11 +38,23 @@
 </template>
 
 <script setup lang="ts">
-import AlgebraGrupa from "@/views/o-nama/AlgebraGrupa.vue";
-import KakoDoNas from "@/views/o-nama/KakoDoNas.vue";
-import Povijest from "@/views/o-nama/Povijest.vue";
-import NaseVrijednosti from "@/views/o-nama/NaseVrijednosti.vue";
-import { type Component, reactive, markRaw } from "vue";
+import AlgebraGrupa from "@/views/o-nama/sections/AlgebraGrupa.vue";
+import KakoDoNas from "@/views/o-nama/sections/KakoDoNas.vue";
+import Povijest from "@/views/o-nama/sections/Povijest.vue";
+import NaseVrijednosti from "@/views/o-nama/sections/NaseVrijednosti.vue";
+import { type Component, reactive, markRaw, onMounted } from "vue";
+
+const sectionsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(({ target, isIntersecting }) => {
+    target.classList[isIntersecting ? "add" : "remove"]("section-visible");
+  });
+});
+
+onMounted(() => {
+  document.querySelectorAll("section").forEach((section) => {
+    sectionsObserver.observe(section);
+  });
+});
 
 const sections: {
   component: Component;
@@ -75,8 +91,11 @@ const sections: {
 </script>
 
 <style scoped>
-h2 {
-  color: var(--purple);
-  text-shadow: var(--black-text-shadow);
+:deep(.cursive) {
+  @apply mb-8 bg-gray-50 py-8 px-5;
+  font: 1.5rem "Dancing Script", cursive;
+}
+section:not(.section-visible) {
+  opacity: 0;
 }
 </style>

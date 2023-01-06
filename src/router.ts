@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import Pocetna from "@/views/Pocetna.vue";
-import NastavniPlan from "@/views/NastavniPlan.vue";
-import Novosti from "@/views/Novosti.vue";
-import ONama from "@/views/ONama.vue";
 import Prijava from "@/views/Prijava.vue";
+import ONama from "@/views/o-nama/ONama.vue";
+import Novosti from "@/views/novosti/Novosti.vue";
+import Novost from "@/views/novosti/Novost.vue";
+import NastavniPlan from "@/views/NastavniPlan.vue";
 
 const routes = [
   {
@@ -15,12 +16,12 @@ const routes = [
   {
     path: "/prijava",
     component: Prijava,
-    name: "prijava"
+    name: "prijava",
   },
   {
     path: "/registracija",
     component: Prijava,
-    name: "registracija"
+    name: "registracija",
   },
   {
     path: "/o-nama",
@@ -30,6 +31,10 @@ const routes = [
   {
     path: "/novosti",
     component: Novosti,
+  },
+  {
+    path: "/novosti/:id",
+    component: Novost,
   },
   {
     path: "/nastavni-plan",

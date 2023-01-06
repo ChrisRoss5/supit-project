@@ -1,5 +1,5 @@
 <template>
-  <header class="sticky top-0 overflow-hidden bg-neutral-800 z-40">
+  <header class="sticky top-0 z-40 overflow-hidden bg-neutral-800">
     <nav
       class="flex flex-col flex-wrap whitespace-nowrap py-2 px-5 text-neutral-400 lg:flex-row lg:gap-4 lg:py-5 lg:px-10"
     >
@@ -39,6 +39,7 @@
             v-for="{ hash, label } in hashes"
             :to="{ hash }"
             class="nav-btn hash-btn"
+            :class="{ 'text-white': $route.hash == hash }"
             @click="scrollToHash(hash)"
           >
             <span>{{ label }}</span>
@@ -63,9 +64,13 @@ const hashes = [
   { hash: "#kako-do-nas", label: "Kako do nas" },
 ];
 
-// todo
 function scrollToHash(hash: string) {
-  document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
+  window.scrollTo({
+    top:
+      document.querySelector(hash)!.getBoundingClientRect().top +
+      window.scrollY - document.querySelector("header")!.offsetHeight,
+    behavior: "smooth",
+  });
 }
 </script>
 

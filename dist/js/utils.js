@@ -11,5 +11,3 @@ export const disableButton = (button) => {
     .removeClass("btn-dark")
     .addClass("btn-outline-dark");
 };
-
-

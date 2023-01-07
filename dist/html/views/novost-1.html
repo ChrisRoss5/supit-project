@@ -4,16 +4,16 @@
   >
     <img class="w-100" src="assets/img/novost1.jpg" alt="novost" />
     <div
-      class="news-title w-50 p-4 p-xl-0 position-absolute top-50 translate-middle-y fw-bold"
+      class="news-title w-50 p-xl-0 position-absolute top-50 translate-middle-y fw-bold p-4"
     >
       Student Josip Stanešić 12. je sistemaš svijeta i dobitnik medalje
       izvrsnosti.
     </div>
   </div>
-  <h1 class="main-title text-center w-50 p-4 mx-auto">
+  <h1 class="main-title w-50 mx-auto p-4 text-center">
     WorldSkills natjecanje - Kazan 2019.
   </h1>
-  <p class="container w-sm-60 py-4 py-xl-5 fs-5">
+  <p class="w-sm-60 py-xl-5 fs-5 container py-4">
     Nakon godinu dana priprema za natjecanje WorldSkills Kazan 2019 na kojem je
     sudjelovalo 1300 natjecatelja iz cijelog svijeta, trud se itekako isplatio.
     Josip, student 3. godine preddiplomskog studija sistemskog inženjerstva
@@ -28,13 +28,13 @@
     IT Software Solutions for Business.
   </p>
   <div
-    class="container w-sm-60 d-flex justify-content-center row-cols-xxl-2 mb-5"
+    class="w-sm-60 d-flex justify-content-center row-cols-xxl-2 container mb-5"
   >
     <div class="row">
       <div class="col-6">
         <div
           role="button"
-          class="overflow-hidden rounded w-100 h-100"
+          class="w-100 h-100 overflow-hidden rounded"
           data-n="0"
           data-bs-toggle="modal"
           data-bs-target="#modal-carousel"
@@ -49,7 +49,7 @@
       <div class="col-6">
         <div
           role="button"
-          class="overflow-hidden rounded w-100 h-100"
+          class="w-100 h-100 overflow-hidden rounded"
           data-n="1"
           data-bs-toggle="modal"
           data-bs-target="#modal-carousel"
@@ -70,7 +70,7 @@
     <div class="modal-dialog modal-fullscreen">
       <div
         id="carousel-controls"
-        class="modal-content h-auto mh-100 position-absolute top-50 translate-middle-y carousel slide bg-transparent"
+        class="modal-content mh-100 position-absolute top-50 translate-middle-y carousel slide h-auto bg-transparent"
         data-bs-ride="carousel"
       >
         <div class="carousel-inner d-flex align-items-center">
@@ -85,6 +85,7 @@
           class="carousel-control-prev top-50 translate-middle-y"
           data-bs-target="#carousel-controls"
           data-bs-slide="prev"
+          aria-label="prev"
         >
           <span class="carousel-control-prev-icon"></span>
         </button>
@@ -92,6 +93,7 @@
           class="carousel-control-next top-50 translate-middle-y"
           data-bs-target="#carousel-controls"
           data-bs-slide="next"
+          aria-label="next"
         >
           <span class="carousel-control-next-icon"></span>
         </button>
@@ -99,9 +101,13 @@
     </div>
     <div
       id="modal-close"
-      class="position-absolute top-0 end-0 rounded-1 text-white"
+      class="position-absolute end-0 rounded-1 top-0 text-white"
     >
-      <button class="btn-close" data-bs-dismiss="modal"></button>
+      <button
+        class="btn-close"
+        aria-label="close"
+        data-bs-dismiss="modal"
+      ></button>
     </div>
   </div>
 </main>

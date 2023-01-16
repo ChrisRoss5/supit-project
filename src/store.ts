@@ -1,25 +1,18 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import router from "./router";
 import type { User } from "@/types";
-
-interface MainState {
-  isContactOpen: boolean,
-  user: User,
-  isSignedIn: boolean,
-}
-
-const initialState: MainState = {
-  isContactOpen: false,
-  user: {
-    token: localStorage.getItem("token") || "",
-    username: localStorage.getItem("username") || "",
-  } as User,
-  isSignedIn: !!localStorage.getItem("token"),
-}
 
 const mainSlice = createSlice({
   name: "main",
-  initialState,
+  initialState: {
+    isContactOpen: false,
+    user: {
+      token: localStorage.getItem("token") || "",
+      username: localStorage.getItem("username") || "",
+    } as User,
+    isSignedIn: !!localStorage.getItem("token"),
+  },
   reducers: {
     toggleContact: (state, action: PayloadAction<boolean>) => {
       state.isContactOpen = action.payload;
@@ -34,6 +27,7 @@ const mainSlice = createSlice({
       localStorage.clear();
       state.user = { token: "", username: "" };
       state.isSignedIn = false;
+      router.navigate("/");
     },
   },
 });
@@ -42,6 +36,7 @@ const store = configureStore({ reducer: mainSlice.reducer });
 
 type RootState = ReturnType<typeof store.getState>;
 type AppDispatch = typeof store.dispatch;
+
 export const { toggleContact, signIn, signOut } = mainSlice.actions;
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

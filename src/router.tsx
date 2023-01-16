@@ -48,7 +48,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/nastavni-plan",
-        element: NastavniPlan,
+        element: <NastavniPlan />,
       },
     ],
   },

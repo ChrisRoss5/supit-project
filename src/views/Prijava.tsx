@@ -1,7 +1,9 @@
-import { useAppDispatch, signIn } from "@/store";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useAppDispatch, signIn } from "@/store";
 import type { APICall, User } from "@/types";
-import { useState } from "react";
+
+let redirectTimeoutId: NodeJS.Timeout;
 
 const Prijava = () => {
   const location = useLocation();
@@ -17,6 +19,7 @@ const Prijava = () => {
   const isLogin = location.pathname == "/prijava";
   const formAction =
     "https://www.fulek.com/data/api/user/" + (isLogin ? "login" : "register");
+  useEffect(() => () => clearTimeout(redirectTimeoutId), []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,8 +39,8 @@ const Prijava = () => {
       return setIsSubmitting(false);
     }
     setFormResponse(response);
-    setTimeout(() => isLogin && navigate("/"), 3000);
     dispatch(signIn(response.data));
+    redirectTimeoutId = setTimeout(() => navigate("/"), 3000);
   };
 
   return (

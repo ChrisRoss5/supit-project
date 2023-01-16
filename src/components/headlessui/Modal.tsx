@@ -1,5 +1,5 @@
-import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { Fragment } from "react";
 
 type Props = React.PropsWithChildren<{
   show: boolean;
@@ -7,7 +7,7 @@ type Props = React.PropsWithChildren<{
   handleClose: () => void;
 }>;
 
-const Popup = ({ show, darkBg, handleClose, children }: Props) => {
+const Modal = ({ show, darkBg, handleClose, children }: Props) => {
   return (
     <Transition show={show} as={Fragment}>
       <Dialog className="relative z-50" onClose={handleClose}>
@@ -40,4 +40,4 @@ const Popup = ({ show, darkBg, handleClose, children }: Props) => {
   );
 };
 
-export default Popup;
+export default Modal;

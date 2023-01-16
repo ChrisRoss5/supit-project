@@ -1,5 +1,5 @@
-import { useAppDispatch, useAppSelector, toggleContact } from "@/store";
-import Popup from "@/components/headlessui/Popup";
+import Modal from "@/components/headlessui/Modal";
+import { toggleContact, useAppDispatch, useAppSelector } from "@/store";
 import { Dialog } from "@headlessui/react";
 
 const Contact = () => {
@@ -7,7 +7,7 @@ const Contact = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <Popup
+    <Modal
       show={isContactOpen}
       handleClose={() => dispatch(toggleContact(false))}
     >
@@ -122,6 +122,7 @@ const Contact = () => {
               className="ml-2 h-4 w-4 rounded border border-gray-300 bg-gray-50 focus:border-blue-500"
               id="newsletter"
               name="ReceiveNewsletter"
+              value="true"
             />
           </div>
           <button
@@ -138,7 +139,7 @@ const Contact = () => {
           </button>
         </form>
       </Dialog.Panel>
-    </Popup>
+    </Modal>
   );
 };
 

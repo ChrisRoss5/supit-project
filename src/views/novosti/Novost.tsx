@@ -1,9 +1,9 @@
+import Modal from "@/components/headlessui/Modal";
+import { $image } from "@/main";
+import { Dialog } from "@headlessui/react";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { Dialog } from "@headlessui/react";
-import Popup from "@/components/headlessui/Popup";
-import { $image } from "@/main";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const news = [
   {
@@ -101,7 +101,7 @@ const Novost = () => {
                 type="video/mp4"
               />
             </video>
-            <Popup
+            <Modal
               show={showCarousel}
               handleClose={() => setShowCarousel(false)}
               darkBg
@@ -158,7 +158,7 @@ const Novost = () => {
                   </span>
                 </button>
               </Dialog.Panel>
-            </Popup>
+            </Modal>
           </div>
         )}
       </div>

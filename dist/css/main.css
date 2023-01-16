@@ -6,7 +6,8 @@
   --black-text-shadow: 1px 1px 0 #000;
 }
 
-html, body {
+html,
+body {
   overflow-x: clip;
 }
 a[router-link] * {

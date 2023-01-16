@@ -39,10 +39,8 @@ const signIn = ({ username, token }) => {
 };
 
 const signOut = (e) => {
-  if (e) {
-    e.preventDefault();
-    replaceRoute("/");
-  }
+  if (e) e.preventDefault();
+  replaceRoute("/");
   $(".nav-link[href='/prijava']").show();
   $(".nav-link[href='/odjava']").hide();
   $("#header-username").empty();

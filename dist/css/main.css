@@ -1,19 +1,12 @@
 /* GENERAL */
 
-@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
 :root {
   --purple: #c21b67;
   --purple-02: #c21b6633;
   --black-text-shadow: 1px 1px 0 #000;
 }
-@media (hover: none) and (pointer: coarse) {
-  html {
-    /* prevents overflow when auto focusing on transitioning input
-    being transform translated from outside the mobile viewport */
-    overflow-x: clip;
-  }
-}
-body {
+
+html, body {
   overflow-x: clip;
 }
 a[router-link] * {
@@ -62,7 +55,6 @@ header #navbar-sections {
 header #navbar-sections.sections-hidden {
   transform: translateX(100%);
   opacity: 0;
-  height: 0;
 }
 footer {
   height: 35vh;

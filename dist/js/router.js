@@ -33,14 +33,17 @@ export const replaceRoute = (path) => {
 };
 
 export const replaceView = async (path) => {
-  const html = await $.get(`/html/views/${path}.html`);
-  if (html.startsWith("<!")) return replaceRoute("/");
+  let html = await $.get(`/html/views/${path}.html`);
+  if (html.startsWith("<!"))
+    html = /* html */ `
+    <main class="flex-grow-1 d-flex justify-content-center align-items-center fs-5">
+      404 — Stranica ne postoji
+    </main>`;
   $("main").replaceWith(html);
 
   bsNavbarCollapse.hide(); // for mobile users
   $(".nav-link.active").removeClass("active");
   $("[router-link]").off("click").on("click", pushRoute);
-  $("body").css("opacity", "1");
   $(window).scrollTop(0);
 
   switch (path) {

@@ -12,7 +12,6 @@ const init = async () => {
   const { data: courses } = await $.getJSON(coursesURL).fail(() => {
     alert("Greška prilikom dohvaćanja nastavnog plana! Bit ćete odjavljeni.");
     signOut();
-    init();
   });
 
   const selectedCourses = [];
@@ -42,17 +41,15 @@ const init = async () => {
     $("#nastavni-plan table")[selectedCourses.length ? "show" : "hide"]();
   };
 
-  $("#nastavni-plan input")
-    .autocomplete({
-      source: courses.map((i) => i.kolegij),
-      delay: 0,
-      select: (e, ui) => {
-        const { id } = courses.find((i) => i.kolegij == ui.item.label);
-        if (selectedCourses.every((i) => i.id != id))
-          $.getJSON(courseURL + "/" + id, addCourse);
-      },
-    })[0]
-    .focus({ preventScroll: true });
+  $("#nastavni-plan input").autocomplete({
+    source: courses.map((i) => i.kolegij),
+    delay: 0,
+    select: (e, ui) => {
+      const { id } = courses.find((i) => i.kolegij == ui.item.label);
+      if (selectedCourses.every((i) => i.id != id))
+        $.getJSON(courseURL + "/" + id, addCourse);
+    },
+  });
 };
 
 export default init;

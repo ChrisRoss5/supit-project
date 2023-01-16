@@ -1,8 +1,6 @@
-import { createBrowserRouter, Outlet } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 
-import Header from "./components/Header";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
+import App from "@/App";
 import Pocetna from "@/views/Pocetna";
 import Prijava from "@/views/Prijava";
 import ONama from "@/views/o-nama/ONama";
@@ -13,14 +11,8 @@ import NastavniPlan from "@/views/NastavniPlan";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <>
-        <Header />
-        <Outlet />
-        <Footer />
-        <Contact />
-      </>
-    ),
+    element: <App />,
+    errorElement: <App notFound={true} />,
     children: [
       {
         path: "/",

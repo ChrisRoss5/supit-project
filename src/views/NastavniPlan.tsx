@@ -24,9 +24,9 @@ const NastavniPlan = () => {
     "predavanja",
     "vjezbe",
   ];
-  const totalValues = totalTitles.map((title) => {
-    return fetchedCourses.reduce((a, b) => a + (b[title] as number), 0);
-  });
+  const totalValues = totalTitles.map((title) =>
+    fetchedCourses.reduce((a, b) => a + (b[title] as number), 0)
+  );
 
   // Nepotrebno jer getCourses() već sadrži putpune kolegije
   async function handleSelect(courses: Course[]) {

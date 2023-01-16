@@ -69,10 +69,7 @@ const Novost = () => {
           alt="novost"
         />
         {content.title1 && (
-          <div
-            v-if="content.title1"
-            className="absolute top-1/2 -translate-y-1/2 px-3 text-[clamp(1rem,5vw,3rem)] font-bold text-white lg:w-1/2 lg:px-0"
-          >
+          <div className="absolute top-1/2 -translate-y-1/2 px-3 text-[clamp(1rem,5vw,3rem)] font-bold text-white lg:w-1/2 lg:px-0">
             {content.title1}
           </div>
         )}

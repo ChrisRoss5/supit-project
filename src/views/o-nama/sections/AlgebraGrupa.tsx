@@ -58,20 +58,18 @@ const AlgebraGrupa = () => {
         </div>
       </div>
       <div className="m-auto grid max-w-screen-xl gap-4 px-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {content.map(({ title, img }) => {
-          return (
-            <div className="rounded-md p-4 text-justify" key={title}>
-              <div className="mb-4 border-b-2 pb-4 font-semibold -tracking-widest">
-                {title}
-              </div>
-              <img
-                src={$image(img)}
-                alt="certifikat"
-                className="m-auto max-h-20"
-              />
+        {content.map(({ title, img }) => (
+          <div className="rounded-md p-4 text-justify" key={title}>
+            <div className="mb-4 border-b-2 pb-4 font-semibold -tracking-widest">
+              {title}
             </div>
-          );
-        })}
+            <img
+              src={$image(img)}
+              alt="certifikat"
+              className="m-auto max-h-20"
+            />
+          </div>
+        ))}
       </div>
     </div>
   );

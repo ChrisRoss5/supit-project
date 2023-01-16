@@ -33,10 +33,10 @@
             </div>
 
             <ComboboxOption
-              v-for="person in filteredCourses"
+              v-for="course in filteredCourses"
               as="template"
-              :key="person.id"
-              :value="person"
+              :key="course.id"
+              :value="course"
               v-slot="{ selected, active }"
             >
               <ul>
@@ -51,7 +51,7 @@
                       'font-normal': !selected,
                     }"
                   >
-                    {{ person.kolegij }}
+                    {{ course.kolegij }}
                   </span>
                   <span
                     v-if="selected"

@@ -7,7 +7,6 @@ import router from "./router";
 const app = createApp(App);
 const pinia = createPinia();
 
-// najveca glupost ikad
 app.config.globalProperties.$image = (url: string) =>
   new URL(`./assets/img/${url}`, import.meta.url).href;
 

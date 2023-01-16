@@ -9,6 +9,15 @@ import NastavniPlan from "@/views/NastavniPlan.vue";
 
 const routes = [
   {
+    path: "/:pathMatch(.*)*",
+    component: {
+      template: /* html */ `
+      <h1 className="grid flex-1 place-items-center text-xl">
+        404 — Stranica ne postoji
+      </h1>`,
+    },
+  },
+  {
     path: "/",
     component: Pocetna,
     name: "pocetna",

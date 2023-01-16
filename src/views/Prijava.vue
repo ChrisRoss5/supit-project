@@ -105,9 +105,15 @@ async function onSubmit() {
       headers: { "Content-Type": "application/json" },
     }).then((response) => response.json())
   );
-  isSubmitting.value = false;
-  if (!formResponse.isSuccess) return;
-  if (!formResponse.data) return router.push("/prijava");
+  if (!formResponse.isSuccess) {
+    isSubmitting.value = false;
+    return;
+  }
+  if (!formResponse.data) {
+    isSubmitting.value = false;
+    formResponse.isSuccess = false;
+    return router.push("/prijava");
+  }
   setTimeout(() => isLogin.value && router.push("/"), 3000);
   store.signIn(formResponse.data);
 }

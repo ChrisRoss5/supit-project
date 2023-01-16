@@ -1,5 +1,5 @@
 <template>
-  <Popup :show="store.isContactOpen" @close="store.isContactOpen = false">
+  <Modal :show="store.isContactOpen" @close="store.isContactOpen = false">
     <DialogPanel
       class="w-full max-w-2xl overflow-hidden rounded-xl bg-white p-6 align-middle shadow-lg shadow-neutral-700"
     >
@@ -86,6 +86,7 @@
             class="ml-2 h-4 w-4 rounded border border-gray-300 bg-gray-50 focus:border-blue-500"
             id="newsletter"
             name="ReceiveNewsletter"
+            value="true"
           />
         </div>
         <button
@@ -102,12 +103,12 @@
         </button>
       </form>
     </DialogPanel>
-  </Popup>
+  </Modal>
 </template>
 
 <script setup lang="ts">
+import Modal from "@/components/headlessui/Modal.vue";
 import { useStore } from "@/store";
-import Popup from "@/components/headlessui/Popup.vue";
 import { DialogPanel } from "@headlessui/vue";
 
 const store = useStore();

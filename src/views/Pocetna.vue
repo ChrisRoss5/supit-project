@@ -3,7 +3,7 @@
     <video class="absolute h-full w-full object-cover" autoplay loop muted>
       <source src="@/assets/video/typingOnlaptop.mp4" type="video/mp4" />
     </video>
-    <div id="typewriter" class="z-10 text-white text-[clamp(1rem,5vw,5rem)]">
+    <div id="typewriter" class="z-10 text-[clamp(1rem,5vw,5rem)] text-white">
       <div :blinking="!line2">{{ line1 }}</div>
       <span class="text-red-500" :blinking="line2 && !isComplete">
         {{ line2 }} </span

@@ -1,7 +1,10 @@
 <template>
   <main>
     <h1 class="main-title">Nastavni plan</h1>
-    <div v-if="!store.isSignedIn" class="px-3 py-8 text-center opacity-0 animate-reset">
+    <div
+      v-if="!store.isSignedIn"
+      class="animate-reset px-3 py-8 text-center opacity-0"
+    >
       <div class="pb-8 text-red-500">
         Niste prijavljeni! Prijavite se kako biste pristupili nastavnom planu.
       </div>
@@ -15,9 +18,9 @@
       v-else
       class="m-auto grid max-w-screen-xl gap-4 py-4 px-3 xl:grid-cols-2"
     >
-      <div class="translate-x-full opacity-0 animate-reset">
+      <div class="translate-x-full animate-reset opacity-0">
         <div class="pb-2 font-bold">Naziv kolegija:</div>
-        <Dropdown
+        <Autocomplete
           :courses="courses"
           :selectedCourses="selectedCourses"
           v-model="selectedCourses"
@@ -51,7 +54,9 @@
                       (c) => c.id != course.id
                     )
                   "
-                >delete</button>
+                >
+                  delete
+                </button>
               </td>
             </tr>
             <tr class="border-t-4 border-t-neutral-800 font-bold">
@@ -66,10 +71,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, ref, watch } from "vue";
+import Autocomplete from "@/components/headlessui/Autocomplete.vue";
 import { useStore } from "@/store";
 import type { APICall, Course } from "@/types";
-import Dropdown from "@/components/headlessui/Dropdown.vue";
+import { computed, reactive, ref, watch } from "vue";
 
 const store = useStore();
 const coursesURL = "https://www.fulek.com/data/api/supit/curriculum-list/hr";

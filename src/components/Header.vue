@@ -68,7 +68,8 @@ function scrollToHash(hash: string) {
   window.scrollTo({
     top:
       document.querySelector(hash)!.getBoundingClientRect().top +
-      window.scrollY - document.querySelector("header")!.offsetHeight,
+      window.scrollY -
+      document.querySelector("header")!.offsetHeight,
     behavior: "smooth",
   });
 }

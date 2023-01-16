@@ -10,7 +10,9 @@
       </div>
     </div>
     <h1 class="main-title">{{ content.title2 }}</h1>
-    <div class="m-auto max-w-screen-xl px-3 pt-6 pb-14 text-xl md:w-3/5 opacity-0 animate-reset">
+    <div
+      class="m-auto max-w-screen-xl animate-reset px-3 pt-6 pb-14 text-xl opacity-0 md:w-3/5"
+    >
       {{ content.text }}
       <div
         v-if="newsId == 1"
@@ -30,7 +32,7 @@
         <video class="col-span-2" controls>
           <source src="@/assets/video/worldskills.mp4" type="video/mp4" />
         </video>
-        <Popup :show="showCarousel" @close="showCarousel = false" darkBg>
+        <Modal :show="showCarousel" @close="showCarousel = false" darkBg>
           <DialogPanel>
             <div class="flex">
               <Transition :name="transitionTo">
@@ -67,17 +69,17 @@
               <span class="material-icons text-5xl text-white"> close </span>
             </button>
           </DialogPanel>
-        </Popup>
+        </Modal>
       </div>
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
+import Modal from "@/components/headlessui/Modal.vue";
+import { DialogPanel } from "@headlessui/vue";
 import { computed, ref, watch } from "vue";
 import { useRoute } from "vue-router";
-import { DialogPanel } from "@headlessui/vue";
-import Popup from "@/components/headlessui/Popup.vue";
 
 const news = [
   {

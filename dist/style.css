@@ -1,0 +1,63 @@
+* {
+  font-family: "Montserrat", sans-serif;
+}
+a {
+  display: block;
+  text-decoration: none;
+  color: initial;
+}
+a#github {
+  text-align: center;
+}
+a#github img {
+  width: 150px;
+}
+h2 {
+  margin-top: 0;
+}
+body {
+  display: grid;
+  place-content: center;
+  min-height: 100vh;
+  background: #f8fafc;
+  margin: 1rem 0 1rem 0;
+  gap: 1rem;
+}
+img[src^="/icons/"] {
+  width: 2rem;
+  padding-right: 1rem;
+  vertical-align: bottom;
+}
+.project {
+  max-width: 640px;
+  background: #fff;
+  padding: 2rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+.main-link,
+.reports > a {
+  padding: 1rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  text-align: center;
+}
+.reports {
+  gap: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+.reports > a {
+  flex: 1;
+}
+.reports div {
+  margin-top: 1rem;
+}
+.reports img {
+  width: 100%;
+}
+@media (max-width: 639px) {
+  .project {
+    padding: 2rem 0;
+  }
+}

@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --purple: #c21b67;
+  --purple-02: #c21b6633;
+}
+
+.black-text-shadow {
+  text-shadow: 1px 1px 0 #000;
+}
+.router-link-active:not(.hash-btn) {
+  @apply text-white !important;
+}
+.main-img {
+  @apply black-text-shadow flex max-h-[35vh] -translate-y-full animate-reset items-center overflow-hidden;
+}
+.main-title {
+  @apply mx-auto mt-4 mb-8 w-full translate-y-2/4 animate-reset border-b-4 border-b-amber-500 p-4 text-center text-4xl font-semibold lg:w-2/4;
+}

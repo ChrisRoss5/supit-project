@@ -1,4 +1,4 @@
-<template>
+
   <div>
     <Combobox
       v-model="selected"
@@ -51,7 +51,7 @@
                       'font-normal': !selected,
                     }"
                   >
-                    {{ course.kolegij }}
+                    { course.kolegij }
                   </span>
                   <span
                     v-if="selected"
@@ -67,9 +67,9 @@
       </div>
     </Combobox>
   </div>
-</template>
 
-<script setup lang="ts">
+
+<script lang="ts">
 import { ref, computed, watchEffect } from "vue";
 import {
   Combobox,

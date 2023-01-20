@@ -1,6 +1,11 @@
-<template>
-  <Modal :show="store.isContactOpen" @close="store.isContactOpen = false">
-    <DialogPanel
+<script lang="ts">
+  import Modal from "@/components/parts/Modal.svelte";
+  import { isContactOpen } from "@/stores";
+</script>
+
+{#if $isContactOpen}
+  <Modal show={$isContactOpen} handleClose={() => isContactOpen.set(false)}>
+    <div
       class="w-full max-w-2xl overflow-hidden rounded-xl bg-white p-6 align-middle shadow-lg shadow-neutral-700"
     >
       <div class="mb-5 flex items-center border-b-2 pb-4">
@@ -16,16 +21,19 @@
         <div class="mb-3">
           <label
             for="FullName"
-            class="mb-2 block text-sm font-bold text-gray-900"
-            >Puno ime:</label
+            class="mb-2 block text-sm font-bold text-gray-900">Puno ime:</label
           >
           <input
             type="text"
             name="FullName"
             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 outline-none focus:border-blue-500"
             title="Ovo polje je obavezno!"
-            oninvalid="this.setCustomValidity('Ispunite ovo polje!')"
-            oninput="this.setCustomValidity('')"
+            on:invalid={function () {
+              this.setCustomValidity("Ispunite ovo polje!");
+            }}
+            on:input={function () {
+              this.setCustomValidity("");
+            }}
             required
           />
         </div>
@@ -38,8 +46,12 @@
             name="Email"
             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 outline-none focus:border-blue-500"
             title="Ovo polje je obavezno!"
-            oninvalid="this.setCustomValidity('Ispunite ovo polje!')"
-            oninput="this.setCustomValidity('')"
+            on:invalid={function () {
+              this.setCustomValidity("Neispravan email!");
+            }}
+            on:input={function () {
+              this.setCustomValidity("");
+            }}
             required
           />
         </div>
@@ -69,10 +81,14 @@
             name="Message"
             rows="4"
             title="Ovo polje je obavezno!"
-            oninvalid="this.setCustomValidity('Ispunite ovo polje!')"
-            oninput="this.setCustomValidity('')"
+            on:invalid={function () {
+              this.setCustomValidity("Ispunite ovo polje!");
+            }}
+            on:input={function () {
+              this.setCustomValidity("");
+            }}
             required
-          ></textarea>
+          />
         </div>
         <div class="mb-5 flex items-center">
           <label
@@ -97,19 +113,11 @@
         </button>
         <button
           class="rounded-md bg-red-500 px-4 py-2 text-white"
-          @click="store.isContactOpen = false"
+          on:click={() => isContactOpen.set(false)}
         >
           Odustani
         </button>
       </form>
-    </DialogPanel>
+    </div>
   </Modal>
-</template>
-
-<script setup lang="ts">
-import Modal from "@/components/headlessui/Modal.vue";
-import { useStore } from "@/store";
-import { DialogPanel } from "@headlessui/vue";
-
-const store = useStore();
-</script>
+{/if}

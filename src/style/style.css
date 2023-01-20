@@ -10,7 +10,7 @@
 .black-text-shadow {
   text-shadow: 1px 1px 0 #000;
 }
-.router-link-active:not(.hash-btn) {
+.active:not(.hash-btn) {
   @apply text-white !important;
 }
 .main-img {
@@ -18,4 +18,83 @@
 }
 .main-title {
   @apply mx-auto mt-4 mb-8 w-full translate-y-2/4 animate-reset border-b-4 border-b-amber-500 p-4 text-center text-4xl font-semibold lg:w-2/4;
+}
+
+/* HEADER */
+
+.nav-btn {
+  @apply flex items-center transition-colors hover:text-neutral-300 lg:px-4;
+}
+
+/* FOOTER */
+
+footer {
+  background: url("@/assets/img/zaiskri-bg.jpg") center / cover no-repeat;
+}
+
+/* POCETNA */
+
+#typewriter {
+  --tw: clamp(0.05rem, 0.25vw, 0.25rem);
+  text-shadow: var(--tw) var(--tw) 0 #000;
+}
+[blinking="true"] {
+  border-right: clamp(0.2rem, 1vw, 1rem) solid;
+  animation: blinking-caret 750ms step-end infinite;
+}
+@keyframes blinking-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #fff;
+  }
+}
+
+/* O-NAMA */
+
+.cursive {
+  @apply mb-8 bg-gray-50 py-8 px-5;
+  font: 1.5rem "Dancing Script", cursive;
+}
+section[id]:not(.section-visible) {
+  opacity: 0;
+}
+#find-us {
+  background: url("@/assets/img/kakoDoNas.jpg") center / cover no-repeat fixed;
+}
+
+/* NOVOST */
+
+.left-enter {
+  @apply -translate-x-full;
+}
+.right-enter {
+  @apply translate-x-full;
+}
+.left-enter-active,
+.right-enter-active {
+  @apply absolute transform-none transition-all duration-1000;
+}
+.left-exit,
+.right-exit {
+  @apply absolute transform-none;
+}
+.left-exit-active {
+  @apply translate-x-full transition-all duration-1000;
+}
+.right-exit-active {
+  @apply -translate-x-full transition-all duration-1000;
+}
+
+/* NASTAVNI PLAN */
+
+th,
+td {
+  padding: 0.3rem 0.5rem;
+  border-top: 1px solid #ddd;
+}
+tbody > tr:nth-child(odd):not(:last-child) {
+  background: #eee;
 }

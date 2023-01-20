@@ -1,4 +1,4 @@
-<template>
+
   <main>
     <div class="main-img">
       <img
@@ -21,12 +21,12 @@
       >
         <button
           class="absolute inset-0 lg:hidden"
-          @click="section.toggled = !section.toggled"
+          on:click="section.toggled = !section.toggled"
         ></button>
         <span class="material-icons align-middle text-3xl">
-          {{ section.icon }}
+          { section.icon }
         </span>
-        {{ section.title }}
+        { section.title }
       </h2>
       <component
         :is="section.component"
@@ -35,13 +35,13 @@
       />
     </section>
   </main>
-</template>
 
-<script setup lang="ts">
-import AlgebraGrupa from "@/views/o-nama/sections/AlgebraGrupa.vue";
-import KakoDoNas from "@/views/o-nama/sections/KakoDoNas.vue";
-import Povijest from "@/views/o-nama/sections/Povijest.vue";
-import NaseVrijednosti from "@/views/o-nama/sections/NaseVrijednosti.vue";
+
+<script lang="ts">
+import AlgebraGrupa from "@/views/o-nama/sections/AlgebraGrupa.svelte";
+import KakoDoNas from "@/views/o-nama/sections/KakoDoNas.svelte";
+import Povijest from "@/views/o-nama/sections/Povijest.svelte";
+import NaseVrijednosti from "@/views/o-nama/sections/NaseVrijednosti.svelte";
 import { type Component, reactive, markRaw, onMounted } from "vue";
 
 const sectionsObserver = new IntersectionObserver((entries) => {
@@ -90,7 +90,7 @@ const sections: {
 ]);
 </script>
 
-<style scoped>
+<style lang="postcss" scoped>
 :deep(.cursive) {
   @apply mb-8 bg-gray-50 py-8 px-5;
   font: 1.5rem "Dancing Script", cursive;

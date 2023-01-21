@@ -2,7 +2,12 @@
 /* https://github.com/tailwindlabs/prettier-plugin-tailwindcss */
 
 module.exports = {
-  plugins: [require("prettier-plugin-tailwindcss")],
-  tailwindConfig: "tailwind.config.cjs",
   singleQuote: false,
+  plugins: [
+    require("prettier-plugin-tailwindcss"),
+    require("prettier-plugin-svelte"),
+  ],
+  tailwindConfig: "tailwind.config.cjs",
+  pluginSearchDirs: ["."],
+  overrides: [{ files: "*.svelte", options: { parser: "svelte" } }],
 };

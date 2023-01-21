@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { getImage } from "@/utils";
+
   const content = [
     {
       date: "28.08.2019.",
@@ -23,21 +25,22 @@
     <div
       class="m-auto grid max-w-screen-xl scale-50 animate-reset place-content-center gap-8 px-3 opacity-0 lg:grid-cols-3 lg:gap-20"
     >
-      <RouterLink
-        v-for="({(date, title)}, i) in content"
-        :to="`/novosti/${i + 1}`"
-        class="relative flex aspect-square max-w-xs place-items-center justify-center overflow-hidden rounded-full border-[1.5rem] border-transparent px-3 text-center font-bold shadow-[0_0_6px_3px_#ccc]"
-      >
-        <div class="black-text-shadow z-10 text-white">
-          <div class="text-yellow-400">{date}</div>
-          {title}
-        </div>
-        <img
-          :src="$image(`novost${i + 1}.jpg`)"
-          alt="logo"
-          class="absolute h-full object-cover"
-        />
-      </RouterLink>
+      {#each content as { date, title }, i}
+        <a
+          href={`/novosti/${i + 1}`}
+          class="relative flex aspect-square max-w-xs place-items-center justify-center overflow-hidden rounded-full border-[1.5rem] border-transparent px-3 text-center font-bold shadow-[0_0_6px_3px_#ccc]"
+        >
+          <div class="black-text-shadow z-10 text-white">
+            <div class="text-yellow-400">{date}</div>
+            {title}
+          </div>
+          <img
+            src={getImage(`novost${i + 1}.jpg`)}
+            class="absolute h-full object-cover"
+            alt="logo"
+          />
+        </a>
+      {/each}
     </div>
   </section>
 </main>

@@ -1,14 +1,18 @@
 <script lang="ts">
-  import { Navigate, navigateTo } from "svelte-router-spa";
+  import { validate } from "@/utils";
+  import { page } from "$app/stores";
+  import { goto } from "$app/navigation";
   import { user } from "@/stores";
   import type { APICall, User } from "@/types";
 
-  export let currentRoute;
-
-  const isLogin = currentRoute.name == "/prijava";
-  const form = { username: "", password: "" };
-  const formAction =
+  $: isLogin = $page.params.page == "prijava";
+  $: formAction =
     "https://www.fulek.com/data/api/user/" + (isLogin ? "login" : "register");
+  $: {
+    formResponse.errorMessages = [];
+    isLogin;
+  }
+  const form = { username: "", password: "" };
   let formResponse: APICall<User> = {
     isSuccess: false,
     errorMessages: [],
@@ -30,14 +34,14 @@
     if (!formResponse.data) {
       isSubmitting = false;
       formResponse.isSuccess = false;
-      return navigateTo("/prijava");
+      return goto("/prijava");
     }
-    setTimeout(() => isLogin && navigateTo("/prijava"), 3000);
+    setTimeout(() => isLogin && goto("/"), 3000);
     user.signIn(formResponse.data);
   }
 </script>
 
-{#key isLogin + ""}
+{#key isLogin}
   <main class="m-auto w-full max-w-lg animate-reset p-3 opacity-0">
     <div class="mb-4 text-lg font-bold">
       {isLogin ? "PRIJAVA" : "REGISTRACIJA"} KORISNIKA
@@ -58,14 +62,10 @@
           class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 outline-none focus:border-blue-500"
           title="Ovo polje je obavezno!"
           placeholder="E-mail adresa..."
-          on:invalid={function () {
-            this.setCustomValidity("Neispravan email!");
-          }}
-          on:input={function () {
-            this.setCustomValidity("");
-          }}
-          required
+          on:invalid={validate}
+          on:input={validate}
           bind:value={form.username}
+          required
         />
       </div>
       <div class="mb-3">
@@ -77,14 +77,10 @@
           name="password"
           class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 outline-none focus:border-blue-500"
           title="Ovo polje je obavezno!"
-          on:invalid={function () {
-            this.setCustomValidity("Ispunite ovo polje!");
-          }}
-          on:input={function () {
-            this.setCustomValidity("");
-          }}
-          required
+          on:invalid={validate}
+          on:input={validate}
           bind:value={form.password}
+          required
         />
       </div>
       <button
@@ -109,8 +105,9 @@
       {#if isLogin}
         <div class="pt-3">
           Nemaš račun?
-          <Navigate to="/registracija" styles="font-bold text-blue-500"
-            >Registriraj se</Navigate
+          <a
+            href="/registracija"
+            class="font-bold text-blue-500">Registriraj se</a
           >
         </div>
       {/if}

@@ -1,4 +1,4 @@
-import { navigateTo } from "svelte-router-spa";
+import { goto } from '$app/navigation';
 import { writable, derived } from "svelte/store";
 import type { User } from "@/types";
 
@@ -17,7 +17,7 @@ function createUser() {
     signOut: () => {
       update((user) => ({ ...user, token: "" }));
       localStorage.clear();
-      navigateTo("/");
+      goto("/");
     },
   };
 }

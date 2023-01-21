@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { getImage } from "@/utils";
+
   const content = [
     {
       title:
@@ -56,11 +58,13 @@
   <div
     class="m-auto grid max-w-screen-xl gap-4 px-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
   >
-    <div v-for="{(title, img)} in content" class="rounded-md p-4 text-justify">
-      <div class="mb-4 border-b-2 pb-4 font-semibold -tracking-widest">
-        {title}
+    {#each content as { title, img }}
+      <div class="rounded-md p-4 text-justify">
+        <div class="mb-4 border-b-2 pb-4 font-semibold -tracking-widest">
+          {title}
+        </div>
+        <img src={getImage(img)} alt="certifikat" class="m-auto max-h-20" />
       </div>
-      <img :src="$image(img)" alt="certifikat" class="m-auto max-h-20" />
-    </div>
+    {/each}
   </div>
 </div>

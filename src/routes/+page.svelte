@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getImage } from "@/main";
+  import { getImage } from "@/utils";
   import { onMount } from "svelte";
 
   const msg = "Budi izvrstan u onom što vidiš!$$$######voliš!$$$$+ZAISKRI$$";
@@ -8,7 +8,7 @@
 
   onMount(() => {
     let [i, j] = [0, 0];
-    const intervalId = setInterval(() => {
+    const intervalId: NodeJS.Timer = setInterval(() => {
       if (j == msg.length) {
         isComplete = true;
         return clearInterval(intervalId);

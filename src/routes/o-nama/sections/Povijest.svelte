@@ -69,14 +69,13 @@
   <div
     class="m-auto grid max-w-screen-xl gap-4 px-3 lg:grid-cols-2 xl:grid-cols-3"
   >
-    <div
-      v-for="{(year, title, text)} in content"
-      class="rounded-md border-2 p-4 text-justify"
-    >
-      <div class="mb-4 border-b-2 pb-4 font-semibold">
-        <span class="text-blue-500">{year}.</span> – {title}
+    {#each content as { year, title, text }}
+      <div class="rounded-md border-2 p-4 text-justify">
+        <div class="mb-4 border-b-2 pb-4 font-semibold">
+          <span class="text-blue-500">{year}.</span> – {title}
+        </div>
+        <div>{text}</div>
       </div>
-      <div>{text}</div>
-    </div>
+    {/each}
   </div>
 </div>

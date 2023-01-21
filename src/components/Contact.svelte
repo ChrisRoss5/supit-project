@@ -1,10 +1,11 @@
 <script lang="ts">
-  import Modal from "@/components/parts/Modal.svelte";
+  import Modal from "@/components/other/Modal.svelte";
   import { isContactOpen } from "@/stores";
+  import { validate } from "@/utils";
 </script>
 
 {#if $isContactOpen}
-  <Modal show={$isContactOpen} handleClose={() => isContactOpen.set(false)}>
+  <Modal show={$isContactOpen} onClose={() => isContactOpen.set(false)}>
     <div
       class="w-full max-w-2xl overflow-hidden rounded-xl bg-white p-6 align-middle shadow-lg shadow-neutral-700"
     >
@@ -28,12 +29,8 @@
             name="FullName"
             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 outline-none focus:border-blue-500"
             title="Ovo polje je obavezno!"
-            on:invalid={function () {
-              this.setCustomValidity("Ispunite ovo polje!");
-            }}
-            on:input={function () {
-              this.setCustomValidity("");
-            }}
+            on:invalid={validate}
+            on:input={validate}
             required
           />
         </div>
@@ -46,12 +43,8 @@
             name="Email"
             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 outline-none focus:border-blue-500"
             title="Ovo polje je obavezno!"
-            on:invalid={function () {
-              this.setCustomValidity("Neispravan email!");
-            }}
-            on:input={function () {
-              this.setCustomValidity("");
-            }}
+            on:invalid={validate}
+            on:input={validate}
             required
           />
         </div>
@@ -81,12 +74,8 @@
             name="Message"
             rows="4"
             title="Ovo polje je obavezno!"
-            on:invalid={function () {
-              this.setCustomValidity("Ispunite ovo polje!");
-            }}
-            on:input={function () {
-              this.setCustomValidity("");
-            }}
+            on:invalid={validate}
+            on:input={validate}
             required
           />
         </div>

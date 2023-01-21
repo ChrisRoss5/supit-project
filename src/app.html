@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/svelte.svg" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="%sveltekit.assets%/svelte.svg"
+    />
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,9 +20,9 @@
       rel="stylesheet"
     />
     <title>SUPIT Projekt</title>
+    %sveltekit.head%
   </head>
-  <body class="overflow-x-clip">
-    <div id="app" class="flex min-h-screen w-full flex-col"></div>
-    <script type="module" src="/src/main.ts"></script>
+  <body data-sveltekit-preload-data="hover" class="overflow-x-clip">
+    <div class="flex min-h-screen w-full flex-col">%sveltekit.body%</div>
   </body>
 </html>

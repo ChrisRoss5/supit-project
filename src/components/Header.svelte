@@ -1,10 +1,9 @@
 <script lang="ts">
-  import HeaderLinks from "./HeaderLinks.svelte";
-  import { Navigate } from "svelte-router-spa";
+  import { goto } from "$app/navigation";
+  import { page } from "$app/stores";
   import { isSignedIn, user } from "@/stores";
-  import { cubicInOut } from "svelte/easing";
-
-  export let currentRoute;
+  import { backIn, backOut, cubicInOut } from "svelte/easing";
+  import HeaderLinks from "./HeaderLinks.svelte";
 
   let isNavbarExpanded = false;
   const hashes = [
@@ -15,36 +14,38 @@
   ];
 
   function scrollToHash(hash: string) {
-    window.scrollTo({
-      top:
-        document.querySelector(hash)!.getBoundingClientRect().top +
-        window.scrollY -
-        document.querySelector("header")!.offsetHeight,
-      behavior: "smooth",
-    });
+    goto(hash, { noScroll: true });
+    setTimeout(() => {
+      window.scrollTo({
+        top:
+          document.querySelector(hash)!.getBoundingClientRect().top +
+          window.scrollY -
+          document.querySelector("header")!.offsetHeight,
+        behavior: "smooth",
+      });
+    }, 0);
   }
 
-  function transitionNavMobile(node, { duration }) {
-    const { opacity, maxHeight, paddingTop } = getComputedStyle(node);
+  type t1 = { duration: number };
+  function transitionNavMobile(node: HTMLElement, { duration }: t1) {
+    const { maxHeight, paddingTop } = getComputedStyle(node);
     return {
       duration,
-      css: (t) => `
-        opacity: ${t * parseFloat(opacity)};
+      css: (t: number) => `
+        opacity: ${t};
         max-height: ${t * parseFloat(maxHeight)}px;
         padding-top: ${t * parseFloat(paddingTop)}px;`,
       easing: cubicInOut,
     };
   }
 
-  function transitionNavHashes(node, { duration }) {
-    // todo
-    const { opacity, transform } = getComputedStyle(node);
+  type t2 = { duration: number; timing: (t: number) => number };
+  function transitionNavHashes(node: HTMLElement, { duration, timing }: t2) {
     return {
       duration,
-      css: (t) => `
-        opacity: ${t * parseFloat(opacity)};
-        transform: translateX(${t * parseFloat(transform)}px);`,
-      easing: cubicInOut,
+      css: (t: number) => `
+        opacity: ${t};
+        transform: translateX(${(1 - timing(t)) * 100}%);`,
     };
   }
 </script>
@@ -69,44 +70,41 @@
           <span class="pl-2 text-cyan-400">{$user.username}</span>
         </button>
       {:else}
-        <Navigate to="prijava">
-          <div class="nav-btn">
-            <span>Prijavi se</span>
-            <span class="material-icons pl-2 text-cyan-400"> login </span>
-          </div>
-        </Navigate>
+        <a
+          href="/prijava"
+          class="nav-btn"
+          class:active={$page.params.page == "prijava"}
+        >
+          <span>Prijavi se</span>
+          <span class="material-icons pl-2 text-cyan-400"> login </span>
+        </a>
       {/if}
     </div>
     {#if isNavbarExpanded}
       <div
         transition:transitionNavMobile={{ duration: 500 }}
-        class="max-h-52 pt-2  lg:hidden"
+        class="max-h-52 pt-2 lg:hidden"
       >
-        <HeaderLinks
-          isMobileView
-          handleClose={() => (isNavbarExpanded = false)}
-        />
+        <HeaderLinks isMobileView onClose={() => (isNavbarExpanded = false)} />
       </div>
     {/if}
     <div class="hidden lg:flex">
       <HeaderLinks />
     </div>
-    {#if currentRoute.name == "o-nama"}
+    {#if $page.route.id == "/o-nama"}
       <div
-        transition:transitionNavHashes={{ duration: 500 }}
+        in:transitionNavHashes={{ duration: 500, timing: backOut }}
+        out:transitionNavHashes={{ duration: 500, timing: backIn }}
         class="ml-auto hidden gap-3 lg:my-0 lg:flex lg:gap-0"
       >
         {#each hashes as { hash, label }}
-          <Navigate
-            to={hash}
-            styles="nav-btn hash-btn {location.hash == hash
-              ? 'text-white'
-              : ''}"
-          >
-            <button class="contents" on:click={() => scrollToHash(hash)}>
-              <span>{label}</span>
-            </button>
-          </Navigate>
+          <a
+            href={hash}
+            class="nav-btn hash-btn"
+            class:text-white={$page.url.hash == hash}
+            on:click|preventDefault={() => scrollToHash(hash)}
+            ><span>{label}</span>
+          </a>
         {/each}
       </div>
     {/if}

@@ -38,7 +38,7 @@
             name="Email"
             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 outline-none focus:border-blue-500"
             title="Ovo polje je obavezno!"
-            oninvalid="this.setCustomValidity('Ispunite ovo polje!')"
+            oninvalid="this.setCustomValidity('Neispravan email!')"
             oninput="this.setCustomValidity('')"
             required
           />

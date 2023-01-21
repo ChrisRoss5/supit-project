@@ -20,6 +20,10 @@ const Prijava = () => {
   const formAction =
     "https://www.fulek.com/data/api/user/" + (isLogin ? "login" : "register");
   useEffect(() => () => clearTimeout(redirectTimeoutId), []);
+  useEffect(
+    () => () => setFormResponse((r) => ({ ...r, errorMessages: [] })),
+    [isLogin]
+  );
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

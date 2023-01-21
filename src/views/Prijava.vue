@@ -74,7 +74,7 @@
 
 <script setup lang="ts">
 import { useRoute, useRouter } from "vue-router";
-import { computed, reactive, ref } from "vue";
+import { computed, reactive, ref, watch } from "vue";
 import { useStore } from "@/store";
 import type { APICall, User } from "@/types";
 
@@ -94,6 +94,7 @@ const formResponse = reactive<APICall<User>>({
   statusCode: 0,
 });
 const isSubmitting = ref(false);
+watch(isLogin, () => (formResponse.errorMessages = []));
 
 async function onSubmit() {
   isSubmitting.value = true;

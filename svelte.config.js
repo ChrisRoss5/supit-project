@@ -14,7 +14,7 @@ const config = {
       "@": path.resolve("./src"),
     },
     /* https://kit.svelte.dev/docs/adapter-static#spa-mode */
-    prerender: { entries: [] }
+    prerender: { entries: [] },
     /* todo outDir: "dist", */
   },
 };

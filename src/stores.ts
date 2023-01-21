@@ -1,4 +1,4 @@
-import { goto } from '$app/navigation';
+import { goto } from "$app/navigation";
 import { writable, derived } from "svelte/store";
 import type { User } from "@/types";
 

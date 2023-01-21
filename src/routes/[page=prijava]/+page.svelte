@@ -105,9 +105,8 @@
       {#if isLogin}
         <div class="pt-3">
           Nemaš račun?
-          <a
-            href="/registracija"
-            class="font-bold text-blue-500">Registriraj se</a
+          <a href="/registracija" class="font-bold text-blue-500"
+            >Registriraj se</a
           >
         </div>
       {/if}

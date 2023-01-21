@@ -8,7 +8,6 @@ const config = {
   // Consult https://kit.svelte.dev/docs/integrations#preprocessors
   // for more information about preprocessors
   preprocess: vitePreprocess(),
-
   kit: {
     adapter: adapter({
       fallback: "index.html",
@@ -18,7 +17,6 @@ const config = {
       "@": path.resolve("./src"),
     },
     prerender: { entries: [] },
-    /* todo outDir: "dist", */
   },
 };
 

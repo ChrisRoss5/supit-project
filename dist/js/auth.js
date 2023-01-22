@@ -1,4 +1,4 @@
-import { replaceRoute } from "./router.js";
+import { pushRoute } from "./router.js";
 import { disableButton, enableButton } from "./utils.js";
 
 const init = () => {
@@ -18,13 +18,13 @@ const init = () => {
       return;
     }
     if (!response.data) {
-      replaceRoute("/prijava");
+      pushRoute("/prijava");
       return;
     }
     $("#success").show().next().hide();
     signIn(response.data);
     setTimeout(() => {
-      if (location.pathname == "/prijava") replaceRoute("/");
+      if (location.pathname == "/prijava") pushRoute("/");
     }, 3000);
   });
 };
@@ -40,7 +40,7 @@ const signIn = ({ username, token }) => {
 
 const signOut = (e) => {
   if (e) e.preventDefault();
-  replaceRoute("/");
+  if (location.pathname != "/") pushRoute("/");
   $(".nav-link[href='/prijava']").show();
   $(".nav-link[href='/odjava']").hide();
   $("#header-username").empty();

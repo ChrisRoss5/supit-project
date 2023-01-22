@@ -14,8 +14,13 @@ const toggleNavbarSections = (show = false) =>
     .attr("tabindex", show ? "0" : "-1");
 
 export const pushRoute = (e) => {
+  if (typeof e == "string") {
+    history.pushState(null, null, e);
+    replaceView(e);
+    return;
+  }
   let path = location.pathname;
-  if (e && e.type == "click") {
+  if (e.type == "click") {
     e.preventDefault();
     const href = e.target.getAttribute("href");
     if (href == path) return;
@@ -23,22 +28,17 @@ export const pushRoute = (e) => {
     if (href[0] == "#") return;
     path = href;
   }
-  replaceView(path.slice(1) || "pocetna");
-};
-
-export const replaceRoute = (path) => {
-  if (path == location.pathname) return;
-  history.replaceState(null, null, path);
-  replaceView(path.slice(1) || "pocetna");
+  replaceView(path);
 };
 
 export const replaceView = async (path) => {
+  path = path.slice(1) || "pocetna";
   let html = await $.get(`/html/views/${path}.html`);
   if (html.startsWith("<!"))
     html = /* html */ `
-    <main class="flex-grow-1 d-flex justify-content-center align-items-center fs-5">
-      404 — Stranica ne postoji
-    </main>`;
+      <main class="flex-grow-1 d-flex justify-content-center align-items-center fs-5">
+        404 — Stranica ne postoji
+      </main>`;
   $("main").replaceWith(html);
 
   bsNavbarCollapse.hide(); // for mobile users

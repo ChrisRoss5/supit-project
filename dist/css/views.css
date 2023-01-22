@@ -4,7 +4,7 @@
 #registracija {
   width: min(500px, 100%);
   opacity: 0;
-  animation: to-defaults 1s forwards;
+  animation: reset 1s forwards;
 }
 
 /* POCETNA */
@@ -79,7 +79,7 @@
 #novosti .container {
   opacity: 0;
   transform: scale(0.5);
-  animation: to-defaults 1s forwards;
+  animation: reset 1s forwards;
 }
 @media (max-width: 1199.98px) {
   #novosti .container {
@@ -101,7 +101,7 @@
 
 [id^="novost-"] > .container {
   opacity: 0;
-  animation: to-defaults 1s forwards;
+  animation: reset 1s forwards;
 }
 [id^="novost-"] .news-title {
   font-size: clamp(1rem, 5vw, 3rem);
@@ -139,11 +139,11 @@
 
 #nastavni-plan > div {
   opacity: 0;
-  animation: to-defaults 1s forwards;
+  animation: reset 1s forwards;
 }
 #nastavni-plan .container {
   transform: translateX(100%);
-  animation: to-defaults 1s forwards;
+  animation: reset 1s forwards;
 }
 #nastavni-plan th,
 #nastavni-plan td {

@@ -5,8 +5,16 @@
   --purple-02: #c21b6633;
   --black-text-shadow: 1px 1px 0 #000;
 }
-
-html,
+@media (hover: none) and (pointer: coarse) {
+  html {
+    /* Prevents overflow when auto-focusing on transitioning input
+    being transform-translated from outside the mobile viewport.
+    The @media is necessary because Bootstrap's modal-dialog JS
+    adds a style attribute to <body>, which can conflict
+    with this rule and reveal the scrollbar. */
+    overflow-x: clip;
+  }
+}
 body {
   overflow-x: clip;
 }
@@ -19,13 +27,13 @@ main#pocetna ~ footer {
 .main-img {
   max-height: 35vh;
   transform: translateY(-100%);
-  animation: to-defaults 1s forwards;
+  animation: reset 1s forwards;
   text-shadow: var(--black-text-shadow);
 }
 .main-title {
   border-bottom: 0.3rem solid var(--bs-yellow);
   transform: translateY(50%);
-  animation: to-defaults 1s forwards;
+  animation: reset 1s forwards;
 }
 @media (max-width: 1199.98px) {
   .main-title,
@@ -38,7 +46,7 @@ main#pocetna ~ footer {
     width: 60% !important;
   }
 }
-@keyframes to-defaults {
+@keyframes reset {
   to {
     transform: none;
     opacity: 1;

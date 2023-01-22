@@ -107,7 +107,7 @@
         const animation1 = `reset 1s ${t}ms forwards`;
         const animation2 = `load-gauge 1s ${t}ms forwards`;
         const dash = (percentage / 100) * (percentage == 100 ? 350 : 346);
-        const circleStyle = `r: 56; cx: 60; cy: 60; stroke-dasharray: ${dash}`;
+        const circleStyle = `r: 56; cx: 60; cy: 60; stroke-dasharray: ${dash};`;
         return /* html */ `
           <div class="gauge-wrapper">
             <div
@@ -118,7 +118,7 @@
                 <circle class="gauge-base"></circle>
                 <circle
                   class="gauge-arc"
-                  style="${circleStyle}; animation: ${animation2}"
+                  style="${circleStyle} animation: ${animation2}"
                 ></circle>
               </svg>
               <div class="gauge-percentage">${percentage}</div>

@@ -8,72 +8,123 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto+Mono&display=swap"
       rel="stylesheet"
     />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   </head>
   <link rel="stylesheet" href="/style.css" />
   <body>
-    <a id="github" href="https://github.com/ChrisRoss5/supit-projekt" target="_blank">
-      <img src="/icons/github.webp" alt="github" />
+    <a
+      id="github"
+      href="https://github.com/ChrisRoss5/supit-projekt"
+      target="_blank"
+    >
+      <img src="icons/github.webp" alt="github" />
     </a>
-    <div class="project">
-      <a
-        class="main-link"
-        href="https://jquery.supit.k1k1.dev/"
-        target="_blank"
-      >
-        <h2><img src="/icons/jquery.png" alt="icon" />jquery.supit.k1k1.dev</h2>
-        <p>Lazy Loaded</p>
-        JavaScript modules, jQuery + jQuery UI, Bootstrap
-      </a>
-      <div class="reports">
-        <a href="lighthouse/jquery/mobile.html" target="_blank">
-          <img src="lighthouse/jquery/mobile.png" />
-          <div>Open mobile report</div>
-        </a>
-        <a href="lighthouse/jquery/desktop.html" target="_blank">
-          <img src="lighthouse/jquery/desktop.png" />
-          <div>Open desktop report</div>
-        </a>
-      </div>
-    </div>
-    <div class="project">
-      <a class="main-link" href="https://vue.supit.k1k1.dev/" target="_blank">
-        <h2><img src="/icons/vue.svg" alt="icon" />vue.supit.k1k1.dev</h2>
-        <p>Fully Client Side Rendered</p>
-        Vite, TypeScript, PostCSS, Tailwind + HeadlessUI, Vue + Vue Router +
-        Pinia
-      </a>
-      <div class="reports">
-        <a href="lighthouse/vue/mobile.html" target="_blank">
-          <img src="lighthouse/vue/mobile.png" />
-          <div>Open mobile report</div>
-        </a>
-        <a href="lighthouse/vue/desktop.html" target="_blank">
-          <img src="lighthouse/vue/desktop.png" />
-          <div>Open desktop report</div>
-        </a>
-      </div>
-    </div>
-    <div class="project">
-      <a class="main-link" href="https://react.supit.k1k1.dev/" target="_blank">
-        <h2><img src="/icons/react.svg" alt="icon" />react.supit.k1k1.dev</h2>
-        <p>Fully Client Side Rendered</p>
-        Vite, TypeScript, PostCSS, Tailwind + HeadlessUI, React + React Redux +
-        React Router + React Transition Group
-      </a>
-      <div class="reports">
-        <a href="lighthouse/react/mobile.html" target="_blank">
-          <img src="lighthouse/react/mobile.png" />
-          <div>Open mobile report</div>
-        </a>
-        <a href="lighthouse/react/desktop.html" target="_blank">
-          <img src="lighthouse/react/desktop.png" />
-          <div>Open desktop report</div>
-        </a>
-      </div>
-    </div>
+    <script>
+      const devices = ["mobile", "desktop"];
+      const params = ["Performance", "Accessibility", "Best Practices"];
+      const projects = [
+        {
+          name: "jquery",
+          type: "Lazy Loaded",
+          tech: "JavaScript modules, jQuery + jQuery UI, Bootstrap",
+          scores: [
+            [79, 100, 100],
+            [98, 100, 100],
+          ],
+        },
+        {
+          name: "vue",
+          type: "Fully Client Side Rendered",
+          tech:
+            "Vite, TypeScript, PostCSS, Tailwind + HeadlessUI, " +
+            "Vue + Vue Router + Pinia",
+          scores: [
+            [98, 100, 100],
+            [100, 100, 100],
+          ],
+        },
+        {
+          name: "react",
+          type: "Fully Client Side Rendered",
+          tech:
+            "Vite, TypeScript, PostCSS, Tailwind + HeadlessUI, " +
+            "React + React Redux + React Router + React Transition Group",
+          scores: [
+            [97, 100, 100],
+            [100, 100, 100],
+          ],
+        },
+        {
+          name: "svelte",
+          type: "Lazy Loaded",
+          tech: "Vite, TypeScript, PostCSS, Tailwind, Svelte + SvelteKit",
+          scores: [
+            [89, 100, 100],
+            [96, 100, 100],
+          ],
+        },
+      ].sort((a, b) => b.scores[0][0] - a.scores[0][0]);
+
+      const content = projects.map(getProject).join("");
+      document.body.insertAdjacentHTML("beforeend", content);
+
+      function getProject({ name, type, tech, scores }, i) {
+        const animation = `reset 1s ${i * 150}ms forwards`;
+        return /* html */ `
+          <div class="project" style="animation: ${animation}">
+            <a
+              class="main-link"
+              href="https://${name}.supit.k1k1.dev/"
+              target="_blank"
+            >
+              <h2><img src="/icons/${name}.svg" alt="icon" />${name}.supit.k1k1.dev</h2>
+              <p>${type}</p>
+              ${tech}
+            </a>
+            <div class="reports">
+              ${devices.map(getReport.bind({ name, scores, i })).join("")}
+            </div>
+          </div>`;
+      }
+
+      function getReport(device, j) {
+        return /* html */ `
+          <a href="/lighthouse/${this.name}/${device}.html" target="_blank">
+            <div class="scores">
+              ${this.scores[j].map(getGauge.bind({ i: this.i, j })).join("")}
+            </div>
+            <div>Open ${device} report</div>
+          </a>`;
+      }
+
+      function getGauge(percentage, k) {
+        const c = percentage >= 90 ? ["#0c6", "#0E8F0F"] : ["#fa3", "#CC5023"];
+        const colors = `--gauge-color-1: ${c[0]}; --gauge-color-2: ${c[1]};`;
+        const dash = (percentage / 100) * (percentage == 100 ? 350 : 346);
+        const t = (this.i * 6 + (this.j * 3 + (k + 1))) * 50;
+        const animation1 = `reset 1s ${t}ms forwards`;
+        const animation2 = `load-gauge 1s ${t}ms forwards`;
+        return /* html */ `
+          <div class="gauge-wrapper">
+            <div
+              class="gauge-svg-wrapper"
+              style="${colors} animation: ${animation1}"
+            >
+              <svg class="gauge" viewBox="0 0 120 120">
+                <circle class="gauge-base"></circle>
+                <circle
+                  class="gauge-arc"
+                  style="stroke-dasharray: ${dash}, 350; animation: ${animation2}"
+                ></circle>
+              </svg>
+              <div class="gauge-percentage">${percentage}</div>
+            </div>
+            <div class="gauge-label">${params[k]}</div>
+          </div>`;
+      }
+    </script>
   </body>
 </html>

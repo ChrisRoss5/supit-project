@@ -25,10 +25,13 @@ body {
 }
 img[src^="/icons/"] {
   width: 2rem;
+  height: 2rem;
   padding-right: 1rem;
   vertical-align: bottom;
 }
 .project {
+  opacity: 0;
+  transform: translateY(1rem);
   max-width: 640px;
   background: #fff;
   padding: 2rem;
@@ -50,14 +53,73 @@ img[src^="/icons/"] {
 .reports > a {
   flex: 1;
 }
-.reports div {
-  margin-top: 1rem;
-}
-.reports img {
-  width: 100%;
+.scores {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding-bottom: 1rem;
 }
 @media (max-width: 639px) {
   .project {
     padding: 2rem 0;
+  }
+}
+@keyframes reset {
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* stats */
+
+.gauge-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+.gauge-svg-wrapper {
+  opacity: 0;
+  transform: scale(0.5);
+  color: var(--gauge-color-2);
+  fill: var(--gauge-color-1);
+  stroke: var(--gauge-color-1);
+}
+.gauge {
+  stroke-linecap: round;
+  width: 4.6rem;
+  height: 4.6rem;
+}
+.gauge-base {
+  opacity: 0.1;
+}
+.gauge-arc {
+  transform: rotate(272deg) ;
+  fill: none;
+  transform-origin: 50% 50%;
+}
+circle {
+  r: 56;
+  cx: 60;
+  cy: 60;
+  stroke-width: 8;
+}
+.gauge-percentage {
+  width: 100%;
+  position: absolute;
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.5rem;
+  text-align: center;
+  top: 2.3rem;
+  transform: translateY(-50%);
+}
+.gauge-label {
+  font-size: 0.8rem;
+}
+@keyframes load-gauge {
+  from {
+    stroke-dasharray: 0 350;
   }
 }

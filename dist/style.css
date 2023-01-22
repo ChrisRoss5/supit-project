@@ -1,5 +1,11 @@
-* {
+body {
   font-family: "Montserrat", sans-serif;
+  display: grid;
+  place-content: center;
+  min-height: 100vh;
+  background: #f8fafc;
+  margin: 1rem 0 1rem 0;
+  gap: 1rem;
 }
 a {
   display: block;
@@ -15,18 +21,10 @@ a#github img {
 h2 {
   margin-top: 0;
 }
-body {
-  display: grid;
-  place-content: center;
-  min-height: 100vh;
-  background: #f8fafc;
-  margin: 1rem 0 1rem 0;
-  gap: 1rem;
-}
 img[src^="/icons/"] {
   width: 2rem;
   height: 2rem;
-  padding-right: 1rem;
+  padding-right: 0.8rem;
   vertical-align: bottom;
 }
 .project {
@@ -96,14 +94,11 @@ img[src^="/icons/"] {
   opacity: 0.1;
 }
 .gauge-arc {
-  transform: rotate(272deg) ;
+  transform: rotate(272deg);
   fill: none;
   transform-origin: 50% 50%;
 }
 circle {
-  r: 56;
-  cx: 60;
-  cy: 60;
   stroke-width: 8;
 }
 .gauge-percentage {

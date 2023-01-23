@@ -38,11 +38,10 @@ function getProject({ name, type, tech }, i) {
   if (useAPI) {
     /* const audits = [[50, 100, 100], [100, 100, 100]]; */
     const audits = devices.map((device) => runPagespeedAPI(name, device));
-    Promise.all(audits).then((results) => {
-      results.forEach((percentages, j) => {
+    Promise.all(audits).then((scores) => {
+      scores.forEach((percentages, j) => {
         const scoresEl = document.querySelector(`[data-${i}] [data-${j}]`);
-        const loaderEl = scoresEl.firstElementChild;
-        loaderEl.style.opacity = 0;
+        scoresEl.firstElementChild.style.opacity = 0;  // loader
         setTimeout(() => {
           percentages.forEach((p, k) => {
             setTimeout(() => {

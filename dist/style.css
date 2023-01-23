@@ -21,7 +21,7 @@ a#github img {
 h2 {
   margin-top: 0;
 }
-img[src^="/icons/"] {
+img[src^="/icons/"]:not(#github img) {
   width: 2rem;
   height: 2rem;
   padding-right: 0.8rem;

@@ -20,7 +20,7 @@
       href="https://github.com/ChrisRoss5/supit-projekt"
       target="_blank"
     >
-      <img src="icons/github.webp" alt="github" />
+      <img src="/icons/github.webp" alt="github" />
     </a>
     <script>
       const devices = ["mobile", "desktop"];
@@ -29,17 +29,17 @@
         {
           name: "jquery",
           type: "Lazy Loaded",
-          tech: "JavaScript modules, jQuery + jQuery UI, Bootstrap",
+          tech: "JavaScript modules, jQuery + jQuery UI, Bootstrap + Bootstrap Icons",
           scores: [
-            [79, 100, 100],
-            [98, 100, 100],
+            [85, 100, 100],
+            [96, 100, 100],
           ],
         },
         {
           name: "vue",
           type: "Fully Client Side Rendered",
           tech:
-            "Vite, TypeScript, PostCSS, Tailwind + HeadlessUI, " +
+            "Vite, TypeScript, PostCSS, Tailwind + HeadlessUI, Google Material Icons,<br>" +
             "Vue + Vue Router + Pinia",
           scores: [
             [98, 100, 100],
@@ -50,7 +50,7 @@
           name: "react",
           type: "Fully Client Side Rendered",
           tech:
-            "Vite, TypeScript, PostCSS, Tailwind + HeadlessUI, " +
+            "Vite, TypeScript, PostCSS, Tailwind + HeadlessUI, Google Material Icons,<br>" +
             "React + React Redux + React Router + React Transition Group",
           scores: [
             [97, 100, 100],
@@ -60,16 +60,22 @@
         {
           name: "svelte",
           type: "Lazy Loaded",
-          tech: "Vite, TypeScript, PostCSS, Tailwind, Svelte + SvelteKit",
+          tech: "Vite, TypeScript, PostCSS, Tailwind, Svelte + SvelteKit, Google Material Icons",
           scores: [
-            [89, 100, 100],
-            [96, 100, 100],
+            [90, 100, 100],
+            [97, 100, 100],
           ],
         },
-      ].sort((a, b) => b.scores[0][0] - a.scores[0][0]);
+      ].sort(
+        (a, b) =>
+          b.scores[0][0] + b.scores[1][0] - (a.scores[0][0] + b.scores[1][0])
+      ); // sorted by sum of performance
 
       const content = projects.map(getProject).join("");
       document.body.insertAdjacentHTML("beforeend", content);
+      document.body.appendChild(
+        document.body.firstElementChild.cloneNode(true)
+      );
 
       function getProject({ name, type, tech, scores }, i) {
         const animation = `reset 1s ${i * 150}ms forwards`;

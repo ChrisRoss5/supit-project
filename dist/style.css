@@ -4,7 +4,7 @@ body {
   place-content: center;
   min-height: 100vh;
   background: #f8fafc;
-  margin: 1rem 0 1rem 0;
+  margin: 1rem 0 10rem;
   gap: 1rem;
 }
 a {
@@ -12,16 +12,16 @@ a {
   text-decoration: none;
   color: initial;
 }
-a#github {
-  text-align: center;
-}
-a#github img {
-  width: 150px;
-}
 h2 {
   margin-top: 0;
 }
-img[src^="/icons/"]:not(#github img) {
+#github {
+  text-align: center;
+}
+#github img {
+  width: 150px;
+}
+img[src^="/icons/"]:not(#github img, .scores img) {
   width: 2rem;
   height: 2rem;
   padding-right: 0.8rem;
@@ -30,7 +30,6 @@ img[src^="/icons/"]:not(#github img) {
 .project {
   opacity: 0;
   transform: translateY(1rem);
-  max-width: 640px;
   background: #fff;
   padding: 2rem;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -52,10 +51,22 @@ img[src^="/icons/"]:not(#github img) {
   flex: 1;
 }
 .scores {
+  position: relative;
   display: flex;
   justify-content: center;
   gap: 1rem;
   padding-bottom: 1rem;
+}
+.loader-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  transition: opacity 300ms;
 }
 @media (max-width: 639px) {
   .project {
@@ -69,26 +80,35 @@ img[src^="/icons/"]:not(#github img) {
   }
 }
 
-/* stats */
+/* gauge */
 
+:root {
+  --gauge-width: 5rem;
+  --gauge-duration: 1s;
+}
 .gauge-wrapper {
   display: flex;
   align-items: center;
   flex-direction: column;
   gap: 0.5rem;
   font-weight: 600;
+  opacity: 0;
+  transition: opacity var(--gauge-duration);
 }
 .gauge-svg-wrapper {
-  opacity: 0;
-  transform: scale(0.5);
+  position: relative;
   color: var(--gauge-color-2);
   fill: var(--gauge-color-1);
   stroke: var(--gauge-color-1);
+  transform: scale(0.5);
+  transition: transform var(--gauge-duration);
+}
+.gauge,
+img[alt="loader"] {
+  width: var(--gauge-width);
 }
 .gauge {
   stroke-linecap: round;
-  width: 4.6rem;
-  height: 4.6rem;
 }
 .gauge-base {
   opacity: 0.1;
@@ -97,9 +117,8 @@ img[src^="/icons/"]:not(#github img) {
   transform: rotate(272deg);
   fill: none;
   transform-origin: 50% 50%;
-}
-circle {
-  stroke-width: 8;
+  stroke-dasharray: 0 350;
+  transition: stroke-dasharray var(--gauge-duration);
 }
 .gauge-percentage {
   width: 100%;
@@ -107,14 +126,9 @@ circle {
   font-family: "Roboto Mono", monospace;
   font-size: 1.5rem;
   text-align: center;
-  top: 2.3rem;
+  top: calc(var(--gauge-width) / 2);
   transform: translateY(-50%);
 }
 .gauge-label {
   font-size: 0.8rem;
-}
-@keyframes load-gauge {
-  from {
-    stroke-dasharray: 0 350;
-  }
 }

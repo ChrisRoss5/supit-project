@@ -116,5 +116,5 @@ You can find file sizes & count by pressing the `View Treemap` button below the 
 
 ## Good to know
 
-[Rendering Glossary](https://kit.svelte.dev/docs/glossary) by SvelteKit
-[Bundler Glossary](https://webpack.js.org/glossary/) by Webpack
+- [Rendering Glossary](https://kit.svelte.dev/docs/glossary) by SvelteKit
+- [Bundler Glossary](https://webpack.js.org/glossary/) by Webpack

@@ -12,7 +12,7 @@ Don't forget to `npm i` before you `npm run dev` after switching to a branch wit
 
 All versions are configured to `npm run build` in `/dist` folder.
 
-## Comparisons (ordered by completion)
+## Comparisons (UX/DX)
 
 ### jQuery
 
@@ -117,3 +117,4 @@ You can find file sizes & count by pressing the `View Treemap` button below the 
 ## Good to know
 
 [Rendering Glossary](https://kit.svelte.dev/docs/glossary) by SvelteKit
+[Bundler Glossary](https://webpack.js.org/glossary/) by Webpack

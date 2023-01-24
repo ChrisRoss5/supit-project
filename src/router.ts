@@ -1,11 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-
 import Pocetna from "@/views/Pocetna.vue";
-import Prijava from "@/views/Prijava.vue";
-import ONama from "@/views/o-nama/ONama.vue";
-import Novosti from "@/views/novosti/Novosti.vue";
-import Novost from "@/views/novosti/Novost.vue";
-import NastavniPlan from "@/views/NastavniPlan.vue";
 
 const routes = [
   {
@@ -24,30 +18,30 @@ const routes = [
   },
   {
     path: "/prijava",
-    component: Prijava,
+    component: () => import("@/views/Prijava.vue"),
     name: "prijava",
   },
   {
     path: "/registracija",
-    component: Prijava,
+    component: () => import("@/views/Prijava.vue"),
     name: "registracija",
   },
   {
     path: "/o-nama",
-    component: ONama,
+    component: () => import("@/views/o-nama/ONama.vue"),
     name: "o-nama",
   },
   {
     path: "/novosti",
-    component: Novosti,
+    component: () => import("@/views/novosti/Novosti.vue"),
   },
   {
     path: "/novosti/:id",
-    component: Novost,
+    component: () => import("@/views/novosti/Novost.vue"),
   },
   {
     path: "/nastavni-plan",
-    component: NastavniPlan,
+    component: () => import("@/views/NastavniPlan.vue"),
   },
 ];
 

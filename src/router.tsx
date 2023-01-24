@@ -3,16 +3,17 @@ import { Suspense, lazy } from "react";
 import App from "./App";
 import Pocetna from "./views/Pocetna";
 
-function lazyLoad(path: string) {
-  const LazyElement = lazy(() => import(`./views/${path}` /* @vite-ignore */));
+const Prijava = lazy(() => import("./views/Prijava"));
+const ONama = lazy(() => import("./views/o-nama/ONama"));
+const Novosti = lazy(() => import("./views/novosti/Novosti"));
+const Novost = lazy(() => import("./views/novosti/Novost"));
+const NastavniPlan = lazy(() => import("./views/NastavniPlan"));
 
-  return (
-    /* no fallback={} on suspense => empty screen */
-    <Suspense>
-      <LazyElement />
-    </Suspense>
-  );
-}
+const wrapSuspense = (Component: React.LazyExoticComponent<() => JSX.Element>) => (
+  <Suspense>
+    <Component />{/* no fallback={} on <Suspense> leads to empty screen */}
+  </Suspense>
+);
 
 const router = createBrowserRouter([
   {
@@ -26,27 +27,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/prijava",
-        element: lazyLoad("Prijava"),
+        element: wrapSuspense(Prijava)
       },
       {
         path: "/registracija",
-        element: lazyLoad("Prijava"),
+        element: wrapSuspense(Prijava)
       },
       {
         path: "/o-nama",
-        element: lazyLoad("o-nama/ONama"),
+        element: wrapSuspense(ONama)
       },
       {
         path: "/novosti",
-        element: lazyLoad("novosti/Novosti"),
+        element: wrapSuspense(Novosti)
       },
       {
         path: "/novosti/:id",
-        element: lazyLoad("novosti/Novost"),
+        element: wrapSuspense(Novost)
       },
       {
         path: "/nastavni-plan",
-        element: lazyLoad("NastavniPlan"),
+        element: wrapSuspense(NastavniPlan)
       },
     ],
   },

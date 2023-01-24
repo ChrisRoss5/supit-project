@@ -1,14 +1,13 @@
 import Modal from "@/components/headlessui/Modal";
 import { toggleContact, useAppDispatch, useAppSelector } from "@/store";
 import { Dialog } from "@headlessui/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-type Props = { isContactLoaded: boolean; handleLoad: () => void };
-
-const Contact = ({ isContactLoaded, handleLoad }: Props) => {
+const Contact = () => {
   const isContactOpen = useAppSelector((state) => state.isContactOpen);
   const dispatch = useAppDispatch();
-  useEffect(handleLoad, []); // keeps the component alive to allow transitions!
+  const [isContactLoaded, setIsContactLoaded] = useState(false);
+  useEffect(() => setIsContactLoaded(true), []); // only to trigger the initial transition
 
   return (
     <Modal

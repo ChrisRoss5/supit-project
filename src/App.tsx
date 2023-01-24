@@ -9,6 +9,9 @@ const LazyContact = lazy(() => import("./components/Contact"));
 const App = ({ notFound }: { notFound?: boolean }) => {
   const isContactOpen = useAppSelector((state) => state.isContactOpen);
   const [isContactLoaded, setIsContactLoaded] = useState(false);
+  useEffect(() => {
+    if (isContactOpen) setIsContactLoaded(true); // keeps the component alive to allow transitions
+  }, [isContactOpen]);
 
   return (
     <>
@@ -21,14 +24,7 @@ const App = ({ notFound }: { notFound?: boolean }) => {
         <Outlet />
       )}
       <Footer />
-      <Suspense>
-        {(isContactLoaded || isContactOpen) && (
-          <LazyContact
-            isContactLoaded={isContactLoaded}
-            handleLoad={() => setIsContactLoaded(true)}
-          />
-        )}
-      </Suspense>
+      <Suspense>{isContactLoaded && <LazyContact />}</Suspense>
     </>
   );
 };

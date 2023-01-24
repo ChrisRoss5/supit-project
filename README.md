@@ -122,3 +122,5 @@ To find `Bytes Usage` from served files, visit [supit.k1k1.dev](https://supit.k1
 
 - [Rendering Glossary](https://kit.svelte.dev/docs/glossary) by SvelteKit
 - [Bundler Glossary](https://webpack.js.org/glossary/) by Webpack
+- [State of JS 2022](https://2022.stateofjs.com/)
+- [State of CSS 2022](https://2022.stateofcss.com/)

@@ -64,7 +64,7 @@ These scores turn out to be the most common for **landing pages**:
     <th>Best Practices</th>
   </tr>
   <tr>
-    <td>jQuery</td>
+    <td>jQuery (lazy loaded)</td>
     <td style="text-align: center">95</td>
     <td style="text-align: center">100</td>
     <td style="text-align: center">100</td>
@@ -75,7 +75,7 @@ These scores turn out to be the most common for **landing pages**:
     <td style="text-align: center">5 files</td>
   </tr>
   <tr>
-    <td>Vue</td>
+    <td>Vue (fully loaded)</td>
     <td style="text-align: center">87</td>
     <td style="text-align: center">100</td>
     <td style="text-align: center">100</td>
@@ -86,7 +86,7 @@ These scores turn out to be the most common for **landing pages**:
     <td style="text-align: center">1 chunk</td>
   </tr>
   <tr>
-    <td>React</td>
+    <td>React (fully loaded)</td>
     <td style="text-align: center">87</td>
     <td style="text-align: center">100</td>
     <td style="text-align: center">100</td>
@@ -97,7 +97,7 @@ These scores turn out to be the most common for **landing pages**:
     <td style="text-align: center">1 chunk</td>
   </tr>
   <tr>
-    <td>Svelte</td>
+    <td>Svelte (lazy loaded)</td>
     <td style="text-align: center">89</td>
     <td style="text-align: center">100</td>
     <td style="text-align: center">100</td>
@@ -115,6 +115,7 @@ To find `Bytes Usage` from served files, visit [supit.k1k1.dev](https://supit.k1
 
 ## Todo
 
+- React & Vue lazy loaded
 - Angular version with Webpack
 - [Make SvelteKit bundle all chunks into a single bundle](https://www.reddit.com/r/sveltejs/comments/rqo5o2/make_sveltekit_bundle_all_ts_files_into_a_single/) (no solution yet)
 

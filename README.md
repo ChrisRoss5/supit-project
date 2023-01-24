@@ -12,7 +12,9 @@ Don't forget to `npm i` before you `npm run dev` after switching to a branch wit
 
 All versions are configured to `npm run build` in `/dist` folder.
 
-## Comparisons (UX/DX)
+---
+
+## Comparisons: UX/DX
 
 ### jQuery
 
@@ -21,17 +23,17 @@ Has more functionality at `/o-nama` and `/novost/1`
 - because it utilizes `bootstrap.ScrollSpy`, which highlights navbar links based on the most visible section.
 - because it utilizes `bootstrap.Carousel`, which supports swiping on touch devices.
 
-Note that there's no `build` process.
-
-DX: Will not use **jQuery** nor **Bootstrap** again.
+Unlike other versions, this one does not use a `Bundler`, `TypeScript`, `PostCSS`, `Tailwind` and `Google Material Icons`.
+Instead, it's using `jQuery` and `jQueryUI`, along with `Bootstrap` and `Bootstrap Icons`. 
+Hopefully I won't have to use those ever again.
 
 ### Vue
 
-DX: Simply _the best_.
+Simply the best, 10/10.
 
 ### React
 
-DX: Overcomplicated with too much boilerplate.
+Overcomplicated with too much boilerplate.
 
 ### Svelte
 
@@ -39,9 +41,9 @@ Unlike **Vue** and **React**, there's no support for `HeadlessUI`
 so I had to bring functionality to `modal` and `autocomplete` components myself.
 Apart from that, all **Vue**, **React** & **Svelte** functionality and design should look 100% identical from a user's perspective.
 
-DX: Almost as good as **Vue**.
+Overall, it's almost as good as **Vue** in terms of developer experience.
 
-## Comparisons (performance)
+## Performance
 
 These scores turn out to be the most common for **landing pages**:
 
@@ -107,7 +109,9 @@ These scores turn out to be the most common for **landing pages**:
   </tr>
 </table>
 
-You can find file sizes & count by pressing the `View Treemap` button below the metrics of Lighthouse audits.
+To find `Unused Bytes` from served files, visit [supit.k1k1.dev](supit.k1k1.dev), open a report and press the `View Treemap` button below the metrics.
+
+---
 
 ## Todo
 

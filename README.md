@@ -23,9 +23,9 @@ Has more functionality at `/o-nama` and `/novost/1`
 - because it utilizes `bootstrap.ScrollSpy`, which highlights navbar links based on the most visible section.
 - because it utilizes `bootstrap.Carousel`, which supports swiping on touch devices.
 
-Unlike other versions, this one does not use a `Bundler`, `TypeScript`, `PostCSS`, `Tailwind` and `Google Material Icons`.
-Instead, it's using `jQuery` and `jQueryUI`, along with `Bootstrap` and `Bootstrap Icons`. 
-Hopefully I won't have to use those ever again.
+Unlike other versions, this one does not use a `Bundler`, `TypeScript`, `PostCSS`, `Tailwind`, or `Google Material Icons`.
+Instead, it uses `jQuery` and `jQueryUI`, along with `Bootstrap` and `Bootstrap Icons`. 
+Hopefully, I won't have to use those ever again.
 
 ### Vue
 

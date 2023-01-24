@@ -109,7 +109,7 @@ These scores turn out to be the most common for **landing pages**:
   </tr>
 </table>
 
-To find `Unused Bytes` from served files, visit [supit.k1k1.dev](supit.k1k1.dev), open a report and press the `View Treemap` button below the metrics.
+To find `Bytes Usage` from served files, visit [supit.k1k1.dev](https://supit.k1k1.dev), open a report and press the `View Treemap` button below the metrics.
 
 ---
 

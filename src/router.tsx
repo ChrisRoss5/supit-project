@@ -1,18 +1,24 @@
 import { createBrowserRouter } from "react-router-dom";
+import { Suspense, lazy } from "react";
+import App from "./App";
+import Pocetna from "./views/Pocetna";
 
-import App from "@/App";
-import Pocetna from "@/views/Pocetna";
-import Prijava from "@/views/Prijava";
-import ONama from "@/views/o-nama/ONama";
-import Novosti from "@/views/novosti/Novosti";
-import Novost from "@/views/novosti/Novost";
-import NastavniPlan from "@/views/NastavniPlan";
+function lazyLoad(path: string) {
+  const LazyElement = lazy(() => import(`./views/${path}` /* @vite-ignore */));
+
+  return (
+    /* no fallback={} on suspense => empty screen */
+    <Suspense>
+      <LazyElement />
+    </Suspense>
+  );
+}
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <App notFound={true} />,
+    errorElement: <App notFound />,
     children: [
       {
         path: "/",
@@ -20,27 +26,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/prijava",
-        element: <Prijava />,
+        element: lazyLoad("Prijava"),
       },
       {
         path: "/registracija",
-        element: <Prijava />,
+        element: lazyLoad("Prijava"),
       },
       {
         path: "/o-nama",
-        element: <ONama />,
+        element: lazyLoad("o-nama/ONama"),
       },
       {
         path: "/novosti",
-        element: <Novosti />,
+        element: lazyLoad("novosti/Novosti"),
       },
       {
         path: "/novosti/:id",
-        element: <Novost />,
+        element: lazyLoad("novosti/Novost"),
       },
       {
         path: "/nastavni-plan",
-        element: <NastavniPlan />,
+        element: lazyLoad("NastavniPlan"),
       },
     ],
   },

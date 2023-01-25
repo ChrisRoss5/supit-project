@@ -34,7 +34,7 @@ const projects = [
   {
     name: "vue-full",
     tech: vueTech,
-    type: "Fully Client Side Rendered · Resource Bytes: 243 KiB, 1 chunk",
+    type: "Fully Loaded · Resource Bytes: 243 KiB, 1 chunk",
   },
   {
     name: "react",
@@ -44,7 +44,7 @@ const projects = [
   {
     name: "react-full",
     tech: reactTech,
-    type: "Fully Client Side Rendered · Resource Bytes: 312 KiB, 1 chunk",
+    type: "Fully Loaded · Resource Bytes: 312 KiB, 1 chunk",
   },
 ];
 

@@ -29,11 +29,12 @@ Hopefully, I won't have to use those ever again.
 
 ### Vue
 
-Simply the best, 10/10. **The only difference** between branches `vue` and `vue-full` is that the former uses lazy routing and async components (Contact.vue).
+Simply the best, 10/10. The only difference between branches `vue` and `vue-full` is that the former uses lazy routing and async components (Contact.vue).
+[Click to compare](https://github.com/ChrisRoss5/supit-projekt/compare/vue-full...vue).
 
 ### React
 
-Overcomplicated with too much boilerplate. As with **Vue**, **the only difference** between branches `react` and `react-full` is that the former uses lazy routing and async components (Contact.tsx).
+Overcomplicated with too much boilerplate. As with **Vue**, the only difference between branches `react` and `react-full` is that the former uses lazy routing and async components (Contact.tsx). [Click to compare](https://github.com/ChrisRoss5/supit-projekt/compare/react-full...react).
 
 ### Svelte
 

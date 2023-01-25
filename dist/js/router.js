@@ -32,8 +32,7 @@ export const pushRoute = (e) => {
 };
 
 export const replaceView = async (path) => {
-  path = path.slice(1) || "pocetna";
-  let html = await $.get(`/html/views/${path}.html`);
+  let html = await $.get(`/html/views${path == "/" ? "/pocetna" : path}.html`);
   if (html.startsWith("<!"))
     html = /* html */ `
       <main class="flex-grow-1 d-flex justify-content-center align-items-center fs-5">
@@ -43,35 +42,32 @@ export const replaceView = async (path) => {
 
   bsNavbarCollapse.hide(); // for mobile users
   $(".nav-link.active").removeClass("active");
+  $(`.nav-link[href='${path}']`).addClass("active");
   $("[router-link]").off("click").on("click", pushRoute);
   $(window).scrollTop(0);
+  toggleNavbarSections(path == "/o-nama");
 
   switch (path) {
-    case "prijava":
-    case "registracija":
-      (await import("./auth.js")).default();
-      break;
-    case "pocetna":
-      $(".nav-link[href='/']").addClass("active");
+    case "/":
       (await import("./typewriter.js")).default();
       break;
-    case "o-nama":
+    case "/prijava":
+    case "/registracija":
+      (await import("./auth.js")).default();
+      break;
+    case "/o-nama":
       $("#o-nama > section").each((i, el) => sectionsObserver.observe(el));
-      toggleNavbarSections(true);
       new bootstrap.ScrollSpy("#o-nama", bsScrollConfig); // nosonar
       if (location.hash) $(location.hash)[0].scrollIntoView();
       break;
-    case "novost-1":
+    case "/novosti/1":
       const bsCarousel = new bootstrap.Carousel("#carousel-controls");
       $("#novost-1 [role='button']").on("click", (e) => {
         bsCarousel.to(e.target.dataset.n);
       });
       break;
-    case "nastavni-plan":
+    case "/nastavni-plan":
       (await import("./courses.js")).default();
       break;
   }
-
-  if (path != "pocetna") $(`.nav-link[href='/${path}']`).addClass("active");
-  if (path != "o-nama") toggleNavbarSections(false);
 };

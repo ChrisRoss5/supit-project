@@ -4,30 +4,47 @@ const useAPI = true;
 const APIkey = "AIzaSyCuC1VTP2JRefN98l8e1jA6Ga8OIPXq2LE";
 const devices = ["mobile", "desktop"];
 const categories = ["Performance", "Accessibility", "Best Practices"];
+
+const jqueryTech =
+  "JavaScript modules, jQuery + jQuery UI, Bootstrap + Bootstrap Icons";
+const svelteTech =
+  "Vite, TypeScript, PostCSS, Tailwind, Google Material Icons, Svelte + SvelteKit";
+const vueTech =
+  "Vite, TypeScript, PostCSS, Tailwind + HeadlessUI, Google Material Icons,<br>" +
+  "Vue + Vue Router + Pinia";
+const reactTech =
+  "Vite, TypeScript, PostCSS, Tailwind + HeadlessUI, Google Material Icons,<br>" +
+  "React + React Router + React Redux + React Transition Group";
 const projects = [
   {
     name: "jquery",
+    tech: jqueryTech,
     type: "Lazy Loaded · Resource Bytes: 169 KiB (418 KiB with jQueryUI), 5 files",
-    tech: "JavaScript modules, jQuery + jQuery UI, Bootstrap + Bootstrap Icons",
-  },
-  {
-    name: "vue",
-    type: "Fully Client Side Rendered · Resource Bytes: 243 KiB, 1 chunk",
-    tech:
-      "Vite, TypeScript, PostCSS, Tailwind + HeadlessUI, Google Material Icons,<br>" +
-      "Vue + Vue Router + Pinia",
-  },
-  {
-    name: "react",
-    type: "Fully Client Side Rendered · Resource Bytes: 310 KiB, 1 chunk",
-    tech:
-      "Vite, TypeScript, PostCSS, Tailwind + HeadlessUI, Google Material Icons,<br>" +
-      "React + React Redux + React Router + React Transition Group",
   },
   {
     name: "svelte",
-    type: "Lazy Loaded · Resource Bytes: 72 KiB, 15 chunks",
-    tech: "Vite, TypeScript, PostCSS, Tailwind, Svelte + SvelteKit, Google Material Icons",
+    tech: svelteTech,
+    type: "Lazy Loaded on hover · Resource Bytes: 72 KiB, 15 chunks",
+  },
+  {
+    name: "vue",
+    tech: vueTech,
+    type: "Lazy Loaded · Resource Bytes: 171 KiB, 1 chunk",
+  },
+  {
+    name: "vue-full",
+    tech: vueTech,
+    type: "Fully Client Side Rendered · Resource Bytes: 243 KiB, 1 chunk",
+  },
+  {
+    name: "react",
+    tech: reactTech,
+    type: "Lazy Loaded · Resource Bytes: 233 KiB, 3 chunks",
+  },
+  {
+    name: "react-full",
+    tech: reactTech,
+    type: "Fully Client Side Rendered · Resource Bytes: 312 KiB, 1 chunk",
   },
 ];
 
@@ -36,12 +53,15 @@ document.body.insertAdjacentHTML("beforeend", content);
 
 function getProject({ name, type, tech }, i) {
   if (useAPI) {
-    /* const audits = [[50, 100, 100], [100, 100, 100]]; */
+    /* const audits = [
+      [50, 100, 100],
+      [100, 100, 100],
+    ]; */
     const audits = devices.map((device) => runPagespeedAPI(name, device));
     Promise.all(audits).then((scores) => {
       scores.forEach((percentages, j) => {
         const scoresEl = document.querySelector(`[data-${i}] [data-${j}]`);
-        scoresEl.firstElementChild.style.opacity = 0;  // loader
+        scoresEl.firstElementChild.style.opacity = 0; // loader
         setTimeout(() => {
           percentages.forEach((p, k) => {
             setTimeout(() => {
@@ -60,9 +80,12 @@ function getProject({ name, type, tech }, i) {
         href="https://${name}.supit.k1k1.dev/"
         target="_blank"
       >
-        <h2><img src="/icons/${name}.svg" alt="icon" />${name}.supit.k1k1.dev</h2>
-        <p>${type}</p>
-        ${tech}
+        <h2>
+          <img src="/icons/${name.replace("-full", "")}.svg" alt="icon" />
+          ${name}.supit.k1k1.dev
+        </h2>
+        <p>${tech}</p>
+        ${type}
       </a>
       <div class="reports" data-${i}>
         ${devices.map(getReport.bind({ name })).join("")}

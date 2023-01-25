@@ -1,11 +1,12 @@
 body {
   font-family: "Montserrat", sans-serif;
-  display: grid;
-  place-content: center;
-  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   background: #f8fafc;
   margin: 1rem 0 10rem;
   gap: 1rem;
+  text-align: center;
 }
 a {
   display: block;
@@ -16,7 +17,7 @@ h2 {
   margin-top: 0;
 }
 #github {
-  text-align: center;
+  flex-basis: 100%;
 }
 #github img {
   width: 150px;
@@ -24,7 +25,7 @@ h2 {
 img[src^="/icons/"]:not(#github img, .scores img) {
   width: 2rem;
   height: 2rem;
-  padding-right: 0.8rem;
+  padding-right: 0.5rem;
   vertical-align: bottom;
 }
 .project {
@@ -38,7 +39,6 @@ img[src^="/icons/"]:not(#github img, .scores img) {
 .reports > a {
   padding: 1rem;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  text-align: center;
 }
 .reports {
   gap: 1rem;
@@ -125,10 +125,9 @@ img[alt="loader"] {
   position: absolute;
   font-family: "Roboto Mono", monospace;
   font-size: 1.5rem;
-  text-align: center;
   top: calc(var(--gauge-width) / 2);
   transform: translateY(-50%);
 }
 .gauge-label {
-  font-size: 0.8rem;
+  font-size: calc(var(--gauge-width) / 6);
 }

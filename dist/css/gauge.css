@@ -1,0 +1,49 @@
+:root {
+  --gauge-width: 5rem;
+  --gauge-duration: 1s;
+}
+.gauge-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity var(--gauge-duration);
+}
+.gauge-svg-wrapper {
+  position: relative;
+  color: var(--gauge-color-2);
+  fill: var(--gauge-color-1);
+  stroke: var(--gauge-color-1);
+  transform: scale(0.5);
+  transition: transform var(--gauge-duration);
+}
+.gauge,
+.loader-container svg {
+  width: var(--gauge-width);
+}
+.gauge {
+  stroke-linecap: round;
+}
+.gauge-base {
+  opacity: 0.1;
+}
+.gauge-arc {
+  transform: rotate(272deg);
+  fill: none;
+  transform-origin: 50% 50%;
+  stroke-dasharray: 0 350;
+  transition: stroke-dasharray var(--gauge-duration);
+}
+.gauge-percentage {
+  width: 100%;
+  position: absolute;
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.5rem;
+  top: calc(var(--gauge-width) / 2);
+  transform: translateY(-50%);
+}
+.gauge-label {
+  font-size: calc(var(--gauge-width) / 6);
+}

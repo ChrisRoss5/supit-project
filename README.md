@@ -45,7 +45,64 @@ Overall, it's almost as good as **Vue** in terms of developer experience.
 
 ## Performance
 
-todo: add path comparisons to supit.k1k1.dev
+Visit [supit.k1k1.dev](https://supit.k1k1.dev/) to run mobile & desktop Lighthouse tests for all projects and URLs.
+
+These scores turn out to be the most common for **landing pages**:
+
+<table>
+  <tr>
+    <th rowspan=2>Version</th>
+    <th colspan=3>Mobile</th>
+    <th colspan=3>Desktop</th>
+  </tr>
+  <tr>
+    <th>Performance</th>
+    <th>Accessibility</th>
+    <th>Best Practices</th>
+    <th>Performance</th>
+    <th>Accessibility</th>
+    <th>Best Practices</th>
+  </tr>
+  <tr>
+    <td>jQuery</td>
+    <td style="text-align: center">95</td>
+    <td style="text-align: center">100</td>
+    <td style="text-align: center">100</td>
+    <td style="text-align: center">99</td>
+    <td style="text-align: center">100</td>
+    <td style="text-align: center">100</td>
+  </tr>
+  <tr>
+    <td>Vue, Vue Full</td>
+    <td style="text-align: center">87</td>
+    <td style="text-align: center">100</td>
+    <td style="text-align: center">100</td>
+    <td style="text-align: center">99</td>
+    <td style="text-align: center">100</td>
+    <td style="text-align: center">100</td>
+  </tr>
+  <tr>
+    <td>React, React Full</td>
+    <td style="text-align: center">87</td>
+    <td style="text-align: center">100</td>
+    <td style="text-align: center">100</td>
+    <td style="text-align: center">99</td>
+    <td style="text-align: center">100</td>
+    <td style="text-align: center">100</td>
+  </tr>
+  <tr>
+    <td>Svelte</td>
+    <td style="text-align: center">89</td>
+    <td style="text-align: center">100</td>
+    <td style="text-align: center">100</td>
+    <td style="text-align: center">99</td>
+    <td style="text-align: center">100</td>
+    <td style="text-align: center">100</td>
+  </tr>
+</table>
+
+Unfortunately, lazy loaded versions of **Vue** and **React** have the same scores as their fully loaded counterparts. However, they save a significant amount of bytes (~30%) on first load.
+Because the website isn't that large, user experience is in all likelihood better with fully loaded versions. To find `Bytes Usage` from served files, open a report and press the `View Treemap` button below the metrics.
 
 ---
 

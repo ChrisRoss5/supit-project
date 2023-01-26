@@ -13,15 +13,32 @@
     />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   </head>
-  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/gauge.css" />
   <body>
-    <a
-      id="github"
-      href="https://github.com/ChrisRoss5/supit-projekt"
-      target="_blank"
-    >
-      <img src="/icons/github.webp" alt="github" />
-    </a>
-    <script src="/main.js"></script>
+    <header>
+      <a href="https://www.algebra.hr/" target="_blank">
+        <img src="/icons/algebra.webp" alt="algebra" />
+      </a>
+      <div id="selector">
+        <select>
+          <option>/</option>
+          <option>/prijava</option>
+          <option>/registracija</option>
+          <option>/o-nama</option>
+          <option>/novosti</option>
+          <option>/novosti/1</option>
+          <option>/novosti/2</option>
+          <option>/novosti/3</option>
+          <option>/nastavni-plan</option>
+        </select>
+        <button>Run PageSpeed Insights API</button>
+      </div>
+      <a href="https://github.com/ChrisRoss5/supit-projekt" target="_blank">
+        <img src="/icons/github.webp" alt="github" />
+      </a>
+    </header>
+    <div id="projects"></div>
+    <script src="/js/main.js" type="module"></script>
   </body>
 </html>

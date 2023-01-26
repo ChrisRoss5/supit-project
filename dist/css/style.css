@@ -1,0 +1,119 @@
+:root {
+  --shadow-big: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-small: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+body {
+  font-family: "Montserrat", sans-serif;
+  background: #f8fafc;
+  margin: 0 0 10vh;
+  text-align: center;
+}
+select {
+  font-family: inherit;
+  padding: 0.5rem 1rem;
+  outline: none;
+}
+a {
+  text-decoration: none;
+  color: initial;
+}
+h2 {
+  margin-top: 0;
+}
+header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background: #fff;
+  box-shadow: var(--shadow-big);
+  margin-bottom: 1rem;
+  padding: 1rem;
+  z-index: 1;
+}
+header img {
+  height: 2rem;
+  vertical-align: middle;
+}
+select {
+  background: #fff;
+}
+#selector {
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: var(--shadow-small);
+}
+#selector > * {
+  flex: 1;
+  height: 2rem;
+  min-width: 15rem;
+  border: none;
+}
+#projects {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.project {
+  opacity: 0;
+  transform: translateY(1rem);
+  background: #fff;
+  padding: 2rem;
+  box-shadow: var(--shadow-big);
+}
+.project-link img[src^="/icons/"] {
+  width: 2rem;
+  height: 2rem;
+  padding-right: 0.5rem;
+  vertical-align: bottom;
+}
+.project-link,
+.reports > a {
+  display: block;
+  padding: 1rem;
+  box-shadow: var(--shadow-small);
+}
+.reports {
+  gap: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+.reports > a {
+  flex: 1;
+}
+.scores {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding-bottom: 1rem;
+}
+.loader-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  transition: opacity 300ms;
+}
+@media (max-width: 639px) {
+  .project {
+    padding: 2rem 0;
+  }
+}
+@keyframes reset {
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}

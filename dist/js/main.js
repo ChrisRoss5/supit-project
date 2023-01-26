@@ -1,6 +1,6 @@
 /* https://developers.google.com/speed/docs/insights/v5/get-started#javascript */
 
-import { loader, getGauge, updateGauge } from "./gauge.js";
+import { loader, getGauge, updateGauge, resetGauges } from "./gauge.js";
 import projects from "./projects.js";
 
 const APIkey = "AIzaSyCuC1VTP2JRefN98l8e1jA6Ga8OIPXq2LE";
@@ -11,9 +11,10 @@ const html = projects.map(getProject).join("");
 document.querySelector("#projects").insertAdjacentHTML("beforeend", html);
 document.querySelector("#selector").oninput = onSelectorInput;
 document.querySelector("#selector button").onclick = onSelectorClick;
+let path = "/";
 
 function onSelectorInput(e) {
-  const path = e.target.value;
+  path = e.target.value;
   document.querySelectorAll(".project").forEach((project) => {
     const newLink = `https://${project.id}.supit.k1k1.dev${path}`;
     const newTitle = `${project.id}.supit.k1k1.dev${path == "/" ? "" : path}`;
@@ -28,10 +29,9 @@ function onSelectorInput(e) {
 
 async function onSelectorClick() {
   this.disabled = true;
+  resetGauges();
   const loaderContainers = document.querySelectorAll(".loader-container");
   loaderContainers.forEach((el) => (el.style.opacity = 1));
-  const animateTransform = document.querySelectorAll("animateTransform");
-  animateTransform.forEach((el) => el.beginElement());
   const projects = [...document.querySelectorAll(".project")];
   await Promise.all(projects.map(({ id }, i) => updateReports(id, i)));
   this.disabled = false;
@@ -91,7 +91,7 @@ async function updateReports(name, i) {
 async function runPagespeedAPI(name, device) {
   const api = "https://www.googleapis.com/pagespeedonline/v5/runPagespeed";
   const params = {
-    url: `https://${name}.supit.k1k1.dev/`,
+    url: `https://${name}.supit.k1k1.dev${path}`,
     strategy: device.toUpperCase(),
     key: APIkey,
   };

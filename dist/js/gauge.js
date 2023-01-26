@@ -38,3 +38,14 @@ export function updateGauge(gaugeWrapper, percentage) {
   gaugeWrapper.querySelector(".gauge-percentage").textContent = percentage;
   gaugeWrapper.style.opacity = 1;
 }
+
+export function resetGauges() {
+  const gaugeWrappers = document.querySelectorAll(".gauge-wrapper");
+  gaugeWrappers.forEach((el) => (el.style.opacity = 0));
+  const gaugeSvgWrappers = document.querySelectorAll(".gauge-svg-wrapper");
+  gaugeSvgWrappers.forEach((el) => (el.style.transform = "scale(0.5)"));
+  const gaugeArcs = document.querySelectorAll(".gauge-arc");
+  gaugeArcs.forEach((el) => (el.style.strokeDasharray = "0 350"));
+  const animateTransform = document.querySelectorAll("animateTransform");
+  animateTransform.forEach((el) => el.beginElement());
+}

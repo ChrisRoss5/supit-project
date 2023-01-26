@@ -13,31 +13,31 @@ export default [
   {
     name: "jquery",
     tech: jqueryTech,
-    type: "Lazy Loaded · Resource Bytes: 169 KiB (418 KiB with jQueryUI), 5 files",
+    type: "Lazy Loaded",
   },
   {
     name: "svelte",
     tech: svelteTech,
-    type: "Lazy Loaded on hover · Resource Bytes: 72 KiB, 15 chunks",
+    type: "Lazy Loaded On Hover",
   },
   {
     name: "vue",
     tech: vueTech,
-    type: "Lazy Loaded · Resource Bytes: 171 KiB, 1 chunk",
+    type: "Lazy Loaded",
   },
   {
     name: "vue-full",
     tech: vueTech,
-    type: "Fully Loaded · Resource Bytes: 243 KiB, 1 chunk",
+    type: "Fully Loaded",
   },
   {
     name: "react",
     tech: reactTech,
-    type: "Lazy Loaded · Resource Bytes: 233 KiB, 3 chunks",
+    type: "Lazy Loaded",
   },
   {
     name: "react-full",
     tech: reactTech,
-    type: "Fully Loaded · Resource Bytes: 312 KiB, 1 chunk",
+    type: "Fully Loaded",
   },
 ];

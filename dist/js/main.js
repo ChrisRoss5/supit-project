@@ -51,9 +51,9 @@ function getProject({ name, type, tech }, i) {
           <span class="project-title">${name}.supit.k1k1.dev</span>
         </h2>
         <p>${tech}</p>
-        ${type}
+        ${type} · Resource Bytes: <span class="resourse-bytes">Waiting...</span>
       </a>
-      <div class="reports" data-${i}>
+      <div class="reports">
         ${devices.map(getReport.bind({ name })).join("")}
       </div>
     </div>`;
@@ -73,10 +73,14 @@ function getReport(device, j) {
     </a>`;
 }
 
-async function updateReports(name, i) {
-  const audits = devices.map((device) => runPagespeedAPI(name, device));
-  (await Promise.all(audits)).forEach((percentages, j) => {
-    const scoresEl = document.querySelector(`[data-${i}] [data-${j}]`);
+async function updateReports(name) {
+  const results = devices.map((device) => runPagespeedAPI(name, device));
+  (await Promise.all(results)).forEach(({ percentages, chunks, device }, j) => {
+    const scoresEl = document.querySelector(`#${name} [data-${j}]`);
+    // because desktop picks up more resources for google maps,
+    // updating resource bytes for mobile devices is preferred
+    if (devices.length == 1 || device == "mobile")
+      document.querySelector(`#${name} .resourse-bytes`).textContent = chunks;
     scoresEl.firstElementChild.style.opacity = 0; // loader
     setTimeout(() => {
       percentages.forEach((p, k) => {
@@ -85,7 +89,7 @@ async function updateReports(name, i) {
       });
     }, 300);
   });
-  return audits;
+  return results;
 }
 
 async function runPagespeedAPI(name, device) {
@@ -102,8 +106,16 @@ async function runPagespeedAPI(name, device) {
   const json = await fetch(url).then((response) => response.json());
   console.log(`FULL REPORT FOR ${name}, ${device}:`, json);
   if (!json.lighthouseResult) return Array(categories.length).fill(-1);
-  const _categories = json.lighthouseResult.categories;
-  return categories.map(
-    (c) => _categories[c.replaceAll(" ", "-").toLowerCase()].score * 100
-  );
+
+  const { categories: _categories, audits } = json.lighthouseResult;
+  const chunks = audits["script-treemap-data"].details.nodes;
+  return {
+    percentages: categories.map((c) =>
+      Math.round(_categories[c.replaceAll(" ", "-").toLowerCase()].score * 100)
+    ),
+    chunks:
+      Math.round(chunks.reduce((a, b) => a + b.resourceBytes, 0) / 1000) +
+      ` KiB (${chunks.length} ${chunks.length == 1 ? "chunk" : "chunks"})`,
+    device,
+  };
 }

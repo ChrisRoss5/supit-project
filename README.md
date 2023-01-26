@@ -101,8 +101,8 @@ These scores turn out to be the most common for **landing pages**:
   </tr>
 </table>
 
-Unfortunately, lazy loaded versions of **Vue** and **React** have the same scores as their fully loaded counterparts. However, they save a significant amount of bytes (~30%) on first load.
-Because the website isn't that large, user experience is in all likelihood better with fully loaded versions. To find `Bytes Usage` from served files, open a report and press the `View Treemap` button below the metrics.
+Unfortunately, for the landing page, lazy loaded versions of **Vue** and **React** score the same as their fully loaded counterparts. However, they save a significant amount of bytes (~30%).
+Because the website isn't large, user experience is in all likelihood better with fully loaded versions. To find `Bytes Usage` from served files, open a report and press the `View Treemap` button below the metrics.
 
 ---
 

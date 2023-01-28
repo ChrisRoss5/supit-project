@@ -7,13 +7,14 @@ const APIkey = "AIzaSyCuC1VTP2JRefN98l8e1jA6Ga8OIPXq2LE";
 const devices = ["mobile", "desktop"];
 const categories = ["Performance", "Accessibility", "Best Practices"];
 
-const html = projects.map(getProject).join("");
-document.querySelector("#projects").insertAdjacentHTML("beforeend", html);
-document.querySelector("#selector").oninput = onSelectorInput;
+const projectsEl = document.querySelector("#projects");
+projectsEl.innerHTML = projects.map(getProject).join("");
+document.querySelector("#selector select").oninput = onSelectorInput;
 document.querySelector("#selector button").onclick = onSelectorClick;
 let path = "/";
 
 function onSelectorInput(e) {
+  resetGauges(false);
   path = e.target.value;
   document.querySelectorAll(".project").forEach((project) => {
     const newLink = `https://${project.id}.supit.k1k1.dev${path}`;
@@ -28,12 +29,12 @@ function onSelectorInput(e) {
 }
 
 async function onSelectorClick() {
+  resetGauges(true);
   this.disabled = true;
-  resetGauges();
-  const loaderContainers = document.querySelectorAll(".loader-container");
-  loaderContainers.forEach((el) => (el.style.opacity = 1));
-  const projects = [...document.querySelectorAll(".project")];
-  await Promise.all(projects.map(({ id }, i) => updateReports(id, i)));
+  projectsEl.classList.add("loading");
+  const projectEls = [...document.querySelectorAll(".project")];
+  await Promise.all(projectEls.map(({ id }, i) => updateReports(id, i)));
+  projectsEl.classList.remove("loading");
   this.disabled = false;
 }
 
@@ -59,13 +60,13 @@ function getProject({ name, type, tech }, i) {
     </div>`;
 }
 
-function getReport(device, j) {
+function getReport(device) {
   const href =
     "https://pagespeed.web.dev/report?url=https%3A%2F%2F" +
     `${this.name}.supit.k1k1.dev%2F&form_factor=${device}`;
   return /* html */ `
     <a href="${href}" target="_blank">
-      <div class="scores" data-${j}>
+      <div class="scores" ${device}>
         <div class="loader-container">${loader}</div>
         ${categories.map(getGauge).join("")}
       </div>
@@ -76,7 +77,7 @@ function getReport(device, j) {
 async function updateReports(name) {
   const results = devices.map((device) => runPagespeedAPI(name, device));
   (await Promise.all(results)).forEach(({ percentages, chunks, device }, j) => {
-    const scoresEl = document.querySelector(`#${name} [data-${j}]`);
+    const scoresEl = document.querySelector(`#${name} [${device}]`);
     // because desktop picks up more resources for google maps,
     // updating resource bytes for mobile devices is preferred
     if (devices.length == 1 || device == "mobile")

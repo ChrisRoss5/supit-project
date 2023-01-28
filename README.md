@@ -109,6 +109,7 @@ Because the website isn't large, user experience is in all likelihood better wit
 ## Todo
 
 - Angular version with Vite or Webpack
+- Ember version with Vite or Webpack
 - [Make SvelteKit bundle all chunks into a single bundle](https://www.reddit.com/r/sveltejs/comments/rqo5o2/make_sveltekit_bundle_all_ts_files_into_a_single/) (no solution yet)
 
 ## Good to know

@@ -1,4 +1,18 @@
-## Visit [supit.k1k1.dev](https://supit.k1k1.dev/) to explore all versions!
+# Website hosted on Cloudflare Pages
+
+### https://supit.k1k1.dev
+
+-- OR --
+
+### https://supit.pages.dev
+
+**All versions adhere to the same design and functionality as specified in this video from my lecturer:  
+https://www.youtube.com/watch?v=gmr-qoq4eBU.**  
+The given specs and the video are available in this repository as well.
+
+## Deployment
+
+Each branch of this repository contains a different version of the website.
 
 Hosted on Cloudflare with automatic `build` per branch on `push` or `merge`.
 
@@ -8,13 +22,15 @@ It's using [PageSpeed Insights API](https://developers.google.com/speed/docs/ins
 
 ## Installation
 
-Don't forget to `npm i` before you `npm run dev` after switching to a branch with `package.json`.
+`npm i` before `npm run dev` after switching to a branch with `package.json`.
 
 All versions are configured to `npm run build` in `/dist` folder.
 
 ---
 
-## Comparisons: UX/DX
+# Comparison
+
+## DX (Developer Experience) & UX (User Experience)
 
 ### jQuery
 
@@ -101,16 +117,13 @@ These scores turn out to be the most common for **landing pages**:
   </tr>
 </table>
 
-Unfortunately, for the landing page, lazy loaded versions of **Vue** and **React** score the same as their fully loaded counterparts. However, they save a significant amount of bytes (~30%).
+For the landing page, lazy loaded versions of **Vue** and **React** score the same as their fully loaded counterparts. However, they save a significant amount of bytes (~30%).
 Because the website isn't large, user experience is in all likelihood better with fully loaded versions. To find `Bytes Usage` from served files, open a report and press the `View Treemap` button below the metrics.
-
----
 
 ## Todo
 
 - Angular version with Vite or Webpack
-- Ember version with Vite or Webpack
-- [Make SvelteKit bundle all chunks into a single bundle](https://www.reddit.com/r/sveltejs/comments/rqo5o2/make_sveltekit_bundle_all_ts_files_into_a_single/) (no solution yet)
+- [Make SvelteKit bundle all chunks into a single bundle](https://www.reddit.com/r/sveltejs/comments/rqo5o2/make_sveltekit_bundle_all_ts_files_into_a_single/) (no solution as of Jan 2023)
 
 ## Good to know
 
